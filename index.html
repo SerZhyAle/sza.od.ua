@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Serhii Zhyhunenko (SZA) — IT Specialist Portfolio</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* CSS CUSTOM PROPERTIES (DESIGN SYSTEM) */
+    :root {
+      --bg-color: #080b11;
+      --card-bg: rgba(13, 20, 35, 0.45);
+      --card-bg-hover: rgba(17, 27, 49, 0.7);
+      --border-color: rgba(255, 255, 255, 0.06);
+      --border-color-hover: rgba(99, 102, 241, 0.35);
+      
+      --text-primary: #f3f4f6;
+      --text-secondary: #9ca3af;
+      --text-muted: #6b7280;
+      
+      --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+      --secondary-gradient: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+      --text-gradient: linear-gradient(135deg, #ffffff 30%, #a5b4fc 100%);
+      --accent-glow: 0 0 25px rgba(99, 102, 241, 0.15);
+      --accent-glow-strong: 0 0 30px rgba(99, 102, 241, 0.35);
+      
+      --font-heading: 'Outfit', 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    }
+
+    /* BASE STYLES */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding: 2rem 1.5rem;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* DECORATIVE BACKGROUND BLOBS */
+    .bg-blobs {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.15;
+    }
+
+    .blob-1 {
+      top: -100px;
+      left: -50px;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, #6366f1 0%, transparent 70%);
+      animation: drift 18s infinite alternate ease-in-out;
+    }
+
+    .blob-2 {
+      top: 35%;
+      right: -100px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, #a855f7 0%, transparent 70%);
+      animation: drift 25s infinite alternate-reverse ease-in-out;
+    }
+
+    .blob-3 {
+      bottom: -100px;
+      left: 10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, #06b6d4 0%, transparent 70%);
+    }
+
+    @keyframes drift {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(40px, 30px) scale(1.1); }
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      text-align: center;
+      padding: 4rem 1rem 3.5rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .avatar-glow {
+      position: relative;
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .avatar-glow::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--primary-gradient);
+      border-radius: 50%;
+      filter: blur(12px);
+      opacity: 0.65;
+      animation: pulse 3s infinite alternate;
+    }
+
+    .avatar {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: #0f172a;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.8rem;
+      color: #fff;
+      box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.1);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.95); opacity: 0.5; }
+      100% { transform: scale(1.05); opacity: 0.8; }
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 2.8rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+      background: var(--text-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeInDown 0.8s ease-out;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #818cf8;
+      margin-bottom: 1.5rem;
+      display: inline-block;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    .hero-description {
+      max-width: 680px;
+      margin: 0 auto 2rem;
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      animation: fadeInUp 0.8s ease-out 0.4s both;
+    }
+
+    /* ACTION BUTTONS / QUICK LINKS */
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      animation: fadeInUp 0.8s ease-out 0.6s both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--primary-gradient);
+      color: #fff;
+      border: none;
+      box-shadow: var(--accent-glow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--accent-glow-strong);
+      filter: brightness(1.1);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-3px);
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-accent {
+      background: var(--secondary-gradient);
+      color: #fff;
+      border: none;
+      box-shadow: 0 0 25px rgba(6, 182, 212, 0.15);
+    }
+
+    .btn-accent:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 30px rgba(6, 182, 212, 0.35);
+      filter: brightness(1.1);
+    }
+
+    /* SECTION HEADING */
+    .section {
+      padding: 2rem 0;
+      margin-bottom: 2rem;
+    }
+
+    .section-header {
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), transparent);
+    }
+
+    .section-description {
+      color: var(--text-secondary);
+      max-width: 800px;
+      font-size: 0.95rem;
+    }
+
+    /* GLASS CARD BASE */
+    .glass-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* 1C SECTION: HIGHLIGHT CARD */
+    .highlight-card {
+      display: grid;
+      grid-template-columns: 1fr;
+      padding: 2.5rem;
+      position: relative;
+    }
+
+    @media (min-width: 768px) {
+      .highlight-card {
+        grid-template-columns: auto 1fr;
+        gap: 2.5rem;
+        align-items: center;
+      }
+    }
+
+    .highlight-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(6, 182, 212, 0.4);
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.08);
+    }
+
+    .highlight-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle at top right, rgba(6, 182, 212, 0.15), transparent 70%);
+      pointer-events: none;
+    }
+
+    .highlight-icon-wrapper {
+      width: 70px;
+      height: 70px;
+      background: rgba(6, 182, 212, 0.1);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #06b6d4;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .highlight-icon-wrapper {
+        margin-bottom: 0;
+        width: 80px;
+        height: 80px;
+      }
+    }
+
+    .highlight-content h3 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: #fff;
+    }
+
+    .highlight-content p {
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      font-size: 1.05rem;
+    }
+
+    .highlight-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.3rem 0.8rem;
+      border-radius: 30px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .tag-cyan {
+      background: rgba(6, 182, 212, 0.1);
+      color: #22d3ee;
+      border: 1px solid rgba(6, 182, 212, 0.15);
+    }
+
+    .tag-indigo {
+      background: rgba(99, 102, 241, 0.1);
+      color: #818cf8;
+      border: 1px solid rgba(99, 102, 241, 0.15);
+    }
+
+    .tag-purple {
+      background: rgba(168, 85, 247, 0.1);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.15);
+    }
+
+    /* GITHUB SECTION: GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 960px) {
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: 1.75rem;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-color-hover);
+      box-shadow: 0 12px 30px rgba(99, 102, 241, 0.08);
+      background: var(--card-bg-hover);
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.25rem;
+    }
+
+    .project-type-icon {
+      color: #818cf8;
+    }
+
+    .project-title {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+
+    .project-description {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .project-footer {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: auto;
+    }
+
+    .btn-sm {
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
+      border-radius: 8px;
+    }
+
+    /* CONTACT / FOOTER SECTION */
+    .footer-card {
+      padding: 2.5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .footer-card:hover {
+      border-color: rgba(168, 85, 247, 0.35);
+      box-shadow: 0 10px 30px rgba(168, 85, 247, 0.05);
+    }
+
+    .footer-text {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 720px;
+      margin: 0 auto 2rem;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border-color);
+      padding-top: 1.5rem;
+      margin-top: 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    @media (min-width: 640px) {
+      .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.25rem;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--text-primary);
+    }
+
+    /* KEYFRAMES FOR FADING */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BACKGROUND DECORATIVE GLOWS -->
+  <div class="bg-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <div class="container">
+    
+    <!-- HERO SECTION -->
+    <header class="hero">
+      <div class="avatar-glow">
+        <div class="avatar">SZA</div>
+      </div>
+      
+      <h1 class="hero-title">Serhii Zhyhunenko</h1>
+      <span class="hero-subtitle">IT specialist • 1C • automation • tools</span>
+      
+      <p class="hero-description">
+        Разрабатываю и поддерживаю прикладные решения, автоматизацию рабочих процессов, а также desktop- и mobile-инструменты. Ниже собраны мои профессиональные ресурсы, 1С-проект и актуальные репозитории на GitHub.
+      </p>
+      
+      <div class="button-group">
+        <a href="https://www.linkedin.com/in/serhii-zhyhunenko-a4600388/" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+          <!-- LinkedIn SVG -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/SerZhyAle" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+          <!-- GitHub SVG -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          GitHub
+        </a>
+        <a href="https://eltr.od.ua/" class="btn btn-accent" target="_blank" rel="noopener noreferrer">
+          <!-- 1C/Database SVG -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path></svg>
+          1C Projects
+        </a>
+        <a href="mailto:serzhyale@gmail.com" class="btn btn-primary">
+          <!-- Mail SVG -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          Email
+        </a>
+      </div>
+    </header>
+
+    <!-- 1C SECTION -->
+    <section class="section" id="1c-projects">
+      <div class="section-header">
+        <h2 class="section-title">
+          <!-- Accent icon -->
+          <span style="color:#06b6d4;">#</span> Решения на 1С
+        </h2>
+        <p class="section-description">
+          Отдельное направление моей работы связано с решениями на 1С. Здесь собраны практические проекты, ориентированные на учет, торговлю и автоматизацию рабочих процессов.
+        </p>
+      </div>
+
+      <!-- 1C Highlight card -->
+      <div class="glass-card highlight-card">
+        <div class="highlight-icon-wrapper">
+          <!-- Custom Database/Store icon -->
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </div>
+        
+        <div class="highlight-content">
+          <div class="highlight-badges">
+            <span class="tag tag-cyan">Учет и Торговля</span>
+            <span class="tag tag-indigo">Флагманский проект</span>
+            <span class="tag tag-purple">1С-разработка</span>
+          </div>
+          <h3>ELTR / ЭЛЕМЕНТАРНАЯ торговля</h3>
+          <p>Решение для торговли и учета: небольшие магазины, сети, сервисные предприятия, мастерские, бригады и склады. Создано для упрощения ежедневной автоматизации и учета без излишней сложности.</p>
+          <a href="https://eltr.od.ua/" class="btn btn-accent btn-sm" target="_blank" rel="noopener noreferrer">
+            Перейти на ELTR.od.ua
+            <!-- Arrow Right SVG -->
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- GITHUB PROJECTS SECTION -->
+    <section class="section" id="github-projects">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span style="color:#a855f7;">#</span> Разработки на GitHub
+        </h2>
+        <p class="section-description">
+          Подборка авторских утилит, приложений и инструментов для Windows и Android. Каждая карточка ведет в репозиторий проекта с открытым исходным кодом.
+        </p>
+      </div>
+
+      <div class="grid">
+        
+        <!-- CARD 1 -->
+        <article class="glass-card project-card">
+          <div class="project-header">
+            <span class="tag tag-indigo">Android App</span>
+            <div class="project-type-icon">
+              <!-- Smartphone SVG -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+            </div>
+          </div>
+          <h3 class="project-title">FastMediaSorter_mob_v2</h3>
+          <p class="project-description">
+            Android-приложение для пакетной сортировки фото, видео, аудио и документов. Поддерживает локальные папки, SMB / SFTP / FTP и облачные хранилища (Dropbox, Google Drive, OneDrive).
+          </p>
+          <div class="project-footer">
+            <a href="https://github.com/SerZhyAle/FastMediaSorter_mob_v2" class="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://serzhyale.github.io/FastMediaSorter_mob_v2/" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Docs</a>
+          </div>
+        </article>
+
+        <!-- CARD 2 -->
+        <article class="glass-card project-card">
+          <div class="project-header">
+            <span class="tag tag-purple">Windows Desktop</span>
+            <div class="project-type-icon">
+              <!-- Monitor/Desktop SVG -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+            </div>
+          </div>
+          <h3 class="project-title">FastMediaSorter_Lite</h3>
+          <p class="project-description">
+            Windows-приложение для быстрой и удобной сортировки изображений и видео: слайд-шоу, навигация по папкам, быстрое перемещение, копирование, переименование и удаление медиафайлов.
+          </p>
+          <div class="project-footer">
+            <a href="https://github.com/SerZhyAle/FastMediaSorter_Lite" class="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer">Repository</a>
+          </div>
+        </article>
+
+        <!-- CARD 3 -->
+        <article class="glass-card project-card">
+          <div class="project-header">
+            <span class="tag tag-cyan">Windows Tray Tool</span>
+            <div class="project-type-icon">
+              <!-- Keyboard SVG -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect><line x1="6" y1="8" x2="6.01" y2="8"></line><line x1="10" y1="8" x2="10.01" y2="8"></line><line x1="14" y1="8" x2="14.01" y2="8"></line><line x1="18" y1="8" x2="18.01" y2="8"></line><line x1="6" y1="12" x2="6.01" y2="12"></line><line x1="18" y1="12" x2="18.01" y2="12"></line><line x1="7" y1="16" x2="17" y2="16"></line><line x1="10" y1="12" x2="14" y2="12"></line></svg>
+            </div>
+          </div>
+          <h3 class="project-title">CyrFlip</h3>
+          <p class="project-description">
+            Небольшая утилита для системного трея Windows. Позволяет исправлять текст, набранный в неверной раскладке клавиатуры, с индикатором текущего языка и глобальной горячей клавишей.
+          </p>
+          <div class="project-footer">
+            <a href="https://github.com/SerZhyAle/CyrFlip" class="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer">Repository</a>
+          </div>
+        </article>
+
+        <!-- CARD 4 -->
+        <article class="glass-card project-card">
+          <div class="project-header">
+            <span class="tag tag-indigo">CLI & GUI Tool</span>
+            <div class="project-type-icon">
+              <!-- Book / Translate SVG -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            </div>
+          </div>
+          <h3 class="project-title">doc-html-translate</h3>
+          <p class="project-description">
+            Конвертер для Windows: EPUB, PDF, MOBI, AZW3, FB2, RTF, TXT и Markdown в локальный HTML с опциональным автоматическим переводом книг через API Google Cloud или локальный Ollama.
+          </p>
+          <div class="project-footer">
+            <a href="https://github.com/SerZhyAle/doc-html-translate" class="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://serzhyale.github.io/doc-html-translate/" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Docs</a>
+          </div>
+        </article>
+
+        <!-- CARD 5 -->
+        <article class="glass-card project-card">
+          <div class="project-header">
+            <span class="tag tag-purple">CLI Storage Tool</span>
+            <div class="project-type-icon">
+              <!-- Hard Drive/Database SVG -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+            </div>
+          </div>
+          <h3 class="project-title">FileDO</h3>
+          <p class="project-description">
+            Windows CLI утилита для тестирования накопителей, быстрого поиска fake-capacity устройств, безопасного стирания данных (secure wipe) и поиска/анализа дубликатов файлов.
+          </p>
+          <div class="project-footer">
+            <a href="https://github.com/SerZhyAle/FileDO" class="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer">Repository</a>
+          </div>
+        </article>
+
+        <!-- CARD 6 -->
+        <article class="glass-card project-card">
+          <div class="project-header">
+            <span class="tag tag-cyan">Windows Tray Utility</span>
+            <div class="project-type-icon">
+              <!-- Play/Run SVG -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+            </div>
+          </div>
+          <h3 class="project-title">OneClickRunner</h3>
+          <p class="project-description">
+            Windows-приложение для мгновенного запуска часто используемых программ, консольных скриптов, команд и автоматизаций в один клик через меню системного трея.
+          </p>
+          <div class="project-footer">
+            <a href="https://github.com/SerZhyAle/OneClickRunner" class="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer">Repository</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- CONTACT / FOOTER SECTION -->
+    <footer class="section" id="contacts">
+      <div class="glass-card footer-card">
+        <p class="footer-text">
+          Я открыт к профессиональным контактам, сотрудничеству и обсуждению прикладных решений в области 1С, автоматизации, desktop/mobile-разработки и создания инструментов для работы с файлами и данными.
+        </p>
+        
+        <a href="mailto:serzhyale@gmail.com" class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          Связаться по Email
+        </a>
+
+        <div class="footer-bottom">
+          <span>&copy; 2026 Serhii Zhyhunenko. Все права защищены.</span>
+          <div class="footer-links">
+            <a href="https://www.linkedin.com/in/serhii-zhyhunenko-a4600388/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://github.com/SerZhyAle" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://eltr.od.ua/" target="_blank" rel="noopener noreferrer">ELTR 1C</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+</body>
+</html>

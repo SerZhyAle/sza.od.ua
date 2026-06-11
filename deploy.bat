@@ -42,7 +42,7 @@ if %errorlevel% equ 0 (
     echo.
     echo ===================================================
     echo   [SUCCESS] Deployment complete!
-    echo   If configured, your Google Site embed will update.
+    echo   If configured, your website sza.od.ua will update.
     echo ===================================================
 ) else (
     echo.
