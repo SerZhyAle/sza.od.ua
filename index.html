@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Serhii Zhyhunenko (SZA) — IT Specialist Portfolio</title>
+  <title data-i18n="title">Serhii Zhyhunenko (SZA) — IT Specialist Portfolio</title>
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -107,6 +107,53 @@
       100% { transform: translate(40px, 30px) scale(1.1); }
     }
 
+    /* LANGUAGE SWITCHER */
+    .lang-switcher {
+      display: flex;
+      gap: 0.25rem;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 30px;
+      padding: 0.25rem;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 100;
+      width: fit-content;
+      margin: 0 auto 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .lang-switcher {
+        position: fixed;
+        top: 1.5rem;
+        right: 2rem;
+        margin: 0;
+      }
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .lang-btn:hover {
+      color: var(--text-primary);
+    }
+
+    .lang-btn.active {
+      background: var(--primary-gradient);
+      color: #fff;
+      box-shadow: 0 2px 10px rgba(99, 102, 241, 0.3);
+    }
+
     /* CONTAINER */
     .container {
       max-width: 1100px;
@@ -118,7 +165,7 @@
     /* HERO SECTION */
     .hero {
       text-align: center;
-      padding: 4rem 1rem 3.5rem;
+      padding: 3rem 1rem 3.5rem;
       margin-bottom: 2rem;
       position: relative;
     }
@@ -566,6 +613,13 @@
     <div class="blob blob-3"></div>
   </div>
 
+  <!-- FLOATING LANGUAGE SWITCHER -->
+  <div class="lang-switcher">
+    <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
+    <button class="lang-btn" data-lang="uk" onclick="setLanguage('uk')">UA</button>
+    <button class="lang-btn" data-lang="ru" onclick="setLanguage('ru')">RU</button>
+  </div>
+
   <div class="container">
     
     <!-- HERO SECTION -->
@@ -574,11 +628,11 @@
         <div class="avatar">SZA</div>
       </div>
       
-      <h1 class="hero-title">Serhii Zhyhunenko</h1>
-      <span class="hero-subtitle">IT specialist • 1C • automation • tools</span>
+      <h1 class="hero-title" data-i18n="hero-title">Serhii Zhyhunenko</h1>
+      <span class="hero-subtitle" data-i18n="hero-subtitle">IT specialist • 1C • automation • tools</span>
       
-      <p class="hero-description">
-        Разрабатываю и поддерживаю прикладные решения, автоматизацию рабочих процессов, а также desktop- и mobile-инструменты. Ниже собраны мои профессиональные ресурсы, 1С-проект и актуальные репозитории на GitHub.
+      <p class="hero-description" data-i18n="hero-desc">
+        I develop and support custom software applications, workflow automation solutions, as well as desktop and mobile tools. Below are my professional resources, 1C projects, and active GitHub repositories.
       </p>
       
       <div class="button-group">
@@ -610,10 +664,10 @@
       <div class="section-header">
         <h2 class="section-title">
           <!-- Accent icon -->
-          <span style="color:#06b6d4;">#</span> Решения на 1С
+          <span style="color:#06b6d4;">#</span> <span data-i18n="sec-1c-title">1C Enterprise Solutions</span>
         </h2>
-        <p class="section-description">
-          Отдельное направление моей работы связано с решениями на 1С. Здесь собраны практические проекты, ориентированные на учет, торговлю и автоматизацию рабочих процессов.
+        <p class="section-description" data-i18n="sec-1c-desc">
+          A dedicated branch of my work is focused on 1C Enterprise solutions. Here, I build practical systems designed for accounting, trade management, and process automation.
         </p>
       </div>
 
@@ -626,14 +680,14 @@
         
         <div class="highlight-content">
           <div class="highlight-badges">
-            <span class="tag tag-cyan">Учет и Торговля</span>
-            <span class="tag tag-indigo">Флагманский проект</span>
-            <span class="tag tag-purple">1С-разработка</span>
+            <span class="tag tag-cyan" data-i18n="eltr-badge-1">Accounting & Trade</span>
+            <span class="tag tag-indigo" data-i18n="eltr-badge-2">Flagship Project</span>
+            <span class="tag tag-purple" data-i18n="eltr-badge-3">1C Development</span>
           </div>
-          <h3>ELTR / ЭЛЕМЕНТАРНАЯ торговля</h3>
-          <p>Решение для торговли и учета: небольшие магазины, сети, сервисные предприятия, мастерские, бригады и склады. Создано для упрощения ежедневной автоматизации и учета без излишней сложности.</p>
+          <h3 data-i18n="eltr-title">ELTR / ЭЛЕМЕНТАРНАЯ торговля</h3>
+          <p data-i18n="eltr-desc">A solution for trade and inventory management: small stores, retail chains, service centers, workshops, work crews, and warehouses. Designed to simplify daily operations without unnecessary complexity.</p>
           <a href="https://eltr.od.ua/" class="btn btn-accent btn-sm" target="_blank" rel="noopener noreferrer">
-            Перейти на ELTR.od.ua
+            <span data-i18n="eltr-btn">Go to ELTR.od.ua</span>
             <!-- Arrow Right SVG -->
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </a>
@@ -645,10 +699,10 @@
     <section class="section" id="github-projects">
       <div class="section-header">
         <h2 class="section-title">
-          <span style="color:#a855f7;">#</span> Разработки на GitHub
+          <span style="color:#a855f7;">#</span> <span data-i18n="sec-gh-title">GitHub Developments</span>
         </h2>
-        <p class="section-description">
-          Подборка авторских утилит, приложений и инструментов для Windows и Android. Каждая карточка ведет в репозиторий проекта с открытым исходным кодом.
+        <p class="section-description" data-i18n="sec-gh-desc">
+          A curated selection of custom utilities, applications, and tools for Windows and Android. Each card links directly to the project's open-source repository.
         </p>
       </div>
 
@@ -657,15 +711,15 @@
         <!-- CARD 1 -->
         <article class="glass-card project-card">
           <div class="project-header">
-            <span class="tag tag-indigo">Android App</span>
+            <span class="tag tag-indigo" data-i18n="gh-card-1-type">Android App</span>
             <div class="project-type-icon">
               <!-- Smartphone SVG -->
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
             </div>
           </div>
           <h3 class="project-title">FastMediaSorter_mob_v2</h3>
-          <p class="project-description">
-            Android-приложение для пакетной сортировки фото, видео, аудио и документов. Поддерживает локальные папки, SMB / SFTP / FTP и облачные хранилища (Dropbox, Google Drive, OneDrive).
+          <p class="project-description" data-i18n="gh-card-1-desc">
+            Android application for batch sorting of photos, videos, audio, and documents. Supports local folders, SMB / SFTP / FTP network shares, and cloud storage (Dropbox, Google Drive, OneDrive).
           </p>
           <div class="project-footer">
             <a href="https://github.com/SerZhyAle/FastMediaSorter_mob_v2" class="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -676,15 +730,15 @@
         <!-- CARD 2 -->
         <article class="glass-card project-card">
           <div class="project-header">
-            <span class="tag tag-purple">Windows Desktop</span>
+            <span class="tag tag-purple" data-i18n="gh-card-2-type">Windows Desktop</span>
             <div class="project-type-icon">
               <!-- Monitor/Desktop SVG -->
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
             </div>
           </div>
           <h3 class="project-title">FastMediaSorter_Lite</h3>
-          <p class="project-description">
-            Windows-приложение для быстрой и удобной сортировки изображений и видео: слайд-шоу, навигация по папкам, быстрое перемещение, копирование, переименование и удаление медиафайлов.
+          <p class="project-description" data-i18n="gh-card-2-desc">
+            Windows application for fast and easy media sorting: slideshow display, folder navigation, quick move, copy, rename, and delete actions.
           </p>
           <div class="project-footer">
             <a href="https://github.com/SerZhyAle/FastMediaSorter_Lite" class="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer">Repository</a>
@@ -694,15 +748,15 @@
         <!-- CARD 3 -->
         <article class="glass-card project-card">
           <div class="project-header">
-            <span class="tag tag-cyan">Windows Tray Tool</span>
+            <span class="tag tag-cyan" data-i18n="gh-card-3-type">Windows Tray Tool</span>
             <div class="project-type-icon">
               <!-- Keyboard SVG -->
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect><line x1="6" y1="8" x2="6.01" y2="8"></line><line x1="10" y1="8" x2="10.01" y2="8"></line><line x1="14" y1="8" x2="14.01" y2="8"></line><line x1="18" y1="8" x2="18.01" y2="8"></line><line x1="6" y1="12" x2="6.01" y2="12"></line><line x1="18" y1="12" x2="18.01" y2="12"></line><line x1="7" y1="16" x2="17" y2="16"></line><line x1="10" y1="12" x2="14" y2="12"></line></svg>
             </div>
           </div>
           <h3 class="project-title">CyrFlip</h3>
-          <p class="project-description">
-            Небольшая утилита для системного трея Windows. Позволяет исправлять текст, набранный в неверной раскладке клавиатуры, с индикатором текущего языка и глобальной горячей клавишей.
+          <p class="project-description" data-i18n="gh-card-3-desc">
+            A lightweight Windows system tray utility that corrects text typed in the wrong keyboard layout (QWERTY <-> Cyrillic) with a global hotkey and active layout indicator.
           </p>
           <div class="project-footer">
             <a href="https://github.com/SerZhyAle/CyrFlip" class="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer">Repository</a>
@@ -712,15 +766,15 @@
         <!-- CARD 4 -->
         <article class="glass-card project-card">
           <div class="project-header">
-            <span class="tag tag-indigo">CLI & GUI Tool</span>
+            <span class="tag tag-indigo" data-i18n="gh-card-4-type">CLI & GUI Tool</span>
             <div class="project-type-icon">
               <!-- Book / Translate SVG -->
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
             </div>
           </div>
           <h3 class="project-title">doc-html-translate</h3>
-          <p class="project-description">
-            Конвертер для Windows: EPUB, PDF, MOBI, AZW3, FB2, RTF, TXT и Markdown в локальный HTML с опциональным автоматическим переводом книг через API Google Cloud или локальный Ollama.
+          <p class="project-description" data-i18n="gh-card-4-desc">
+            Converter for Windows: EPUB, PDF, MOBI, AZW3, FB2, RTF, TXT, and Markdown to local HTML with optional automatic ebook translation via Google Translate API or local Ollama LLMs.
           </p>
           <div class="project-footer">
             <a href="https://github.com/SerZhyAle/doc-html-translate" class="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -731,15 +785,15 @@
         <!-- CARD 5 -->
         <article class="glass-card project-card">
           <div class="project-header">
-            <span class="tag tag-purple">CLI Storage Tool</span>
+            <span class="tag tag-purple" data-i18n="gh-card-5-type">CLI Storage Tool</span>
             <div class="project-type-icon">
               <!-- Hard Drive/Database SVG -->
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
             </div>
           </div>
           <h3 class="project-title">FileDO</h3>
-          <p class="project-description">
-            Windows CLI утилита для тестирования накопителей, быстрого поиска fake-capacity устройств, безопасного стирания данных (secure wipe) и поиска/анализа дубликатов файлов.
+          <p class="project-description" data-i18n="gh-card-5-desc">
+            Windows CLI utility for drive benchmarking, fake-capacity detection, secure data wiping (secure wipe), and duplicate file analysis/management.
           </p>
           <div class="project-footer">
             <a href="https://github.com/SerZhyAle/FileDO" class="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer">Repository</a>
@@ -749,15 +803,15 @@
         <!-- CARD 6 -->
         <article class="glass-card project-card">
           <div class="project-header">
-            <span class="tag tag-cyan">Windows Tray Utility</span>
+            <span class="tag tag-cyan" data-i18n="gh-card-6-type">Windows Tray Utility</span>
             <div class="project-type-icon">
               <!-- Play/Run SVG -->
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
             </div>
           </div>
           <h3 class="project-title">OneClickRunner</h3>
-          <p class="project-description">
-            Windows-приложение для мгновенного запуска часто используемых программ, консольных скриптов, команд и автоматизаций в один клик через меню системного трея.
+          <p class="project-description" data-i18n="gh-card-6-desc">
+            Windows system tray application to instantly run frequently used software, console scripts, automation commands, and tasks in a single click.
           </p>
           <div class="project-footer">
             <a href="https://github.com/SerZhyAle/OneClickRunner" class="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer">Repository</a>
@@ -770,17 +824,17 @@
     <!-- CONTACT / FOOTER SECTION -->
     <footer class="section" id="contacts">
       <div class="glass-card footer-card">
-        <p class="footer-text">
-          Я открыт к профессиональным контактам, сотрудничеству и обсуждению прикладных решений в области 1С, автоматизации, desktop/mobile-разработки и создания инструментов для работы с файлами и данными.
+        <p class="footer-text" data-i18n="contacts-text">
+          I am open to professional contacts, collaboration, and discussing custom solutions in 1C Enterprise development, workflow automation, desktop/mobile tools, and data/file processing utilities.
         </p>
         
         <a href="mailto:serzhyale@gmail.com" class="btn btn-primary">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-          Связаться по Email
+          <span data-i18n="contacts-btn">Get in Touch via Email</span>
         </a>
 
         <div class="footer-bottom">
-          <span>&copy; 2026 Serhii Zhyhunenko. Все права защищены.</span>
+          <span>&copy; 2026 Serhii Zhyhunenko. <span data-i18n="footer-copyright">All rights reserved.</span></span>
           <div class="footer-links">
             <a href="https://www.linkedin.com/in/serhii-zhyhunenko-a4600388/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             <a href="https://github.com/SerZhyAle" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -792,5 +846,158 @@
 
   </div>
 
+  <!-- MULTILINGUAL SWITCHING SCRIPT -->
+  <script>
+    const i18n = {
+      en: {
+        "title": "Serhii Zhyhunenko (SZA) — IT Specialist Portfolio",
+        "hero-title": "Serhii Zhyhunenko",
+        "hero-subtitle": "IT specialist • 1C • automation • tools",
+        "hero-desc": "I develop and support custom software applications, workflow automation solutions, as well as desktop and mobile tools. Below are my professional resources, 1C projects, and active GitHub repositories.",
+        "sec-1c-title": "1C Enterprise Solutions",
+        "sec-1c-desc": "A dedicated branch of my work is focused on 1C Enterprise solutions. Here, I build practical systems designed for accounting, trade management, and process automation.",
+        "eltr-badge-1": "Accounting & Trade",
+        "eltr-badge-2": "Flagship Project",
+        "eltr-badge-3": "1C Development",
+        "eltr-title": "ELTR / ЭЛЕМЕНТАРНАЯ торговля",
+        "eltr-desc": "A solution for trade and inventory management: small stores, retail chains, service centers, workshops, work crews, and warehouses. Designed to simplify daily operations without unnecessary complexity.",
+        "eltr-btn": "Go to ELTR.od.ua",
+        "sec-gh-title": "GitHub Developments",
+        "sec-gh-desc": "A curated selection of custom utilities, applications, and tools for Windows and Android. Each card links directly to the project's open-source repository.",
+        
+        "gh-card-1-type": "Android App",
+        "gh-card-1-desc": "Android application for batch sorting of photos, videos, audio, and documents. Supports local folders, SMB / SFTP / FTP network shares, and cloud storage (Dropbox, Google Drive, OneDrive).",
+        
+        "gh-card-2-type": "Windows Desktop",
+        "gh-card-2-desc": "Windows application for fast and easy media sorting: slideshow display, folder navigation, quick move, copy, rename, and delete actions.",
+        
+        "gh-card-3-type": "Windows Tray Tool",
+        "gh-card-3-desc": "A lightweight Windows system tray utility that corrects text typed in the wrong keyboard layout (QWERTY <-> Cyrillic) with a global hotkey and active layout indicator.",
+        
+        "gh-card-4-type": "CLI & GUI Tool",
+        "gh-card-4-desc": "Converter for Windows: EPUB, PDF, MOBI, AZW3, FB2, RTF, TXT, and Markdown to local HTML with optional automatic ebook translation via Google Translate API or local Ollama LLMs.",
+        
+        "gh-card-5-type": "CLI Storage Tool",
+        "gh-card-5-desc": "Windows CLI utility for drive benchmarking, fake-capacity detection, secure data wiping (secure wipe), and duplicate file analysis/management.",
+        
+        "gh-card-6-type": "Windows Tray Utility",
+        "gh-card-6-desc": "Windows system tray application to instantly run frequently used software, console scripts, automation commands, and tasks in a single click.",
+        
+        "contacts-text": "I am open to professional contacts, collaboration, and discussing custom solutions in 1C Enterprise development, workflow automation, desktop/mobile tools, and data/file processing utilities.",
+        "contacts-btn": "Get in Touch via Email",
+        "footer-copyright": "All rights reserved."
+      },
+      ru: {
+        "title": "Сергей Жигуненко (SZA) — Портфолио IT-специалиста",
+        "hero-title": "Сергей Жигуненко",
+        "hero-subtitle": "IT специалист • 1С • автоматизация • инструменты",
+        "hero-desc": "Разрабатываю и поддерживаю прикладные решения, автоматизацию рабочих процессов, а также desktop- и mobile-инструменты. Ниже собраны мои профессиональные ресурсы, 1С-проект и актуальные репозитории на GitHub.",
+        "sec-1c-title": "Решения на 1С",
+        "sec-1c-desc": "Отдельное направление моей работы связано с решениями на 1С. Здесь собраны практические проекты, ориентированные на учет, торговлю и автоматизацию рабочих процессов.",
+        "eltr-badge-1": "Учет и Торговля",
+        "eltr-badge-2": "Флагманский проект",
+        "eltr-badge-3": "1С-разработка",
+        "eltr-title": "ELTR / ЭЛЕМЕНТАРНАЯ торговля",
+        "eltr-desc": "Решение для торговли и учета: небольшие магазины, сети, сервисные предприятия, мастерские, бригады и склады. Создано для упрощения ежедневной автоматизации и учета без излишней сложности.",
+        "eltr-btn": "Перейти на ELTR.od.ua",
+        "sec-gh-title": "Разработки на GitHub",
+        "sec-gh-desc": "Подборка авторских утилит, приложений и инструментов для Windows и Android. Каждая карточка ведет в репозиторий проекта с открытым исходным кодом.",
+        
+        "gh-card-1-type": "Android-приложение",
+        "gh-card-1-desc": "Android-приложение для пакетной сортировки фото, видео, аудио и документов. Поддерживает локальные папки, SMB / SFTP / FTP и облачные хранилища (Dropbox, Google Drive, OneDrive).",
+        
+        "gh-card-2-type": "Windows Desktop",
+        "gh-card-2-desc": "Windows-приложение для быстрой и удобной сортировки изображений и видео: слайд-шоу, навигация по папкам, быстрое перемещение, копирование, переименование и удаление медиафайлов.",
+        
+        "gh-card-3-type": "Утилита для трея Windows",
+        "gh-card-3-desc": "Небольшая утилита для системного трея Windows. Позволяет исправлять текст, набранный в неверной раскладке клавиатуры, с индикатором текущего языка и глобальной горячей клавишей.",
+        
+        "gh-card-4-type": "Инструмент CLI & GUI",
+        "gh-card-4-desc": "Конвертер для Windows: EPUB, PDF, MOBI, AZW3, FB2, RTF, TXT и Markdown в локальный HTML с опциональным автоматическим переводом книг через API Google Cloud или локальный Ollama.",
+        
+        "gh-card-5-type": "CLI инструмент для дисков",
+        "gh-card-5-desc": "Windows CLI утилита для тестирования накопителей, быстрого поиска fake-capacity устройств, безопасного стирания данных (secure wipe) и поиска/анализа дубликатов файлов.",
+        
+        "gh-card-6-type": "Windows утилита для трея",
+        "gh-card-6-desc": "Windows-приложение для мгновенного запуска часто используемых программ, консольных скриптов, команд и автоматизаций в один клик через меню системного трея.",
+        
+        "contacts-text": "Я открыт к профессиональным контактам, сотрудничеству и обсуждению прикладных решений в области 1С, автоматизации, desktop/mobile-разработки и создания инструментов для работы с файлами и данными.",
+        "contacts-btn": "Связаться по Email",
+        "footer-copyright": "Все права защищены."
+      },
+      uk: {
+        "title": "Сергій Жигуненко (SZA) — Портфоліо IT-спеціаліста",
+        "hero-title": "Сергій Жигуненко",
+        "hero-subtitle": "IT спеціаліст • 1С • автоматизація • інструменти",
+        "hero-desc": "Розробляю та підтримую прикладні рішення, автоматизацію робочих процесів, а також desktop- та mobile-інструменти. Нижче зібрані мої професійні ресурси, 1С-проект та актуальні репозиторії на GitHub.",
+        "sec-1c-title": "Рішення на 1С",
+        "sec-1c-desc": "Окремий напрямок моєї роботи пов'язаний з рішеннями на 1С. Тут зібрані практичні проекти, орієнтовані на облік, торгівлю та автоматизацію робочих процесів.",
+        "eltr-badge-1": "Облік та Торгівля",
+        "eltr-badge-2": "Флагманський проект",
+        "eltr-badge-3": "1С-розробка",
+        "eltr-title": "ELTR / ЭЛЕМЕНТАРНАЯ торговля",
+        "eltr-desc": "Рішення для торгівлі та обліку: невеликі магазини, мережі, сервісні підприємства, майстерні, бригади та склади. Створено для спрощення щоденної автоматизації та обліку без зайвої складності.",
+        "eltr-btn": "Перейти на ELTR.od.ua",
+        "sec-gh-title": "Розробки на GitHub",
+        "sec-gh-desc": "Добірка авторських утиліті, додатків та інструментів для Windows та Android. Кожна картка веде в репозиторій проекту з відкритим вихідним кодом.",
+        
+        "gh-card-1-type": "Android-додаток",
+        "gh-card-1-desc": "Android-додаток для пакетного сортування фото, відео, аудіо та документів. Підтримує локальні папки, SMB / SFTP / FTP та хмари (Dropbox, Google Drive, OneDrive).",
+        
+        "gh-card-2-type": "Windows Desktop",
+        "gh-card-2-desc": "Windows-додаток для швидкого та зручного сортування зображень і відео: слайд-шоу, навігація по папках, швидке переміщення, копіювання, перейменування та видалення медіафайлів.",
+        
+        "gh-card-3-type": "Утиліта для трею Windows",
+        "gh-card-3-desc": "Невелика утиліта для системного трея Windows. Дозволяє виправляти текст, набранний у невірній розкладці клавіатури, з індикатором поточної мови та глобальною гарячою клавішею.",
+        
+        "gh-card-4-type": "Інструмент CLI & GUI",
+        "gh-card-4-desc": "Конвертер для Windows: EPUB, PDF, MOBI, AZW3, FB2, RTF, TXT та Markdown в локальний HTML з опціональним автоматичним перекладом книг через API Google Cloud или локальный Ollama.",
+        
+        "gh-card-5-type": "CLI інструмент для дисків",
+        "gh-card-5-desc": "Windows CLI утиліта для тестування накопичувачів, швидкого пошуку fake-capacity пристроїв, безпечного стирання даних (secure wipe) та пошуку/аналізу дублікатів файлів.",
+        
+        "gh-card-6-type": "Windows утиліта для трею",
+        "gh-card-6-desc": "Windows-додаток для миттєвого запуску часто використовуваних програм, консольних скриптів, команд та автоматизацій в один клік через меню системного трея.",
+        
+        "contacts-text": "Я відкритий до професійних контактів, співпраці та обговорення прикладних рішень в області 1С, автоматизації, desktop/mobile-розробки та створення інструментів для роботи с файлами та даними.",
+        "contacts-btn": "Зв'язатися по Email",
+        "footer-copyright": "Всі права захищені."
+      }
+    };
+
+    function setLanguage(lang) {
+      if (!i18n[lang]) lang = 'en';
+      localStorage.setItem('sza-lang', lang);
+      
+      // Update active state on language buttons
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        if (btn.getAttribute('data-lang') === lang) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+      
+      // Update HTML tag lang attribute
+      document.documentElement.lang = lang;
+      
+      // Update title
+      document.title = i18n[lang]['title'];
+
+      // Translate all data-i18n elements
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18n[lang][key]) {
+          el.textContent = i18n[lang][key];
+        }
+      });
+    }
+
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('sza-lang') || 'en';
+      setLanguage(savedLang);
+    });
+  </script>
 </body>
 </html>
