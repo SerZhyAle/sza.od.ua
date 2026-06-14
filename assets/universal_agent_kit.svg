@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Universal Agent Kit icon</title>
+  <desc id="desc">Gradient square with agent network motif and UAK lettering.</desc>
+  <defs>
+    <linearGradient id="bg" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0f766e"/>
+      <stop offset="1" stop-color="#2563eb"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#bg)"/>
+  <path d="M18 18 L32 26 L46 18 M18 46 L32 38 L46 46 M18 18 L18 46 M46 18 L46 46" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="18" cy="18" r="3.5" fill="#a5f3fc"/>
+  <circle cx="46" cy="18" r="3.5" fill="#bfdbfe"/>
+  <circle cx="18" cy="46" r="3.5" fill="#bfdbfe"/>
+  <circle cx="46" cy="46" r="3.5" fill="#a5f3fc"/>
+  <rect x="20" y="24" width="24" height="16" rx="6" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.26)"/>
+  <text x="32" y="35.5" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff">UAK</text>
+</svg>
