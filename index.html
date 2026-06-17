@@ -1,1028 +1,431 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0f0a">
   <title data-i18n="title">Serhii Zhyhunenko (SZA) — IT Specialist Portfolio</title>
-  
+  <meta name="description" content="Serhii Zhyhunenko (SZA) — IT specialist: 1C Enterprise, workflow automation, Windows & Android tools. Projects, GitHub repositories and contacts.">
+
+  <!-- Pre-paint: resolve theme + language before first paint (no flash) -->
+  <script>
+  (function(){try{
+    var t=localStorage.getItem('sza-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');
+    document.documentElement.setAttribute('data-theme',t);
+    var l=localStorage.getItem('sza-lang');
+    if(!l){var n=(navigator.language||'en').toLowerCase();l=n.indexOf('ru')===0?'ru':n.indexOf('uk')===0?'uk':'en';}
+    document.documentElement.setAttribute('data-lang',l);
+  }catch(e){}})();
+  </script>
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
+
+  <!-- SZA shared kit (Pine + Gold) -->
+  <link rel="stylesheet" href="kit/sza-kit.css">
+
   <style>
-    /* CSS CUSTOM PROPERTIES (DESIGN SYSTEM) */
-    :root {
-      --bg-color: #080b11;
-      --card-bg: rgba(13, 20, 35, 0.45);
-      --card-bg-hover: rgba(17, 27, 49, 0.7);
-      --border-color: rgba(255, 255, 255, 0.06);
-      --border-color-hover: rgba(99, 102, 241, 0.35);
-      
-      --text-primary: #f3f4f6;
-      --text-secondary: #9ca3af;
-      --text-muted: #6b7280;
-      
-      --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-      --secondary-gradient: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
-      --text-gradient: linear-gradient(135deg, #ffffff 30%, #a5b4fc 100%);
-      --accent-glow: 0 0 25px rgba(99, 102, 241, 0.15);
-      --accent-glow-strong: 0 0 30px rgba(99, 102, 241, 0.35);
-      
-      --font-heading: 'Outfit', 'Plus Jakarta Sans', -apple-system, sans-serif;
-      --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
-    }
-
-    /* BASE STYLES */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    
-    html {
-      scroll-behavior: smooth;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
-    }
-
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-primary);
-      font-family: var(--font-body);
-      line-height: 1.6;
-      overflow-x: hidden;
-      padding: 2rem 1.5rem;
-      min-height: 100vh;
-      position: relative;
-    }
-
-    /* DECORATIVE BACKGROUND BLOBS */
-    .bg-blobs {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      pointer-events: none;
-      z-index: -1;
-      overflow: hidden;
-    }
-
-    .blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(120px);
-      opacity: 0.15;
-    }
-
-    .blob-1 {
-      top: -100px;
-      left: -50px;
-      width: 450px;
-      height: 450px;
-      background: radial-gradient(circle, #6366f1 0%, transparent 70%);
-      animation: drift 18s infinite alternate ease-in-out;
-    }
-
-    .blob-2 {
-      top: 35%;
-      right: -100px;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, #a855f7 0%, transparent 70%);
-      animation: drift 25s infinite alternate-reverse ease-in-out;
-    }
-
-    .blob-3 {
-      bottom: -100px;
-      left: 10%;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, #06b6d4 0%, transparent 70%);
-    }
-
-    @keyframes drift {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(40px, 30px) scale(1.1); }
-    }
-
-    /* LANGUAGE SWITCHER */
-    .lang-switcher {
-      display: flex;
-      gap: 0.25rem;
-      background: rgba(15, 23, 42, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 30px;
-      padding: 0.25rem;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      z-index: 100;
-      width: fit-content;
-      margin: 0 auto 1rem;
-    }
-
-    @media (min-width: 768px) {
-      .lang-switcher {
-        position: fixed;
-        top: 1.5rem;
-        right: 2rem;
-        margin: 0;
-      }
-    }
-
-    .lang-btn {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 0.75rem;
-      padding: 0.4rem 0.8rem;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .lang-btn:hover {
-      color: var(--text-primary);
-    }
-
-    .lang-btn.active {
-      background: var(--primary-gradient);
-      color: #fff;
-      box-shadow: 0 2px 10px rgba(99, 102, 241, 0.3);
-    }
-
-    /* CONTAINER */
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* HERO SECTION */
-    .hero {
-      text-align: center;
-      padding: 3rem 1rem 3.5rem;
-      margin-bottom: 2rem;
-      position: relative;
-    }
-
-    .avatar-glow {
-      position: relative;
-      width: 90px;
-      height: 90px;
-      margin: 0 auto 1.5rem;
-    }
-
-    .avatar-glow::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--primary-gradient);
-      border-radius: 50%;
-      filter: blur(12px);
-      opacity: 0.65;
-      animation: pulse 3s infinite alternate;
-    }
-
-    .avatar {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      background: #0f172a;
-      border-radius: 50%;
-      border: 2px solid rgba(255, 255, 255, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-heading);
-      font-weight: 800;
-      font-size: 1.8rem;
-      color: #fff;
-      box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.1);
-      overflow: hidden;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(0.95); opacity: 0.5; }
-      100% { transform: scale(1.05); opacity: 0.8; }
-    }
-
-    .hero-title {
-      font-family: var(--font-heading);
-      font-weight: 800;
-      font-size: 2.8rem;
-      letter-spacing: -0.03em;
-      margin-bottom: 0.5rem;
-      background: var(--text-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: fadeInDown 0.8s ease-out;
-    }
-
-    .hero-subtitle {
-      font-size: 1rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: #818cf8;
-      margin-bottom: 1.5rem;
-      display: inline-block;
-      animation: fadeInUp 0.8s ease-out 0.2s both;
-    }
-
-    .hero-description {
-      max-width: 680px;
-      margin: 0 auto 2rem;
-      color: var(--text-secondary);
-      font-size: 1.05rem;
-      animation: fadeInUp 0.8s ease-out 0.4s both;
-    }
-
-    /* ACTION BUTTONS / QUICK LINKS */
-    .button-group {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      animation: fadeInUp 0.8s ease-out 0.6s both;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.5rem;
-      border-radius: 50px;
-      font-family: var(--font-body);
-      font-weight: 600;
-      font-size: 0.95rem;
-      text-decoration: none;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: var(--primary-gradient);
-      color: #fff;
-      border: none;
-      box-shadow: var(--accent-glow);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--accent-glow-strong);
-      filter: brightness(1.1);
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.03);
-      color: var(--text-primary);
-      border: 1px solid var(--border-color);
-      backdrop-filter: blur(10px);
-    }
-
-    .btn-secondary:hover {
-      transform: translateY(-3px);
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.2);
-    }
-
-    .btn-accent {
-      background: var(--secondary-gradient);
-      color: #fff;
-      border: none;
-      box-shadow: 0 0 25px rgba(6, 182, 212, 0.15);
-    }
-
-    .btn-accent:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 30px rgba(6, 182, 212, 0.35);
-      filter: brightness(1.1);
-    }
-
-    /* SECTION HEADING */
-    .section {
-      padding: 2rem 0;
-      margin-bottom: 2rem;
-    }
-
-    .section-header {
-      margin-bottom: 2rem;
-      position: relative;
-    }
-
-    .section-title {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 1.8rem;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .section-title::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), transparent);
-    }
-
-    .section-description {
-      color: var(--text-secondary);
-      max-width: 800px;
-      font-size: 0.95rem;
-    }
-
-    /* GLASS CARD BASE */
-    .glass-card {
-      background: var(--card-bg);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .glass-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    /* 1C SECTION: HIGHLIGHT CARD */
-    .highlight-card {
-      display: grid;
-      grid-template-columns: 1fr;
-      padding: 2.5rem;
-      position: relative;
-    }
-
-    @media (min-width: 768px) {
-      .highlight-card {
-        grid-template-columns: auto 1fr;
-        gap: 2.5rem;
-        align-items: center;
-      }
-    }
-
-    .highlight-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(6, 182, 212, 0.4);
-      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.08);
-    }
-
-    .highlight-card::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 150px;
-      height: 150px;
-      background: radial-gradient(circle at top right, rgba(6, 182, 212, 0.15), transparent 70%);
-      pointer-events: none;
-    }
-
-    .highlight-icon-wrapper {
-      width: 70px;
-      height: 70px;
-      background: rgba(6, 182, 212, 0.1);
-      border: 1px solid rgba(6, 182, 212, 0.2);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #06b6d4;
-      margin-bottom: 1.5rem;
-    }
-
-    @media (min-width: 768px) {
-      .highlight-icon-wrapper {
-        margin-bottom: 0;
-        width: 80px;
-        height: 80px;
-      }
-    }
-
-    .highlight-content h3 {
-      font-family: var(--font-heading);
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-      color: #fff;
-    }
-
-    .highlight-content p {
-      color: var(--text-secondary);
-      margin-bottom: 1.5rem;
-      font-size: 1.05rem;
-    }
-
-    .highlight-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .tag {
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 0.3rem 0.8rem;
-      border-radius: 30px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .tag-cyan {
-      background: rgba(6, 182, 212, 0.1);
-      color: #22d3ee;
-      border: 1px solid rgba(6, 182, 212, 0.15);
-    }
-
-    .tag-indigo {
-      background: rgba(99, 102, 241, 0.1);
-      color: #818cf8;
-      border: 1px solid rgba(99, 102, 241, 0.15);
-    }
-
-    .tag-purple {
-      background: rgba(168, 85, 247, 0.1);
-      color: #c084fc;
-      border: 1px solid rgba(168, 85, 247, 0.15);
-    }
-
-    /* GITHUB SECTION: GRID */
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-
-    @media (min-width: 640px) {
-      .grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (min-width: 960px) {
-      .grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    .project-card {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      padding: 1.75rem;
-    }
-
-    .project-card:hover {
-      transform: translateY(-6px);
-      border-color: var(--border-color-hover);
-      box-shadow: 0 12px 30px rgba(99, 102, 241, 0.08);
-      background: var(--card-bg-hover);
-    }
-
-    .project-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 1.25rem;
-    }
-
-    .project-type-icon {
-      color: #818cf8;
-    }
-
-    .project-title {
-      font-family: var(--font-heading);
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 0.75rem;
-      line-height: 1.3;
-    }
-
-    .project-description {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      margin-bottom: 1.5rem;
-      flex-grow: 1;
-    }
-
-    .project-footer {
-      display: flex;
-      gap: 0.75rem;
-      margin-top: auto;
-    }
-
-    .btn-sm {
-      padding: 0.5rem 1rem;
-      font-size: 0.8rem;
-      border-radius: 8px;
-    }
-
-    /* CONTACT / FOOTER SECTION */
-    .footer-card {
-      padding: 2.5rem;
-      text-align: center;
-      position: relative;
-    }
-
-    .footer-card:hover {
-      border-color: rgba(168, 85, 247, 0.35);
-      box-shadow: 0 10px 30px rgba(168, 85, 247, 0.05);
-    }
-
-    .footer-text {
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-      max-width: 720px;
-      margin: 0 auto 2rem;
-    }
-
-    .footer-bottom {
-      border-top: 1px solid var(--border-color);
-      padding-top: 1.5rem;
-      margin-top: 1.5rem;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    @media (min-width: 640px) {
-      .footer-bottom {
-        flex-direction: row;
-        justify-content: space-between;
-      }
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 1.25rem;
-    }
-
-    .footer-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .footer-links a:hover {
-      color: var(--text-primary);
-    }
-
-    /* KEYFRAMES FOR FADING */
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    /* ---- hub-specific (built on the kit) ---- */
+    .hero .avatar{position:relative;width:88px;height:88px;margin:0 auto 1.3rem}
+    .hero .avatar::before{content:"";position:absolute;inset:0;border-radius:50%;background:var(--acc);filter:blur(13px);opacity:.4;animation:pulse 3s infinite alternate}
+    .hero .avatar img{position:relative;width:100%;height:100%;border-radius:50%;background:var(--bg-2);border:1px solid var(--border);object-fit:contain;padding:10%}
+    @keyframes pulse{0%{transform:scale(.95);opacity:.3}100%{transform:scale(1.05);opacity:.55}}
+    .button-group{display:flex;flex-wrap:wrap;justify-content:center;gap:.8rem;margin-top:1.3rem}
+    .section-title{display:flex;align-items:center;gap:.7rem;font-family:var(--font-heading);font-size:1.6rem;font-weight:700;margin-bottom:.4rem}
+    .section-title .h{color:var(--acc)}
+    .section-title::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
+    .section-desc{color:var(--muted);max-width:760px;font-size:.95rem;margin-bottom:1.6rem}
+    .project-card{display:flex;flex-direction:column}
+    .proj-head{display:flex;gap:.9rem;align-items:center;margin-bottom:1rem}
+    .proj-head img{width:46px;height:46px;object-fit:contain;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid var(--border);padding:4px}
+    .proj-title{font-family:var(--font-heading);font-weight:700;font-size:1.1rem;line-height:1.25;margin-bottom:.25rem}
+    .proj-desc{color:var(--muted);font-size:.88rem;flex-grow:1;margin-bottom:1.2rem}
+    .proj-foot{display:flex;gap:.6rem;margin-top:auto;flex-wrap:wrap}
+    .highlight{display:grid;gap:1.2rem;padding:2rem;border-left:3px solid var(--gold)}
+    @media(min-width:768px){.highlight{grid-template-columns:auto 1fr;align-items:center;gap:2rem}}
+    .highlight .ic{width:64px;height:64px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--gold) 12%,transparent);border:1px solid color-mix(in srgb,var(--gold) 24%,transparent);color:var(--gold)}
+    .highlight h3{font-family:var(--font-heading);font-size:1.3rem;margin:.2rem 0 .5rem}
+    .highlight p{color:var(--muted);margin-bottom:1.1rem}
+    .contact-card{text-align:center;padding:2.2rem}
+    .contact-boxes{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin:1.4rem 0}
+    .contact-boxes .cbx{text-align:left}
+    .cbx-label{font-family:var(--font-heading);font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);display:block;margin-bottom:.35rem}
   </style>
 </head>
 <body>
 
-  <!-- BACKGROUND DECORATIVE GLOWS -->
-  <div class="bg-blobs">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-  </div>
+  <!-- BACKGROUND -->
+  <div class="bg-blobs"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
 
-  <!-- FLOATING LANGUAGE SWITCHER -->
-  <div class="lang-switcher">
-    <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
-    <button class="lang-btn" data-lang="uk" onclick="setLanguage('uk')">UA</button>
-    <button class="lang-btn" data-lang="ru" onclick="setLanguage('ru')">RU</button>
-  </div>
+  <!-- STICKY HEADER -->
+  <header class="site-header">
+    <span class="brand">SZA<span class="dot">.</span></span>
+    <div class="seg" role="group" aria-label="Language">
+      <button data-lang="ru" onclick="setLanguage('ru')">RU</button>
+      <button data-lang="en" onclick="setLanguage('en')" aria-pressed="true">EN</button>
+      <button data-lang="uk" onclick="setLanguage('uk')">UA</button>
+    </div>
+    <button class="theme-btn" id="themeBtn" aria-label="Switch theme" onclick="toggleTheme()">◐</button>
+    <a class="btn btn-primary btn-sm" href="mailto:sza@ukr.net" data-i18n="hdr-cta">Contact</a>
+  </header>
 
   <div class="container">
-    
-    <!-- HERO SECTION -->
+
+    <!-- HERO -->
     <header class="hero">
-      <div class="avatar-glow">
-        <div class="avatar">
-          <img src="assets/sz18_out_800x800_white_on_transp.png" alt="SZA Logo" style="width: 100%; height: 100%; object-fit: contain; padding: 10%;">
-        </div>
-      </div>
-      
-      <h1 class="hero-title" data-i18n="hero-title">Serhii Zhyhunenko</h1>
-      <span class="hero-subtitle" data-i18n="hero-subtitle">IT specialist • 1C • automation • tools</span>
-      
-      <p class="hero-description" data-i18n="hero-desc">
-        I develop and support custom software applications, workflow automation solutions, as well as desktop and mobile tools. Below are my professional resources, 1C projects, and active GitHub repositories.
-      </p>
-      
+      <div class="avatar"><img src="assets/sz18_out_800x800_white_on_transp.png" alt="SZA logo"></div>
+      <span class="kicker" data-i18n="hero-subtitle">IT specialist • 1C • automation • tools</span>
+      <h1 data-i18n="hero-title">Serhii Zhyhunenko</h1>
+      <p class="lead" data-i18n="hero-desc">I develop and support custom software applications, workflow automation solutions, as well as desktop and mobile tools. Below are my professional resources, 1C projects, and active GitHub repositories.</p>
       <div class="button-group">
-        <a href="https://www.linkedin.com/in/serhii-zhyhunenko-a4600388/" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
-          <!-- LinkedIn SVG -->
+        <a href="https://www.linkedin.com/in/serhii-zhyhunenko-a4600388/" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
           LinkedIn
         </a>
-        <a href="https://github.com/SerZhyAle" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
-          <!-- GitHub SVG -->
+        <a href="https://github.com/SerZhyAle" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
           GitHub
         </a>
-        <a href="https://eltr.od.ua/" class="btn btn-accent" target="_blank" rel="noopener noreferrer">
-          <!-- 1C/Database SVG -->
+        <a href="https://eltr.od.ua/" class="btn btn-gold" target="_blank" rel="noopener noreferrer">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path></svg>
-          1C Projects
+          <span data-i18n="hero-1c">1C Projects</span>
         </a>
-        <a href="mailto:serzhyale@gmail.com" class="btn btn-primary">
-          <!-- Mail SVG -->
+        <a href="mailto:sza@ukr.net" class="btn btn-primary">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
           Email
         </a>
       </div>
     </header>
 
-    <!-- GITHUB PROJECTS SECTION -->
+    <!-- GITHUB PROJECTS -->
     <section class="section" id="github-projects">
-      <div class="section-header">
-        <h2 class="section-title">
-          <span style="color:#a855f7;">#</span> <span data-i18n="sec-gh-title">GitHub Developments</span>
-        </h2>
-        <p class="section-description" data-i18n="sec-gh-desc">
-          A curated selection of custom utilities, applications, and tools for Windows and Android. Each card opens the live project page when available, with GitHub kept as the source link.
-        </p>
-      </div>
+      <h2 class="section-title"><span class="h">#</span> <span data-i18n="sec-gh-title">GitHub Developments</span></h2>
+      <p class="section-desc" data-i18n="sec-gh-desc">A curated selection of custom utilities, applications, and tools for Windows and Android. Each card opens the live project page when available, with GitHub kept as the source link.</p>
 
       <div class="grid">
-        
-        <!-- CARD 1 -->
-        <article class="glass-card project-card">
-          <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1.25rem;">
-            <img src="assets/fms_mob.png" alt="FastMediaSorter_mob_v2 Icon" style="width: 48px; height: 48px; object-fit: contain; border-radius: 10px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); padding: 4px;">
-            <div>
-              <h3 class="project-title" style="margin-bottom: 0.25rem;">FastMediaSorter_mob_v2</h3>
-              <span class="tag tag-indigo" data-i18n="gh-card-1-type">Android App</span>
-            </div>
+        <!-- 1 -->
+        <article class="card project-card">
+          <div class="proj-head">
+            <img src="assets/fms_mob.png" alt="FastMediaSorter v2 icon">
+            <div><div class="proj-title">FastMediaSorter_mob_v2</div><span class="pill" data-i18n="gh-card-1-type">Android App</span></div>
           </div>
-          <p class="project-description" data-i18n="gh-card-1-desc">
-            Android application for batch sorting of photos, videos, audio, and documents. Supports local folders, SMB / SFTP / FTP network shares, and cloud storage (Dropbox, Google Drive, OneDrive).
-          </p>
-          <div class="project-footer">
-            <a href="https://github.com/SerZhyAle/FastMediaSorter_mob_v2" class="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a href="https://serzhyale.github.io/FastMediaSorter_mob_v2/" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Docs</a>
+          <p class="proj-desc" data-i18n="gh-card-1-desc">Android application for batch sorting of photos, videos, audio, and documents. Supports local folders, SMB / SFTP / FTP network shares, and cloud storage (Dropbox, Google Drive, OneDrive).</p>
+          <div class="proj-foot">
+            <a href="https://github.com/SerZhyAle/FastMediaSorter_mob_v2" class="btn btn-ghost btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://serzhyale.github.io/FastMediaSorter_mob_v2/" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Site</a>
           </div>
         </article>
-
-        <!-- CARD 2 -->
-        <article class="glass-card project-card">
-          <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1.25rem;">
-            <img src="assets/fms_lite.png" alt="FastMediaSorter_Lite Icon" style="width: 48px; height: 48px; object-fit: contain; border-radius: 10px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); padding: 4px;">
-            <div>
-              <h3 class="project-title" style="margin-bottom: 0.25rem;">FastMediaSorter_Lite</h3>
-              <span class="tag tag-purple" data-i18n="gh-card-2-type">Windows Desktop</span>
-            </div>
+        <!-- 2 -->
+        <article class="card project-card">
+          <div class="proj-head">
+            <img src="assets/fms_lite.png" alt="FastMediaSorter Lite icon">
+            <div><div class="proj-title">FastMediaSorter_Lite</div><span class="pill" data-i18n="gh-card-2-type">Windows Desktop</span></div>
           </div>
-          <p class="project-description" data-i18n="gh-card-2-desc">
-            Windows application for fast and easy media sorting: slideshow display, folder navigation, quick move, copy, rename, and delete actions.
-          </p>
-          <div class="project-footer">
-            <a href="https://github.com/SerZhyAle/FastMediaSorter_Lite" class="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer">Repository</a>
+          <p class="proj-desc" data-i18n="gh-card-2-desc">Windows application for fast and easy media sorting: slideshow display, folder navigation, quick move, copy, rename, and delete actions.</p>
+          <div class="proj-foot">
+            <a href="https://github.com/SerZhyAle/FastMediaSorter_Lite" class="btn btn-ghost btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a>
             <a href="https://serzhyale.github.io/FastMediaSorter_Lite/" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Site</a>
           </div>
         </article>
-
-        <!-- CARD 3 -->
-        <article class="glass-card project-card">
-          <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1.25rem;">
-            <img src="assets/cyrflip.png" alt="CyrFlip Icon" style="width: 48px; height: 48px; object-fit: contain; border-radius: 10px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); padding: 4px;">
-            <div>
-              <h3 class="project-title" style="margin-bottom: 0.25rem;">CyrFlip</h3>
-              <span class="tag tag-cyan" data-i18n="gh-card-3-type">Windows Tray Tool</span>
-            </div>
+        <!-- 3 -->
+        <article class="card project-card">
+          <div class="proj-head">
+            <img src="assets/cyrflip.png" alt="CyrFlip icon">
+            <div><div class="proj-title">CyrFlip</div><span class="pill" data-i18n="gh-card-3-type">Windows Tray Tool</span></div>
           </div>
-          <p class="project-description" data-i18n="gh-card-3-desc">
-            A lightweight Windows system tray utility that corrects text typed in the wrong keyboard layout (QWERTY <-> Cyrillic) with a global hotkey and active layout indicator.
-          </p>
-          <div class="project-footer">
-            <a href="https://github.com/SerZhyAle/CyrFlip" class="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer">Repository</a>
+          <p class="proj-desc" data-i18n="gh-card-3-desc">A lightweight Windows system tray utility that corrects text typed in the wrong keyboard layout (QWERTY &lt;-&gt; Cyrillic) with a global hotkey and active layout indicator.</p>
+          <div class="proj-foot">
+            <a href="https://github.com/SerZhyAle/CyrFlip" class="btn btn-ghost btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a>
             <a href="https://serzhyale.github.io/CyrFlip/" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Site</a>
           </div>
         </article>
-
-        <!-- CARD 4 -->
-        <article class="glass-card project-card">
-          <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1.25rem;">
-            <img src="assets/doc_translate.ico" alt="doc-html-translate Icon" style="width: 48px; height: 48px; object-fit: contain; border-radius: 10px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); padding: 4px;">
-            <div>
-              <h3 class="project-title" style="margin-bottom: 0.25rem;">doc-html-translate</h3>
-              <span class="tag tag-indigo" data-i18n="gh-card-4-type">CLI & GUI Tool</span>
-            </div>
+        <!-- 4 -->
+        <article class="card project-card">
+          <div class="proj-head">
+            <img src="assets/doc_translate.ico" alt="doc-html-translate icon">
+            <div><div class="proj-title">doc-html-translate</div><span class="pill" data-i18n="gh-card-4-type">CLI &amp; GUI Tool</span></div>
           </div>
-          <p class="project-description" data-i18n="gh-card-4-desc">
-            Converter for Windows: EPUB, PDF, MOBI, AZW3, FB2, RTF, TXT, and Markdown to local HTML with optional automatic ebook translation via Google Translate API or local Ollama LLMs.
-          </p>
-          <div class="project-footer">
-            <a href="https://github.com/SerZhyAle/doc-html-translate" class="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <p class="proj-desc" data-i18n="gh-card-4-desc">Converter for Windows: EPUB, PDF, MOBI, AZW3, FB2, RTF, TXT, and Markdown to local HTML with optional automatic ebook translation via Google Translate API or local Ollama LLMs.</p>
+          <div class="proj-foot">
+            <a href="https://github.com/SerZhyAle/doc-html-translate" class="btn btn-ghost btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a>
             <a href="https://serzhyale.github.io/doc-html-translate/" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Site</a>
           </div>
         </article>
-
-        <!-- CARD 5 -->
-        <article class="glass-card project-card">
-          <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1.25rem;">
-            <img src="assets/filedo.png" alt="FileDO Icon" style="width: 48px; height: 48px; object-fit: contain; border-radius: 10px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); padding: 4px;">
-            <div>
-              <h3 class="project-title" style="margin-bottom: 0.25rem;">FileDO</h3>
-              <span class="tag tag-purple" data-i18n="gh-card-5-type">CLI Storage Tool</span>
-            </div>
+        <!-- 5 -->
+        <article class="card project-card">
+          <div class="proj-head">
+            <img src="assets/filedo.png" alt="FileDO icon">
+            <div><div class="proj-title">FileDO</div><span class="pill" data-i18n="gh-card-5-type">CLI Storage Tool</span></div>
           </div>
-          <p class="project-description" data-i18n="gh-card-5-desc">
-            Windows CLI utility for drive benchmarking, fake-capacity detection, secure data wiping (secure wipe), and duplicate file analysis/management.
-          </p>
-          <div class="project-footer">
-            <a href="https://github.com/SerZhyAle/FileDO" class="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer">Repository</a>
+          <p class="proj-desc" data-i18n="gh-card-5-desc">Windows CLI utility for drive benchmarking, fake-capacity detection, secure data wiping (secure wipe), and duplicate file analysis/management.</p>
+          <div class="proj-foot">
+            <a href="https://github.com/SerZhyAle/FileDO" class="btn btn-ghost btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://serzhyale.github.io/FileDO/" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Site</a>
           </div>
         </article>
-
-        <!-- CARD 6 -->
-        <article class="glass-card project-card">
-          <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1.25rem;">
-            <img src="assets/one_click_runner.png" alt="OneClickRunner Icon" style="width: 48px; height: 48px; object-fit: contain; border-radius: 10px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); padding: 4px;">
-            <div>
-              <h3 class="project-title" style="margin-bottom: 0.25rem;">OneClickRunner</h3>
-              <span class="tag tag-cyan" data-i18n="gh-card-6-type">Windows Tray Utility</span>
-            </div>
+        <!-- 6 -->
+        <article class="card project-card">
+          <div class="proj-head">
+            <img src="assets/one_click_runner.png" alt="OneClickRunner icon">
+            <div><div class="proj-title">OneClickRunner</div><span class="pill" data-i18n="gh-card-6-type">Windows Tray Utility</span></div>
           </div>
-          <p class="project-description" data-i18n="gh-card-6-desc">
-            Windows system tray application to instantly run frequently used software, console scripts, automation commands, and tasks in a single click.
-          </p>
-          <div class="project-footer">
-            <a href="https://github.com/SerZhyAle/OneClickRunner" class="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer">Repository</a>
+          <p class="proj-desc" data-i18n="gh-card-6-desc">Windows system tray application to instantly run frequently used software, console scripts, automation commands, and tasks in a single click.</p>
+          <div class="proj-foot">
+            <a href="https://github.com/SerZhyAle/OneClickRunner" class="btn btn-ghost btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a>
           </div>
         </article>
-
-        <!-- CARD 7 -->
-        <article class="glass-card project-card">
-          <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1.25rem;">
-            <img src="assets/universal_agent_kit.svg" alt="Universal Agent Kit Icon" style="width: 48px; height: 48px; object-fit: contain; border-radius: 10px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); padding: 4px;">
-            <div>
-              <h3 class="project-title" style="margin-bottom: 0.25rem;">universal-agent-kit</h3>
-              <span class="tag tag-indigo" data-i18n="gh-card-7-type">AI Workflow Kit</span>
-            </div>
+        <!-- 7 -->
+        <article class="card project-card">
+          <div class="proj-head">
+            <img src="assets/universal_agent_kit.svg" alt="Universal Agent Kit icon">
+            <div><div class="proj-title">universal-agent-kit</div><span class="pill" data-i18n="gh-card-7-type">AI Workflow Kit</span></div>
           </div>
-          <p class="project-description" data-i18n="gh-card-7-desc">
-            Portable, stack-agnostic kit for AI-assisted development: rules, skills, roles, a spec lifecycle, and persistent memory for agent-driven work in git repositories.
-          </p>
-          <div class="project-footer">
-            <a href="https://github.com/SerZhyAle/universal-agent-kit" class="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <p class="proj-desc" data-i18n="gh-card-7-desc">Portable, stack-agnostic kit for AI-assisted development: rules, skills, roles, a spec lifecycle, and persistent memory for agent-driven work in git repositories.</p>
+          <div class="proj-foot">
+            <a href="https://github.com/SerZhyAle/universal-agent-kit" class="btn btn-ghost btn-sm" target="_blank" rel="noopener noreferrer">GitHub</a>
             <a href="https://serzhyale.github.io/universal-agent-kit/" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Site</a>
           </div>
         </article>
-
       </div>
     </section>
 
-    <!-- 1C SECTION -->
+    <!-- 1C / ELTR -->
     <section class="section" id="1c-projects">
-      <div class="section-header">
-        <h2 class="section-title">
-          <!-- Accent icon -->
-          <span style="color:#06b6d4;">#</span> <span data-i18n="sec-1c-title">1C Enterprise Solutions</span>
-        </h2>
-        <p class="section-description" data-i18n="sec-1c-desc">
-          A dedicated branch of my work is focused on 1C Enterprise solutions. Here, I build practical systems designed for accounting, trade management, and process automation.
-        </p>
-      </div>
-
-      <!-- 1C Highlight card -->
-      <div class="glass-card highlight-card">
-        <div class="highlight-icon-wrapper">
-          <!-- Custom Database/Store icon -->
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      <h2 class="section-title"><span class="h">#</span> <span data-i18n="sec-1c-title">1C Enterprise Solutions</span></h2>
+      <p class="section-desc" data-i18n="sec-1c-desc">A dedicated branch of my work is focused on 1C Enterprise solutions. Here, I build practical systems designed for accounting, trade management, and process automation.</p>
+      <div class="card highlight">
+        <div class="ic">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path></svg>
         </div>
-        
-        <div class="highlight-content">
-          <div class="highlight-badges">
-            <span class="tag tag-cyan" data-i18n="eltr-badge-1">Accounting & Trade</span>
-            <span class="tag tag-indigo" data-i18n="eltr-badge-2">Flagship Project</span>
-            <span class="tag tag-purple" data-i18n="eltr-badge-3">1C Development</span>
+        <div>
+          <div class="pills" style="margin-bottom:.7rem">
+            <span class="pill" data-i18n="eltr-badge-1">Accounting &amp; Trade</span>
+            <span class="pill gold" data-i18n="eltr-badge-2">Flagship Project</span>
+            <span class="pill" data-i18n="eltr-badge-3">1C Development</span>
           </div>
           <h3 data-i18n="eltr-title">ELTR / ЭЛЕМЕНТАРНАЯ торговля</h3>
           <p data-i18n="eltr-desc">A solution for trade and inventory management: small stores, retail chains, service centers, workshops, work crews, and warehouses. Designed to simplify daily operations without unnecessary complexity.</p>
-          <a href="https://eltr.od.ua/" class="btn btn-accent btn-sm" target="_blank" rel="noopener noreferrer">
+          <a href="https://eltr.od.ua/" class="btn btn-gold btn-sm" target="_blank" rel="noopener noreferrer">
             <span data-i18n="eltr-btn">Go to ELTR.od.ua</span>
-            <!-- Arrow Right SVG -->
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT / FOOTER SECTION -->
-    <footer class="section" id="contacts">
-      <div class="glass-card footer-card">
-        <p class="footer-text" data-i18n="contacts-text">
-          I am open to professional contacts, collaboration, and discussing custom solutions in 1C Enterprise development, workflow automation, desktop/mobile tools, and data/file processing utilities.
-        </p>
-        
-        <a href="mailto:serzhyale@gmail.com" class="btn btn-primary">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-          <span data-i18n="contacts-btn">Get in Touch via Email</span>
-        </a>
-
-        <div class="footer-bottom">
-          <span>&copy; 2026 Serhii Zhyhunenko. <span data-i18n="footer-copyright">All rights reserved.</span></span>
-          <div class="footer-links">
-            <a href="https://www.linkedin.com/in/serhii-zhyhunenko-a4600388/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="https://github.com/SerZhyAle" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a href="https://eltr.od.ua/" target="_blank" rel="noopener noreferrer">ELTR 1C</a>
+    <!-- CONTACT -->
+    <section class="section" id="contacts">
+      <h2 class="section-title"><span class="h">#</span> <span data-i18n="contacts-title">Get in touch</span></h2>
+      <div class="card contact-card">
+        <p class="lead" data-i18n="contacts-text">I am open to professional contacts, collaboration, and discussing custom solutions in 1C Enterprise development, workflow automation, desktop/mobile tools, and data/file processing utilities.</p>
+        <div class="contact-boxes">
+          <div class="cbx">
+            <span class="cbx-label" data-i18n="phone-label">Phone</span>
+            <div class="copybox">+356 9957 6364<button class="copy" data-i18n="copy" data-copy="+356 9957 6364">Copy</button></div>
+          </div>
+          <div class="cbx">
+            <span class="cbx-label" data-i18n="email-label">Email</span>
+            <div class="copybox">sza@ukr.net<button class="copy" data-i18n="copy" data-copy="sza@ukr.net">Copy</button></div>
           </div>
         </div>
+        <a href="mailto:sza@ukr.net" class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          <span data-i18n="contacts-btn">Get in Touch via Email</span>
+        </a>
       </div>
-    </footer>
+    </section>
 
   </div>
 
-  <!-- MULTILINGUAL SWITCHING SCRIPT -->
+  <!-- FOOTER: MORE TOOLS BY SZA -->
+  <footer class="site-footer">
+    <div class="container">
+      <h2 class="section-title"><span class="h">#</span> <span data-i18n="tools-title">More tools by SZA</span></h2>
+      <div class="tools-grid">
+        <a href="https://serzhyale.github.io/FastMediaSorter_mob_v2/" target="_blank" rel="noopener noreferrer"><b>FastMediaSorter v2</b><span data-i18n="t-fmsmob">Android · media sorter</span></a>
+        <a href="https://serzhyale.github.io/FastMediaSorter_Lite/" target="_blank" rel="noopener noreferrer"><b>FastMediaSorter LITE</b><span data-i18n="t-fmslite">Windows · media sorter</span></a>
+        <a href="https://serzhyale.github.io/CyrFlip/" target="_blank" rel="noopener noreferrer"><b>CyrFlip</b><span data-i18n="t-cyrflip">Windows · layout fixer</span></a>
+        <a href="https://serzhyale.github.io/doc-html-translate/" target="_blank" rel="noopener noreferrer"><b>doc-html-translate</b><span data-i18n="t-doctr">Windows · ebook converter</span></a>
+        <a href="https://serzhyale.github.io/FileDO/" target="_blank" rel="noopener noreferrer"><b>FileDO</b><span data-i18n="t-filedo">Windows · storage CLI</span></a>
+        <a href="https://serzhyale.github.io/universal-agent-kit/" target="_blank" rel="noopener noreferrer"><b>Universal Agent Kit</b><span data-i18n="t-uak">AI-assisted dev kit</span></a>
+        <a href="https://github.com/SerZhyAle/OneClickRunner" target="_blank" rel="noopener noreferrer"><b>OneClickRunner</b><span data-i18n="t-ocr">Windows · tray launcher (soon)</span></a>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Serhii Zhyhunenko. <span data-i18n="footer-copyright">All rights reserved.</span></span>
+        <span><a href="https://sza.od.ua">sza.od.ua</a> · <a href="https://github.com/SerZhyAle" target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://www.linkedin.com/in/serhii-zhyhunenko-a4600388/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="mailto:sza@ukr.net">sza@ukr.net</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" id="toTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
   <script>
     const i18n = {
       en: {
-        "title": "Serhii Zhyhunenko (SZA) — IT Specialist Portfolio",
-        "hero-title": "Serhii Zhyhunenko",
-        "hero-subtitle": "IT specialist • 1C • automation • tools",
-        "hero-desc": "I develop and support custom software applications, workflow automation solutions, as well as desktop and mobile tools. Below are my professional resources, 1C projects, and active GitHub repositories.",
-        "sec-1c-title": "1C Enterprise Solutions",
-        "sec-1c-desc": "A dedicated branch of my work is focused on 1C Enterprise solutions. Here, I build practical systems designed for accounting, trade management, and process automation.",
-        "eltr-badge-1": "Accounting & Trade",
-        "eltr-badge-2": "Flagship Project",
-        "eltr-badge-3": "1C Development",
-        "eltr-title": "ELTR / ЭЛЕМЕНТАРНАЯ торговля",
-        "eltr-desc": "A solution for trade and inventory management: small stores, retail chains, service centers, workshops, work crews, and warehouses. Designed to simplify daily operations without unnecessary complexity.",
-        "eltr-btn": "Go to ELTR.od.ua",
-        "sec-gh-title": "GitHub Developments",
-        "sec-gh-desc": "A curated selection of custom utilities, applications, and tools for Windows and Android. Each card opens the live project page when available, with GitHub kept as the source link.",
-        
-        "gh-card-1-type": "Android App",
-        "gh-card-1-desc": "Android application for batch sorting of photos, videos, audio, and documents. Supports local folders, SMB / SFTP / FTP network shares, and cloud storage (Dropbox, Google Drive, OneDrive).",
-        
-        "gh-card-2-type": "Windows Desktop",
-        "gh-card-2-desc": "Windows application for fast and easy media sorting: slideshow display, folder navigation, quick move, copy, rename, and delete actions.",
-        
-        "gh-card-3-type": "Windows Tray Tool",
-        "gh-card-3-desc": "A lightweight Windows system tray utility that corrects text typed in the wrong keyboard layout (QWERTY <-> Cyrillic) with a global hotkey and active layout indicator.",
-        
-        "gh-card-4-type": "CLI & GUI Tool",
-        "gh-card-4-desc": "Converter for Windows: EPUB, PDF, MOBI, AZW3, FB2, RTF, TXT, and Markdown to local HTML with optional automatic ebook translation via Google Translate API or local Ollama LLMs.",
-        
-        "gh-card-5-type": "CLI Storage Tool",
-        "gh-card-5-desc": "Windows CLI utility for drive benchmarking, fake-capacity detection, secure data wiping (secure wipe), and duplicate file analysis/management.",
-        
-        "gh-card-6-type": "Windows Tray Utility",
-        "gh-card-6-desc": "Windows system tray application to instantly run frequently used software, console scripts, automation commands, and tasks in a single click.",
-
-        "gh-card-7-type": "AI Workflow Kit",
-        "gh-card-7-desc": "Portable, stack-agnostic kit for AI-assisted development: rules, skills, roles, a spec lifecycle, and persistent memory for agent-driven work in git repositories.",
-        
-        "contacts-text": "I am open to professional contacts, collaboration, and discussing custom solutions in 1C Enterprise development, workflow automation, desktop/mobile tools, and data/file processing utilities.",
-        "contacts-btn": "Get in Touch via Email",
-        "footer-copyright": "All rights reserved."
+        "title":"Serhii Zhyhunenko (SZA) — IT Specialist Portfolio",
+        "hdr-cta":"Contact",
+        "hero-title":"Serhii Zhyhunenko",
+        "hero-subtitle":"IT specialist • 1C • automation • tools",
+        "hero-desc":"I develop and support custom software applications, workflow automation solutions, as well as desktop and mobile tools. Below are my professional resources, 1C projects, and active GitHub repositories.",
+        "hero-1c":"1C Projects",
+        "sec-gh-title":"GitHub Developments",
+        "sec-gh-desc":"A curated selection of custom utilities, applications, and tools for Windows and Android. Each card opens the live project page when available, with GitHub kept as the source link.",
+        "gh-card-1-type":"Android App",
+        "gh-card-1-desc":"Android application for batch sorting of photos, videos, audio, and documents. Supports local folders, SMB / SFTP / FTP network shares, and cloud storage (Dropbox, Google Drive, OneDrive).",
+        "gh-card-2-type":"Windows Desktop",
+        "gh-card-2-desc":"Windows application for fast and easy media sorting: slideshow display, folder navigation, quick move, copy, rename, and delete actions.",
+        "gh-card-3-type":"Windows Tray Tool",
+        "gh-card-3-desc":"A lightweight Windows system tray utility that corrects text typed in the wrong keyboard layout (QWERTY <-> Cyrillic) with a global hotkey and active layout indicator.",
+        "gh-card-4-type":"CLI & GUI Tool",
+        "gh-card-4-desc":"Converter for Windows: EPUB, PDF, MOBI, AZW3, FB2, RTF, TXT, and Markdown to local HTML with optional automatic ebook translation via Google Translate API or local Ollama LLMs.",
+        "gh-card-5-type":"CLI Storage Tool",
+        "gh-card-5-desc":"Windows CLI utility for drive benchmarking, fake-capacity detection, secure data wiping (secure wipe), and duplicate file analysis/management.",
+        "gh-card-6-type":"Windows Tray Utility",
+        "gh-card-6-desc":"Windows system tray application to instantly run frequently used software, console scripts, automation commands, and tasks in a single click.",
+        "gh-card-7-type":"AI Workflow Kit",
+        "gh-card-7-desc":"Portable, stack-agnostic kit for AI-assisted development: rules, skills, roles, a spec lifecycle, and persistent memory for agent-driven work in git repositories.",
+        "sec-1c-title":"1C Enterprise Solutions",
+        "sec-1c-desc":"A dedicated branch of my work is focused on 1C Enterprise solutions. Here, I build practical systems designed for accounting, trade management, and process automation.",
+        "eltr-badge-1":"Accounting & Trade","eltr-badge-2":"Flagship Project","eltr-badge-3":"1C Development",
+        "eltr-title":"ELTR / ЭЛЕМЕНТАРНАЯ торговля",
+        "eltr-desc":"A solution for trade and inventory management: small stores, retail chains, service centers, workshops, work crews, and warehouses. Designed to simplify daily operations without unnecessary complexity.",
+        "eltr-btn":"Go to ELTR.od.ua",
+        "contacts-title":"Get in touch",
+        "contacts-text":"I am open to professional contacts, collaboration, and discussing custom solutions in 1C Enterprise development, workflow automation, desktop/mobile tools, and data/file processing utilities.",
+        "phone-label":"Phone","email-label":"Email","copy":"Copy","copied":"✓ Copied",
+        "contacts-btn":"Get in Touch via Email",
+        "tools-title":"More tools by SZA",
+        "t-fmsmob":"Android · media sorter","t-fmslite":"Windows · media sorter","t-cyrflip":"Windows · layout fixer",
+        "t-doctr":"Windows · ebook converter","t-filedo":"Windows · storage CLI","t-uak":"AI-assisted dev kit","t-ocr":"Windows · tray launcher (soon)",
+        "footer-copyright":"All rights reserved."
       },
       ru: {
-        "title": "Сергей Жигуненко (SZA) — Портфолио IT-специалиста",
-        "hero-title": "Сергей Жигуненко",
-        "hero-subtitle": "IT специалист • 1С • автоматизация • инструменты",
-        "hero-desc": "Разрабатываю и поддерживаю прикладные решения, автоматизацию рабочих процессов, а также desktop- и mobile-инструменты. Ниже собраны мои профессиональные ресурсы, 1С-проект и актуальные репозитории на GitHub.",
-        "sec-1c-title": "Решения на 1С",
-        "sec-1c-desc": "Отдельное направление моей работы связано с решениями на 1С. Здесь собраны практические проекты, ориентированные на учет, торговлю и автоматизацию рабочих процессов.",
-        "eltr-badge-1": "Учет и Торговля",
-        "eltr-badge-2": "Флагманский проект",
-        "eltr-badge-3": "1С-разработка",
-        "eltr-title": "ELTR / ЭЛЕМЕНТАРНАЯ торговля",
-        "eltr-desc": "Решение для торговли и учета: небольшие магазины, сети, сервисные предприятия, мастерские, бригады и склады. Создано для упрощения ежедневной автоматизации и учета без излишней сложности.",
-        "eltr-btn": "Перейти на ELTR.od.ua",
-        "sec-gh-title": "Разработки на GitHub",
-        "sec-gh-desc": "Подборка авторских утилит, приложений и инструментов для Windows и Android. Если у проекта есть отдельная страница, карточка ведет на сайт, а GitHub остается ссылкой на исходники.",
-        
-        "gh-card-1-type": "Android-приложение",
-        "gh-card-1-desc": "Android-приложение для пакетной сортировки фото, видео, аудио и документов. Поддерживает локальные папки, SMB / SFTP / FTP и облачные хранилища (Dropbox, Google Drive, OneDrive).",
-        
-        "gh-card-2-type": "Windows Desktop",
-        "gh-card-2-desc": "Windows-приложение для быстрой и удобной сортировки изображений и видео: слайд-шоу, навигация по папкам, быстрое перемещение, копирование, переименование и удаление медиафайлов.",
-        
-        "gh-card-3-type": "Утилита для трея Windows",
-        "gh-card-3-desc": "Небольшая утилита для системного трея Windows. Позволяет исправлять текст, набранный в неверной раскладке клавиатуры, с индикатором текущего языка и глобальной горячей клавишей.",
-        
-        "gh-card-4-type": "Инструмент CLI & GUI",
-        "gh-card-4-desc": "Конвертер для Windows: EPUB, PDF, MOBI, AZW3, FB2, RTF, TXT и Markdown в локальный HTML с опциональным автоматическим переводом книг через API Google Cloud или локальный Ollama.",
-        
-        "gh-card-5-type": "CLI инструмент для дисков",
-        "gh-card-5-desc": "Windows CLI утилита для тестирования накопителей, быстрого поиска fake-capacity устройств, безопасного стирания данных (secure wipe) и поиска/анализа дубликатов файлов.",
-        
-        "gh-card-6-type": "Windows утилита для трея",
-        "gh-card-6-desc": "Windows-приложение для мгновенного запуска часто используемых программ, консольных скриптов, команд и автоматизаций в один клик через меню системного трея.",
-
-        "gh-card-7-type": "Набор для ИИ-агентов",
-        "gh-card-7-desc": "Переносимый, не привязанный к стеку набор для разработки с ИИ-агентами: правила, навыки, роли, жизненный цикл спецификаций и постоянная память для работы в git-репозиториях.",
-        
-        "contacts-text": "Я открыт к профессиональным контактам, сотрудничеству и обсуждению прикладных решений в области 1С, автоматизации, desktop/mobile-разработки и создания инструментов для работы с файлами и данными.",
-        "contacts-btn": "Связаться по Email",
-        "footer-copyright": "Все права защищены."
+        "title":"Сергей Жигуненко (SZA) — Портфолио IT-специалиста",
+        "hdr-cta":"Контакты",
+        "hero-title":"Сергей Жигуненко",
+        "hero-subtitle":"IT специалист • 1С • автоматизация • инструменты",
+        "hero-desc":"Разрабатываю и поддерживаю прикладные решения, автоматизацию рабочих процессов, а также desktop- и mobile-инструменты. Ниже собраны мои профессиональные ресурсы, 1С-проект и актуальные репозитории на GitHub.",
+        "hero-1c":"Проекты 1С",
+        "sec-gh-title":"Разработки на GitHub",
+        "sec-gh-desc":"Подборка авторских утилит, приложений и инструментов для Windows и Android. Если у проекта есть отдельная страница, карточка ведет на сайт, а GitHub остается ссылкой на исходники.",
+        "gh-card-1-type":"Android-приложение",
+        "gh-card-1-desc":"Android-приложение для пакетной сортировки фото, видео, аудио и документов. Поддерживает локальные папки, SMB / SFTP / FTP и облачные хранилища (Dropbox, Google Drive, OneDrive).",
+        "gh-card-2-type":"Windows Desktop",
+        "gh-card-2-desc":"Windows-приложение для быстрой и удобной сортировки изображений и видео: слайд-шоу, навигация по папкам, быстрое перемещение, копирование, переименование и удаление медиафайлов.",
+        "gh-card-3-type":"Утилита для трея Windows",
+        "gh-card-3-desc":"Небольшая утилита для системного трея Windows. Позволяет исправлять текст, набранный в неверной раскладке клавиатуры, с индикатором текущего языка и глобальной горячей клавишей.",
+        "gh-card-4-type":"Инструмент CLI & GUI",
+        "gh-card-4-desc":"Конвертер для Windows: EPUB, PDF, MOBI, AZW3, FB2, RTF, TXT и Markdown в локальный HTML с опциональным автоматическим переводом книг через API Google Cloud или локальный Ollama.",
+        "gh-card-5-type":"CLI инструмент для дисков",
+        "gh-card-5-desc":"Windows CLI утилита для тестирования накопителей, быстрого поиска fake-capacity устройств, безопасного стирания данных (secure wipe) и поиска/анализа дубликатов файлов.",
+        "gh-card-6-type":"Windows утилита для трея",
+        "gh-card-6-desc":"Windows-приложение для мгновенного запуска часто используемых программ, консольных скриптов, команд и автоматизаций в один клик через меню системного трея.",
+        "gh-card-7-type":"Набор для ИИ-агентов",
+        "gh-card-7-desc":"Переносимый, не привязанный к стеку набор для разработки с ИИ-агентами: правила, навыки, роли, жизненный цикл спецификаций и постоянная память для работы в git-репозиториях.",
+        "sec-1c-title":"Решения на 1С",
+        "sec-1c-desc":"Отдельное направление моей работы связано с решениями на 1С. Здесь собраны практические проекты, ориентированные на учет, торговлю и автоматизацию рабочих процессов.",
+        "eltr-badge-1":"Учет и торговля","eltr-badge-2":"Флагманский проект","eltr-badge-3":"1С-разработка",
+        "eltr-title":"ELTR / ЭЛЕМЕНТАРНАЯ торговля",
+        "eltr-desc":"Решение для торговли и учета: небольшие магазины, сети, сервисные предприятия, мастерские, бригады и склады. Создано для упрощения ежедневной автоматизации и учета без излишней сложности.",
+        "eltr-btn":"Перейти на ELTR.od.ua",
+        "contacts-title":"Контакты",
+        "contacts-text":"Я открыт к профессиональным контактам, сотрудничеству и обсуждению прикладных решений в области 1С, автоматизации, desktop/mobile-разработки и создания инструментов для работы с файлами и данными.",
+        "phone-label":"Телефон","email-label":"Эл. почта","copy":"Копировать","copied":"✓ Скопировано",
+        "contacts-btn":"Связаться по Email",
+        "tools-title":"Другие инструменты SZA",
+        "t-fmsmob":"Android · сортировка медиа","t-fmslite":"Windows · сортировка медиа","t-cyrflip":"Windows · раскладка",
+        "t-doctr":"Windows · конвертер книг","t-filedo":"Windows · CLI для дисков","t-uak":"Набор для ИИ-разработки","t-ocr":"Windows · трей-лаунчер (скоро)",
+        "footer-copyright":"Все права защищены."
       },
       uk: {
-        "title": "Сергій Жигуненко (SZA) — Портфоліо IT-спеціаліста",
-        "hero-title": "Сергій Жигуненко",
-        "hero-subtitle": "IT спеціаліст • 1С • автоматизація • інструменти",
-        "hero-desc": "Розробляю та підтримую прикладні рішення, автоматизацію робочих процесів, а також desktop- та mobile-інструменти. Нижче зібрані мої професійні ресурси, 1С-проект та актуальні репозиторії на GitHub.",
-        "sec-1c-title": "Рішення на 1С",
-        "sec-1c-desc": "Окремий напрямок моєї роботи пов'язаний з рішеннями на 1С. Тут зібрані практичні проекти, орієнтовані на облік, торгівлю та автоматизацію робочих процесів.",
-        "eltr-badge-1": "Облік та Торгівля",
-        "eltr-badge-2": "Флагманський проект",
-        "eltr-badge-3": "1С-розробка",
-        "eltr-title": "ELTR / ЭЛЕМЕНТАРНАЯ торговля",
-        "eltr-desc": "Рішення для торгівлі та обліку: невеликі магазини, мережі, сервісні підприємства, майстерні, бригади та склади. Створено для спрощення щоденної автоматизації та обліку без зайвої складності.",
-        "eltr-btn": "Перейти на ELTR.od.ua",
-        "sec-gh-title": "Розробки на GitHub",
-        "sec-gh-desc": "Добірка авторських утиліт, додатків та інструментів для Windows та Android. Якщо у проекту є окрема сторінка, картка веде на сайт, а GitHub лишається посиланням на вихідний код.",
-        
-        "gh-card-1-type": "Android-додаток",
-        "gh-card-1-desc": "Android-додаток для пакетного сортування фото, відео, аудіо та документів. Підтримує локальні папки, SMB / SFTP / FTP та хмари (Dropbox, Google Drive, OneDrive).",
-        
-        "gh-card-2-type": "Windows Desktop",
-        "gh-card-2-desc": "Windows-додаток для швидкого та зручного сортування зображень і відео: слайд-шоу, навігація по папках, швидке переміщення, копіювання, перейменування та видалення медіафайлів.",
-        
-        "gh-card-3-type": "Утиліта для трею Windows",
-        "gh-card-3-desc": "Невелика утиліта для системного трея Windows. Дозволяє виправляти текст, набранний у невірній розкладці клавіатури, з індикатором поточної мови та глобальною гарячою клавішею.",
-        
-        "gh-card-4-type": "Інструмент CLI & GUI",
-        "gh-card-4-desc": "Конвертер для Windows: EPUB, PDF, MOBI, AZW3, FB2, RTF, TXT та Markdown в локальний HTML з опціональним автоматичним перекладом книг через API Google Cloud или локальный Ollama.",
-        
-        "gh-card-5-type": "CLI інструмент для дисків",
-        "gh-card-5-desc": "Windows CLI утиліта для тестування накопичувачів, швидкого пошуку fake-capacity пристроїв, безпечного стирання даних (secure wipe) та пошуку/аналізу дублікатів файлів.",
-        
-        "gh-card-6-type": "Windows утиліта для трею",
-        "gh-card-6-desc": "Windows-додаток для миттєвого запуску часто використовуваних програм, консольних скриптів, команд та автоматизацій в один клік через меню системного трея.",
-
-        "gh-card-7-type": "Набір для ШІ-агентів",
-        "gh-card-7-desc": "Переносний, не прив'язаний до стеку набір для розробки з ШІ-агентами: правила, навички, ролі, життєвий цикл специфікацій і постійна пам'ять для роботи в git-репозиторіях.",
-        
-        "contacts-text": "Я відкритий до професійних контактів, співпраці та обговорення прикладних рішень в області 1С, автоматизації, desktop/mobile-розробки та створення інструментів для роботи с файлами та даними.",
-        "contacts-btn": "Зв'язатися по Email",
-        "footer-copyright": "Всі права захищені."
+        "title":"Сергій Жигуненко (SZA) — Портфоліо IT-спеціаліста",
+        "hdr-cta":"Контакти",
+        "hero-title":"Сергій Жигуненко",
+        "hero-subtitle":"IT спеціаліст • 1С • автоматизація • інструменти",
+        "hero-desc":"Розробляю та підтримую прикладні рішення, автоматизацію робочих процесів, а також desktop- та mobile-інструменти. Нижче зібрані мої професійні ресурси, 1С-проект та актуальні репозиторії на GitHub.",
+        "hero-1c":"Проекти 1С",
+        "sec-gh-title":"Розробки на GitHub",
+        "sec-gh-desc":"Добірка авторських утиліт, додатків та інструментів для Windows та Android. Якщо у проекту є окрема сторінка, картка веде на сайт, а GitHub лишається посиланням на вихідний код.",
+        "gh-card-1-type":"Android-додаток",
+        "gh-card-1-desc":"Android-додаток для пакетного сортування фото, відео, аудіо та документів. Підтримує локальні папки, SMB / SFTP / FTP та хмари (Dropbox, Google Drive, OneDrive).",
+        "gh-card-2-type":"Windows Desktop",
+        "gh-card-2-desc":"Windows-додаток для швидкого та зручного сортування зображень і відео: слайд-шоу, навігація по папках, швидке переміщення, копіювання, перейменування та видалення медіафайлів.",
+        "gh-card-3-type":"Утиліта для трею Windows",
+        "gh-card-3-desc":"Невелика утиліта для системного трея Windows. Дозволяє виправляти текст, набраний у невірній розкладці клавіатури, з індикатором поточної мови та глобальною гарячою клавішею.",
+        "gh-card-4-type":"Інструмент CLI & GUI",
+        "gh-card-4-desc":"Конвертер для Windows: EPUB, PDF, MOBI, AZW3, FB2, RTF, TXT та Markdown в локальний HTML з опціональним автоматичним перекладом книг через API Google Cloud або локальний Ollama.",
+        "gh-card-5-type":"CLI інструмент для дисків",
+        "gh-card-5-desc":"Windows CLI утиліта для тестування накопичувачів, швидкого пошуку fake-capacity пристроїв, безпечного стирання даних (secure wipe) та пошуку/аналізу дублікатів файлів.",
+        "gh-card-6-type":"Windows утиліта для трею",
+        "gh-card-6-desc":"Windows-додаток для миттєвого запуску часто використовуваних програм, консольних скриптів, команд та автоматизацій в один клік через меню системного трея.",
+        "gh-card-7-type":"Набір для ШІ-агентів",
+        "gh-card-7-desc":"Переносний, не прив'язаний до стеку набір для розробки з ШІ-агентами: правила, навички, ролі, життєвий цикл специфікацій і постійна пам'ять для роботи в git-репозиторіях.",
+        "sec-1c-title":"Рішення на 1С",
+        "sec-1c-desc":"Окремий напрямок моєї роботи пов'язаний з рішеннями на 1С. Тут зібрані практичні проекти, орієнтовані на облік, торгівлю та автоматизацію робочих процесів.",
+        "eltr-badge-1":"Облік та торгівля","eltr-badge-2":"Флагманський проект","eltr-badge-3":"1С-розробка",
+        "eltr-title":"ELTR / ЭЛЕМЕНТАРНАЯ торговля",
+        "eltr-desc":"Рішення для торгівлі та обліку: невеликі магазини, мережі, сервісні підприємства, майстерні, бригади та склади. Створено для спрощення щоденної автоматизації та обліку без зайвої складності.",
+        "eltr-btn":"Перейти на ELTR.od.ua",
+        "contacts-title":"Контакти",
+        "contacts-text":"Я відкритий до професійних контактів, співпраці та обговорення прикладних рішень в області 1С, автоматизації, desktop/mobile-розробки та створення інструментів для роботи з файлами та даними.",
+        "phone-label":"Телефон","email-label":"Ел. пошта","copy":"Копіювати","copied":"✓ Скопійовано",
+        "contacts-btn":"Зв'язатися по Email",
+        "tools-title":"Інші інструменти SZA",
+        "t-fmsmob":"Android · сортування медіа","t-fmslite":"Windows · сортування медіа","t-cyrflip":"Windows · розкладка",
+        "t-doctr":"Windows · конвертер книг","t-filedo":"Windows · CLI для дисків","t-uak":"Набір для ШІ-розробки","t-ocr":"Windows · трей-лаунчер (скоро)",
+        "footer-copyright":"Всі права захищені."
       }
     };
 
-    function setLanguage(lang) {
-      if (!i18n[lang]) lang = 'en';
-      localStorage.setItem('sza-lang', lang);
-      
-      // Update active state on language buttons
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        if (btn.getAttribute('data-lang') === lang) {
-          btn.classList.add('active');
-        } else {
-          btn.classList.remove('active');
-        }
-      });
-      
-      // Update HTML tag lang attribute
-      document.documentElement.lang = lang;
-      
-      // Update title
-      document.title = i18n[lang]['title'];
+    function setMeta(t){var m=document.querySelector('meta[name=theme-color]');if(m)m.content=(t==='light')?'#eef3ea':'#0a0f0a';}
 
-      // Translate all data-i18n elements
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (i18n[lang][key]) {
-          el.textContent = i18n[lang][key];
-        }
+    function toggleTheme(){
+      var next=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+      document.documentElement.setAttribute('data-theme',next);
+      try{localStorage.setItem('sza-theme',next);}catch(e){}
+      setMeta(next);
+    }
+
+    function setLanguage(lang){
+      if(!i18n[lang])lang='en';
+      try{localStorage.setItem('sza-lang',lang);}catch(e){}
+      document.documentElement.setAttribute('data-lang',lang);
+      document.documentElement.lang=lang;
+      document.querySelectorAll('.seg button[data-lang]').forEach(function(b){
+        b.setAttribute('aria-pressed', b.getAttribute('data-lang')===lang?'true':'false');
+      });
+      document.title=i18n[lang].title;
+      document.querySelectorAll('[data-i18n]').forEach(function(el){
+        var k=el.getAttribute('data-i18n');
+        if(i18n[lang][k]!=null) el.textContent=i18n[lang][k];
       });
     }
 
-    // Initialize on load
-    document.addEventListener('DOMContentLoaded', () => {
-      const savedLang = localStorage.getItem('sza-lang') || 'en';
-      setLanguage(savedLang);
+    function wireCopy(){
+      document.querySelectorAll('.copy').forEach(function(b){
+        b.addEventListener('click',function(){
+          var txt=b.getAttribute('data-copy')||'';
+          var lang=localStorage.getItem('sza-lang')||'en'; if(!i18n[lang])lang='en';
+          var done=function(){ b.textContent=i18n[lang].copied; b.classList.add('done');
+            setTimeout(function(){ b.textContent=i18n[lang].copy; b.classList.remove('done'); },1600); };
+          if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done).catch(done); }
+          else{ var t=document.createElement('textarea'); t.value=txt; document.body.appendChild(t); t.select();
+            try{document.execCommand('copy');}catch(e){} document.body.removeChild(t); done(); }
+        });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded',function(){
+      var saved=null; try{saved=localStorage.getItem('sza-lang');}catch(e){}
+      var lang=saved;
+      if(!lang){var n=(navigator.language||'en').toLowerCase(); lang=n.indexOf('ru')===0?'ru':n.indexOf('uk')===0?'uk':'en';}
+      setLanguage(lang);
+      setMeta(document.documentElement.getAttribute('data-theme')||'dark');
+      wireCopy();
+      var tt=document.getElementById('toTop');
+      window.addEventListener('scroll',function(){ tt.classList.toggle('show', window.scrollY>600); });
     });
   </script>
 </body>
