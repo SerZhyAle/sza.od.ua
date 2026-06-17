@@ -28,11 +28,16 @@
 
   <style>
     /* ---- hub-specific (built on the kit) ---- */
-    .hero .avatar{position:relative;width:88px;height:88px;margin:0 auto 1.3rem}
+    .hero{text-align:left;padding:1.2rem 0}
+    .hero-id{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
+    .hero-id .av-text h1{font-size:clamp(1.7rem,4vw,2.3rem);margin:0;line-height:1.1}
+    .hero-id .av-text .kicker{display:block;margin:.2rem 0 0}
+    .hero .lead{margin:0 0 .9rem;max-width:660px}
+    .hero .avatar{position:relative;width:60px;height:60px;margin:0;flex:none}
     .hero .avatar::before{content:"";position:absolute;inset:0;border-radius:50%;background:var(--acc);filter:blur(13px);opacity:.4;animation:pulse 3s infinite alternate}
     .hero .avatar img{position:relative;width:100%;height:100%;border-radius:50%;background:var(--bg-2);border:1px solid var(--border);object-fit:contain;padding:10%}
     @keyframes pulse{0%{transform:scale(.95);opacity:.3}100%{transform:scale(1.05);opacity:.55}}
-    .button-group{display:flex;flex-wrap:wrap;justify-content:center;gap:.8rem;margin-top:1.3rem}
+    .button-group{display:flex;flex-wrap:wrap;justify-content:flex-start;gap:.7rem;margin-top:.2rem}
     .section-title{display:flex;align-items:center;gap:.7rem;font-family:var(--font-heading);font-size:1.6rem;font-weight:700;margin-bottom:.4rem}
     .section-title .h{color:var(--acc)}
     .section-title::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
@@ -78,12 +83,16 @@
 
     <!-- HERO -->
     <header class="hero">
-      <div class="avatar"><img src="assets/sz18_out_800x800_white_on_transp.png" alt="SZA logo"></div>
-      <span class="kicker" data-i18n="hero-subtitle">Data Engineer · Gzira, Malta</span>
-      <h1 data-i18n="hero-title">Serhii Zhyhunenko</h1>
-      <p class="lead" data-i18n="hero-desc">Data warehouse integrator, developer and architect — Snowflake, MS SQL, MySQL and Oracle, across GCP and AWS. Beyond the day job I build 1C Enterprise solutions (ELTR, in production since 2014) and a toolbox of practical Windows &amp; Android tools.</p>
-      <div class="pills" style="justify-content:center;margin-bottom:1rem">
-        <span class="pill">Snowflake</span><span class="pill">MS SQL</span><span class="pill">MySQL</span><span class="pill">Oracle</span><span class="pill">GCP</span><span class="pill">AWS</span>
+      <div class="hero-id">
+        <div class="avatar"><img src="assets/sz18_out_800x800_white_on_transp.png" alt="SZA logo"></div>
+        <div class="av-text">
+          <h1 data-i18n="hero-title">Serhii Zhyhunenko</h1>
+          <span class="kicker" data-i18n="hero-subtitle">Data Engineer</span>
+        </div>
+      </div>
+      <p class="lead" data-i18n="hero-desc">Data warehouse integrator, developer and architect — Snowflake, Athena, MS SQL, MySQL and Oracle, across GCP and AWS.</p>
+      <div class="pills" style="justify-content:flex-start;margin-bottom:.9rem">
+        <span class="pill">Snowflake</span><span class="pill">Athena</span><span class="pill">MS SQL</span><span class="pill">MySQL</span><span class="pill">Oracle</span><span class="pill">GCP</span><span class="pill">AWS</span>
       </div>
       <div class="button-group">
         <a href="https://www.linkedin.com/in/serhii-zhyhunenko-a4600388/" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">
@@ -245,16 +254,6 @@
   <!-- FOOTER: MORE TOOLS BY SZA -->
   <footer class="site-footer">
     <div class="container">
-      <h2 class="section-title"><span class="h">#</span> <span data-i18n="tools-title">More tools by SZA</span></h2>
-      <div class="tools-grid">
-        <a href="https://serzhyale.github.io/FastMediaSorter_mob_v2/" target="_blank" rel="noopener noreferrer"><b>FastMediaSorter v2</b><span data-i18n="t-fmsmob">Android · media sorter</span></a>
-        <a href="https://serzhyale.github.io/FastMediaSorter_Lite/" target="_blank" rel="noopener noreferrer"><b>FastMediaSorter LITE</b><span data-i18n="t-fmslite">Windows · media sorter</span></a>
-        <a href="https://serzhyale.github.io/CyrFlip/" target="_blank" rel="noopener noreferrer"><b>CyrFlip</b><span data-i18n="t-cyrflip">Windows · layout fixer</span></a>
-        <a href="https://serzhyale.github.io/doc-html-translate/" target="_blank" rel="noopener noreferrer"><b>doc-html-translate</b><span data-i18n="t-doctr">Windows · ebook converter</span></a>
-        <a href="https://serzhyale.github.io/FileDO/" target="_blank" rel="noopener noreferrer"><b>FileDO</b><span data-i18n="t-filedo">Windows · storage CLI</span></a>
-        <a href="https://serzhyale.github.io/universal-agent-kit/" target="_blank" rel="noopener noreferrer"><b>Universal Agent Kit</b><span data-i18n="t-uak">AI-assisted dev kit</span></a>
-        <a href="https://github.com/SerZhyAle/OneClickRunner" target="_blank" rel="noopener noreferrer"><b>OneClickRunner</b><span data-i18n="t-ocr">Windows · tray launcher (soon)</span></a>
-      </div>
       <div class="footer-bottom">
         <span>&copy; 2026 Serhii Zhyhunenko. <span data-i18n="footer-copyright">All rights reserved.</span></span>
         <span><a href="https://sza.od.ua">sza.od.ua</a> · <a href="https://github.com/SerZhyAle" target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://www.linkedin.com/in/serhii-zhyhunenko-a4600388/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="mailto:sza@ukr.net">sza@ukr.net</a></span>
@@ -270,8 +269,8 @@
         "title":"Serhii Zhyhunenko (SZA) — Data Engineer & 1C Developer",
         "hdr-cta":"Contact",
         "hero-title":"Serhii Zhyhunenko",
-        "hero-subtitle":"Data Engineer · Gzira, Malta",
-        "hero-desc":"Data warehouse integrator, developer and architect — Snowflake, MS SQL, MySQL and Oracle, across GCP and AWS. Beyond the day job I build 1C Enterprise solutions (ELTR, in production since 2014) and a toolbox of practical Windows & Android tools.",
+        "hero-subtitle":"Data Engineer",
+        "hero-desc":"Data warehouse integrator, developer and architect — Snowflake, Athena, MS SQL, MySQL and Oracle, across GCP and AWS.",
         "hero-1c":"1C Projects",
         "gh-card-1-type":"Android App",
         "gh-card-1-desc":"Android application for batch sorting of photos, videos, audio, and documents. Supports local folders, SMB / SFTP / FTP network shares, and cloud storage (Dropbox, Google Drive, OneDrive).",
@@ -297,17 +296,14 @@
         "contacts-text":"I am open to professional contacts, collaboration, and discussing custom solutions in 1C Enterprise development, workflow automation, desktop/mobile tools, and data/file processing utilities.",
         "phone-label":"Phone","email-label":"Email","copy":"Copy","copied":"✓ Copied",
         "contacts-btn":"Get in Touch via Email",
-        "tools-title":"More tools by SZA",
-        "t-fmsmob":"Android · media sorter","t-fmslite":"Windows · media sorter","t-cyrflip":"Windows · layout fixer",
-        "t-doctr":"Windows · ebook converter","t-filedo":"Windows · storage CLI","t-uak":"AI-assisted dev kit","t-ocr":"Windows · tray launcher (soon)",
         "footer-copyright":"All rights reserved."
       },
       ru: {
         "title":"Сергей Жигуненко (SZA) — Data Engineer и 1С-разработчик",
         "hdr-cta":"Контакты",
         "hero-title":"Сергей Жигуненко",
-        "hero-subtitle":"Data Engineer · Гзира, Мальта",
-        "hero-desc":"Интегратор, разработчик и архитектор хранилищ данных — Snowflake, MS SQL, MySQL и Oracle, на GCP и AWS. Помимо основной работы развиваю решения на 1С (ELTR, в продакшене с 2014 года) и набор практичных инструментов для Windows и Android.",
+        "hero-subtitle":"Data Engineer",
+        "hero-desc":"Интегратор, разработчик и архитектор хранилищ данных — Snowflake, Athena, MS SQL, MySQL и Oracle, на GCP и AWS.",
         "hero-1c":"Проекты 1С",
         "gh-card-1-type":"Android-приложение",
         "gh-card-1-desc":"Android-приложение для пакетной сортировки фото, видео, аудио и документов. Поддерживает локальные папки, SMB / SFTP / FTP и облачные хранилища (Dropbox, Google Drive, OneDrive).",
@@ -333,17 +329,14 @@
         "contacts-text":"Я открыт к профессиональным контактам, сотрудничеству и обсуждению прикладных решений в области 1С, автоматизации, desktop/mobile-разработки и создания инструментов для работы с файлами и данными.",
         "phone-label":"Телефон","email-label":"Эл. почта","copy":"Копировать","copied":"✓ Скопировано",
         "contacts-btn":"Связаться по Email",
-        "tools-title":"Другие инструменты SZA",
-        "t-fmsmob":"Android · сортировка медиа","t-fmslite":"Windows · сортировка медиа","t-cyrflip":"Windows · раскладка",
-        "t-doctr":"Windows · конвертер книг","t-filedo":"Windows · CLI для дисков","t-uak":"Набор для ИИ-разработки","t-ocr":"Windows · трей-лаунчер (скоро)",
         "footer-copyright":"Все права защищены."
       },
       uk: {
         "title":"Сергій Жигуненко (SZA) — Data Engineer та 1С-розробник",
         "hdr-cta":"Контакти",
         "hero-title":"Сергій Жигуненко",
-        "hero-subtitle":"Data Engineer · Гзіра, Мальта",
-        "hero-desc":"Інтегратор, розробник та архітектор сховищ даних — Snowflake, MS SQL, MySQL та Oracle, на GCP та AWS. Поза основною роботою розвиваю рішення на 1С (ELTR, у продакшені з 2014 року) та набір практичних інструментів для Windows та Android.",
+        "hero-subtitle":"Data Engineer",
+        "hero-desc":"Інтегратор, розробник та архітектор сховищ даних — Snowflake, Athena, MS SQL, MySQL та Oracle, на GCP та AWS.",
         "hero-1c":"Проекти 1С",
         "gh-card-1-type":"Android-додаток",
         "gh-card-1-desc":"Android-додаток для пакетного сортування фото, відео, аудіо та документів. Підтримує локальні папки, SMB / SFTP / FTP та хмари (Dropbox, Google Drive, OneDrive).",
@@ -369,9 +362,6 @@
         "contacts-text":"Я відкритий до професійних контактів, співпраці та обговорення прикладних рішень в області 1С, автоматизації, desktop/mobile-розробки та створення інструментів для роботи з файлами та даними.",
         "phone-label":"Телефон","email-label":"Ел. пошта","copy":"Копіювати","copied":"✓ Скопійовано",
         "contacts-btn":"Зв'язатися по Email",
-        "tools-title":"Інші інструменти SZA",
-        "t-fmsmob":"Android · сортування медіа","t-fmslite":"Windows · сортування медіа","t-cyrflip":"Windows · розкладка",
-        "t-doctr":"Windows · конвертер книг","t-filedo":"Windows · CLI для дисків","t-uak":"Набір для ШІ-розробки","t-ocr":"Windows · трей-лаунчер (скоро)",
         "footer-copyright":"Всі права захищені."
       }
     };

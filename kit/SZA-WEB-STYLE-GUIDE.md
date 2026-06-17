@@ -28,6 +28,7 @@ forward. No water. No over-promotion. We are professionals.**
 ## 1. Principles
 
 - **Compact & minimal.** Say it once. Tight spacing, few colors, no decorative filler.
+- **Save vertical space.** Spend the viewport on content, not air. Combine related elements onto one line (logo + name + role on a single row), keep hero/section padding tight, avoid tall centered stacks, and collapse long content into `<details>`. Aim to show more per screen with less scrolling.
 - **Forward.** Lead with what the thing *is* and how to *get it*. The visitor's next action is always visible.
 - **No water.** Every sentence carries information. No "revolutionary", no "seamless synergy", no padding.
 - **No over-promotion.** State facts and honest caveats. One author credit, not a billboard.
@@ -226,7 +227,7 @@ expand/collapse-all, and back-to-top show/hide. Keep it dependency-free
 
 ## 10. Cross-linking map
 
-Canonical URLs for the footer "More tools by SZA" grid. Each site lists **all the others** (omit itself; mark current if shown).
+Canonical URLs for the footer "More tools by SZA" grid. Each site lists **all the others** (omit itself; mark current if shown). **Exception — the Hub:** its project cards already are the full tool index, so the Hub omits the footer tools-grid (keep only copyright + contact).
 
 | Tool | Type | URL |
 |---|---|---|

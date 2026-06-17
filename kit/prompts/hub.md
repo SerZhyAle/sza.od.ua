@@ -21,7 +21,7 @@ The hub has **no distribution block** (it's not an app).
    (`https://serzhyale.github.io/FileDO/`) as its "Site" button. **OneClickRunner** stays GitHub-only.
    Optionally add product icons consistently. Confirm each card points to the right Pages site + GitHub.
 6. **1C / ELTR highlight:** keep as-is (recolored) — ELTR stays on the hub only.
-7. **Footer:** add the kit **"More tools by SZA" tools-grid** (all dev tools) + contact line (sza@ukr.net · GitHub · LinkedIn).
+7. **Footer:** keep it minimal — copyright + contact line (sza@ukr.net · GitHub · LinkedIn). **No tools-grid on the hub** — its project cards already list every tool, so the grid would only repeat them.
 8. Keep all three languages' content in sync (translate any new strings to RU/EN/UA). Blobs + back-to-top.
 
 ## Done when
