@@ -42,7 +42,7 @@ The live page is built and hosted via GitHub Pages:
 *   **[FastMediaSorter_mob_v2](https://github.com/SerZhyAle/FastMediaSorter_mob_v2)** - Batch media and document sorter with support for local, SMB, SFTP, FTP, and cloud folders.
 
 ### Windows Utilities & Applications
-*   **[FastMediaSorter_Lite](https://github.com/SerZhyAle/FastMediaSorter_Lite)** - Slideshow-integrated Windows desktop file manager for rapid media sorting.
+*   **[Fast Media Sorter for Windows](https://github.com/SerZhyAle/FastMediaSorter_Lite)** - Slideshow-integrated Windows desktop file manager for rapid media sorting.
 *   **[CyrFlip](https://github.com/SerZhyAle/CyrFlip)** - System tray utility to correct layout typos on the fly with custom hotkeys.
 *   **[doc-html-translate](https://github.com/SerZhyAle/doc-html-translate)** - Offline-first CLI/GUI ebook translator utilizing Google Translate API and local Ollama LLMs.
 *   **[FileDO](https://github.com/SerZhyAle/FileDO)** - Command-line tool for storage device speed-testing, fake capacity checking, and duplicate file scanning.

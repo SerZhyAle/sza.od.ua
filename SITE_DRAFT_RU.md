@@ -85,7 +85,7 @@
 
 `Android-приложение для пакетной сортировки фото, видео, аудио и документов. Поддерживает локальные папки, SMB / SFTP / FTP и облака: Dropbox, Google Drive, OneDrive.`
 
-### 2. FastMediaSorter_Lite
+### 2. Fast Media Sorter for Windows
 
 - Ссылка: `https://github.com/SerZhyAle/FastMediaSorter_Lite`
 - Короткое описание:

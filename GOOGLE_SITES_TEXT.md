@@ -66,8 +66,8 @@ Android-приложение для пакетной сортировки фот
 ```
 *   **Кнопка / Ссылка**: [Репозиторий GitHub](https://github.com/SerZhyAle/FastMediaSorter_mob_v2) | [Инструкция / Документация](https://serzhyale.github.io/FastMediaSorter_mob_v2/)
 
-### Карточка 2: FastMediaSorter_Lite
-*   **Заголовок**: `FastMediaSorter_Lite`
+### Карточка 2: Fast Media Sorter for Windows
+*   **Заголовок**: `Fast Media Sorter for Windows`
 *   **Описание**:
 ```text
 Windows-приложение для быстрой сортировки изображений и видео: слайд-шоу, навигация по папкам, перемещение, копирование, переименование и удаление файлов.

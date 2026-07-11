@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -o /dev/null -w \"kit/prompts/cyrflip.md -> HTTP %{http_code}\\\\n\" \"https://raw.githubusercontent.com/SerZhyAle/sza.od.ua/main/kit/prompts/cyrflip.md\")"
+    ]
+  }
+}

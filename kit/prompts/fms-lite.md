@@ -1,4 +1,4 @@
-# Unify: FastMediaSorter LITE (SerZhyAle/FastMediaSorter_Lite)
+# Unify: Fast Media Sorter for Windows (SerZhyAle/FastMediaSorter_Lite)
 
 You are working in the **FastMediaSorter_Lite** repo. The Pages site is currently a Jekyll-rendered README
 (default theme). Replace it with a **self-contained, kit-styled page**. Follow the SZA Web Style Guide and
@@ -16,7 +16,7 @@ Audience: Windows users who sort large photo/video folders fast, keyboard-first.
    Add `.nojekyll`/front-matter as needed; detect the real Pages source and adapt.
 2. Add `sza-kit.css` + font link + pre-paint script.
 3. Page order:
-   - Sticky header: brand `FastMediaSorter LITE.` · lang **RU EN UA** · theme · Download.
+   - Sticky header: brand `Fast Media Sorter for Windows.` · lang **RU EN UA** · theme · Download.
    - H1 + tagline → **"what & for whom"**.
    - **Get-it block (above the fold):** winget in a `.copybox` (`winget install --id SerZhyAle.FastMediaSorter`);
      GitHub Releases (dynamic latest — show `...-setup.exe` and portable `.zip`; static fallback to `/releases/latest`);

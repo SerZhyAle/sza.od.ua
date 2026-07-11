@@ -232,7 +232,7 @@ Canonical URLs for the footer "More tools by SZA" grid. Each site lists **all th
 | Tool | Type | URL |
 |---|---|---|
 | FastMediaSorter v2 | Android media sorter | https://serzhyale.github.io/FastMediaSorter_mob_v2/ |
-| FastMediaSorter LITE | Windows media sorter | https://serzhyale.github.io/FastMediaSorter_Lite/ |
+| Fast Media Sorter for Windows | Windows media sorter | https://serzhyale.github.io/FastMediaSorter_Lite/ |
 | CyrFlip | Windows layout fixer | https://serzhyale.github.io/CyrFlip/ |
 | doc-html-translate | Windows ebook converter | https://serzhyale.github.io/doc-html-translate/ |
 | FileDO | Windows storage CLI | https://serzhyale.github.io/FileDO/ |

@@ -97,9 +97,9 @@
 - Preferred image:
   [fastmediasorter-mob-main-screen.png](P:\WEB\sites.google.comsiteszaodua\google-sites-publish\assets\projects\fastmediasorter-mob-main-screen.png)
 
-### 3. FastMediaSorter_Lite
+### 3. Fast Media Sorter for Windows
 
-- Title: `FastMediaSorter_Lite`
+- Title: `Fast Media Sorter for Windows`
 - Description:
   `Windows-приложение для быстрой сортировки изображений и видео: slideshow, навигация по папкам, move/copy/rename/delete.`
 - Repository:
