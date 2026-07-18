@@ -29,6 +29,7 @@ forward. No water. No over-promotion. We are professionals.**
 
 - **Compact & minimal.** Say it once. Tight spacing, few colors, no decorative filler.
 - **Save vertical space.** Spend the viewport on content, not air. Combine related elements onto one line (logo + name + role on a single row), keep hero/section padding tight, avoid tall centered stacks, and collapse long content into `<details>`. Aim to show more per screen with less scrolling.
+- **Use the available width.** On wide screens, ordinary text outside cards, callouts, and disclosure groups starts at the left edge of the content container and uses its full available width. Do not leave an arbitrary narrow text column beside empty space; controlled narrow widths belong inside self-contained reading blocks only.
 - **Forward.** Lead with what the thing *is* and how to *get it*. The visitor's next action is always visible.
 - **No water.** Every sentence carries information. No "revolutionary", no "seamless synergy", no padding.
 - **No over-promotion.** State facts and honest caveats. One author credit, not a billboard.
@@ -87,6 +88,18 @@ All class names match [`sza-kit.css`](./sza-kit.css). Markup patterns below are 
   <a class="btn btn-primary btn-sm" href="#get">Download</a>
 </header>
 ```
+
+### 4.1a Product identity — use the Hub pattern
+
+Every project follows the SZA hub hierarchy:
+
+- **Header, left:** one compact brand unit — optional small monochrome product mark + product name.
+- **Hero:** optional small category/platform eyebrow, then the H1 with the visitor-facing outcome.
+- The hero does **not** repeat the product mark or product name from the header. It begins the explanation.
+
+This keeps identity stable while the first large heading answers “what does this give me?”
+The hub itself uses `SZA.` as its brand unit; product pages substitute their own name and, only when useful,
+their monochrome mark.
 
 ### 4.2 Language switcher — RU · EN · UA, **no flags**
 - Visible labels exactly: `RU` `EN` `UA` (note **UA**, not "UK"). Button order: **RU, EN, UA**.
@@ -217,10 +230,13 @@ expand/collapse-all, and back-to-top show/hide. Keep it dependency-free
 
 ## 9. Emoji & icon policy
 
-- **Minimum emoji in prose.** No emoji in headings, paragraphs, buttons, or quickstart steps.
-- Emoji are allowed **only as small decorative markers on badges/pills** when there are many and they need quick visual
-  differentiation — and even then, prefer a restrained set.
-- For UI affordances (theme, copy, download, arrows) prefer **inline SVG icons** or the few neutral glyphs already in the
+- **No emoji.** Do not use emoji in headings, prose, buttons, badges, quickstart steps, or decorative UI.
+- For a section or action, prefer a **small, single-colour inline SVG** with a familiar meaning. It must support the
+  label, not replace it. Use one consistent stroke/weight family per page.
+- A small product icon is appropriate when it is already recognisable inside the product (for example, its app icon or
+  a familiar product symbol) **and has a monochrome variant**. Otherwise use a neutral outline SVG. Do not create
+  colourful illustrative icon sets just to decorate a page.
+- For UI affordances (theme, copy, download, arrows) prefer inline SVG icons or the few neutral glyphs already in the
   kit (`◐ ⤓ → ▸`). Functional, not festive.
 
 ---
@@ -256,6 +272,6 @@ Contextual links (in content, where relevant): FMS-Lite ⇄ FMS-mob (desktop/mob
 - [ ] GitHub release link is dynamic or, if static, points to `/releases/latest`.
 - [ ] Copy buttons work (incl. fallback) and show "✓ Copied".
 - [ ] Footer "More tools by SZA" grid present and correct; contact = sza@ukr.net.
-- [ ] No emoji in prose; emoji only on badges if needed.
+- [ ] No emoji; icons are familiar, monochrome, and support rather than replace labels.
 - [ ] Responsive at 360 / 768 / 1280+; 44px touch targets; `prefers-reduced-motion` respected; visible focus.
 - [ ] Existing functionality preserved (no broken downloads, anchors, or scripts).

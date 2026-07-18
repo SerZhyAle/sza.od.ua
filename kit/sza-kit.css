@@ -115,11 +115,11 @@ html[data-theme="light"] .btn-ghost{background:rgba(16,40,20,.03)}
 .btn-sm{padding:.5rem 1rem;font-size:.8rem;border-radius:var(--radius-sm)}
 
 /* ---------- HERO ---------- */
-.hero{text-align:center;padding:2rem 1rem 1.5rem}
+.hero{text-align:left;padding:2rem 0 1.5rem}
 .hero .kicker{font-family:var(--font-heading);text-transform:uppercase;letter-spacing:.15em;
   font-size:.72rem;font-weight:700;color:var(--acc);margin-bottom:.8rem}
 .hero h1{font-size:clamp(2rem,5vw,2.9rem);font-weight:800;margin-bottom:.5rem}
-.hero .lead{color:var(--muted);max-width:600px;margin:0 auto 1.2rem;font-size:1.02rem}
+.hero .lead{color:var(--muted);max-width:none;margin:0 0 1.2rem;font-size:1.02rem}
 
 /* ---------- "GET IT" / DISTRIBUTION BLOCK (required above the fold on app sites) ---------- */
 .get{display:grid;gap:1rem;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);

@@ -39,12 +39,13 @@
     .container,
     .site-header{max-width:min(1760px,94vw)}
     /* put the extra width to use: 4-up project grid on large monitors */
-    @media(min-width:1360px){#github-projects .grid{grid-template-columns:repeat(4,1fr)}}
+    @media(min-width:1360px){#github-projects .grid,.eltr-grid{grid-template-columns:repeat(4,1fr)}}
     .hero{text-align:left;padding:1.2rem 0}
     .hero-id{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
     .hero-id .av-text h1{font-size:clamp(1.7rem,4vw,2.3rem);margin:0;line-height:1.1}
     .hero-id .av-text .kicker{display:block;margin:.2rem 0 0}
-    .hero .lead{margin:0 0 .9rem;max-width:720px}
+    .hero .lead{margin:0 0 .9rem;max-width:1720px}
+    .hero .eyebrow{display:block;color:var(--muted);font-family:var(--font-heading);font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin:0 0 .55rem}
     .hero .avatar{position:relative;width:60px;height:60px;margin:0;flex:none;border-radius:50%;background:var(--bg-2);border:1px solid var(--border);animation:logoIn .7s cubic-bezier(.34,1.2,.4,1) both, glow 3s 1s infinite alternate}
     .hero .avatar img{position:relative;width:100%;height:100%;border-radius:50%;object-fit:contain;padding:10%}
     /* white logo = direct variant (dark theme); invert just the logo to black for the light theme */
@@ -55,19 +56,13 @@
     .section-title{display:flex;align-items:center;gap:.7rem;font-family:var(--font-heading);font-size:1.6rem;font-weight:700;margin-bottom:.4rem}
     .section-title .h{color:var(--acc)}
     .section-title::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
-    .section-desc{color:var(--muted);max-width:760px;font-size:.95rem;margin-bottom:1.6rem}
+    .section-desc{color:var(--muted);max-width:none;font-size:.95rem;margin-bottom:1.6rem}
     .project-card{display:flex;flex-direction:column}
     .proj-head{display:flex;gap:.9rem;align-items:center;margin-bottom:1rem}
     .proj-head img{width:46px;height:46px;object-fit:contain;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid var(--border);padding:4px}
     .proj-title{font-family:var(--font-heading);font-weight:700;font-size:1.1rem;line-height:1.25;margin-bottom:.25rem}
     .proj-desc{color:var(--muted);font-size:.88rem;flex-grow:1;margin-bottom:1.2rem}
     .proj-foot{display:flex;gap:.6rem;margin-top:auto;flex-wrap:wrap}
-    .highlight{display:grid;gap:1.2rem;padding:2rem;border-left:3px solid var(--gold)}
-    @media(min-width:768px){.highlight{grid-template-columns:auto 1fr;align-items:center;gap:2rem}}
-    .highlight .ic{width:74px;height:74px;border-radius:12px;display:grid;place-items:center;background:#f6f7f4;border:1px solid color-mix(in srgb,var(--gold) 24%,transparent);overflow:hidden;flex:none}
-    .highlight .ic img{width:100%;height:100%;object-fit:contain}
-    .highlight h3{font-family:var(--font-heading);font-size:1.3rem;margin:.2rem 0 .5rem}
-    .highlight p{color:var(--muted);margin-bottom:1.1rem}
     .contact-card{text-align:center;padding:2.2rem}
     .contact-boxes{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;align-items:center;margin:1.4rem 0}
     .contact-boxes .cbx{text-align:left}
@@ -98,36 +93,23 @@
       <div class="hero-id">
         <div class="avatar"><img src="assets/sz18_out_800x800_white_on_transp.png" alt="SZA logo"></div>
         <div class="av-text">
-          <h1 data-i18n="hero-title">Serhii Zhyhunenko</h1>
-          <span class="kicker" data-i18n="hero-subtitle">Data Engineer · AI Agent Architect</span>
+          <span class="eyebrow" data-i18n="hero-author">Serhii Zhyhunenko · SZA</span>
+          <h1 data-i18n="hero-title">Tools for files, data, and everyday automation</h1>
+          <span class="kicker" data-i18n="hero-subtitle">Windows, Android, 1C, and AI-assisted development</span>
         </div>
       </div>
-      <p class="lead" data-i18n="hero-desc">Data warehouse integrator, developer and architect — Snowflake, Athena, MS SQL, MySQL and Oracle, across GCP and AWS. I also design and operate AI agents and automation workflows.</p>
-      <div class="pills" style="justify-content:flex-start;margin-bottom:.9rem">
-        <span class="pill">Snowflake</span><span class="pill">Athena</span><span class="pill">MS SQL</span><span class="pill">MySQL</span><span class="pill">Oracle</span><span class="pill">GCP</span><span class="pill">AWS</span><span class="pill gold">AI Agents</span><span class="pill gold">Automation</span>
-      </div>
+      <p class="lead" data-i18n="hero-desc">A practical collection of independent projects: sort and play media, work with documents, check storage, automate repeated actions, organise business accounting, or build a disciplined workflow with AI agents. Open the project that matches the task in front of you.</p>
       <div class="button-group">
-        <a href="https://www.linkedin.com/in/serhii-zhyhunenko-a4600388/" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-          LinkedIn
-        </a>
-        <a href="https://github.com/SerZhyAle" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-          GitHub
-        </a>
-        <a href="https://eltr.od.ua/" class="btn btn-gold" target="_blank" rel="noopener noreferrer">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path></svg>
-          <span data-i18n="hero-1c">1C Projects</span>
-        </a>
-        <a href="mailto:sza@ukr.net" class="btn btn-primary">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-          Email
-        </a>
+        <a href="#github-projects" class="btn btn-primary" data-i18n="hero-primary">Main projects</a>
+        <a href="#1c-projects" class="btn btn-gold" data-i18n="hero-1c">Accounting &amp; trade</a>
+        <a href="#contacts" class="btn btn-ghost" data-i18n="hero-contact">About &amp; contact</a>
       </div>
     </header>
 
     <!-- GITHUB PROJECTS -->
     <section class="section" id="github-projects">
+      <h2 class="section-title"><span class="h">#</span> <span data-i18n="projects-title">My main current products</span></h2>
+      <p class="section-desc" data-i18n="projects-desc">Independent applications and working methods for files, media, documents, storage, automation, and AI-assisted development.</p>
       <div class="grid">
         <!-- 1 -->
         <article class="card project-card">
@@ -218,25 +200,22 @@
 
     <!-- 1C / ELTR -->
     <section class="section" id="1c-projects">
-      <h2 class="section-title"><span class="h">#</span> <span data-i18n="sec-1c-title">1C Enterprise Solutions</span></h2>
-      <p class="section-desc" data-i18n="sec-1c-desc">A dedicated branch of my work is focused on 1C Enterprise solutions. Here, I build practical systems designed for accounting, trade management, and process automation.</p>
-      <div class="card highlight">
-        <div class="ic">
-          <img src="assets/eltr.png" alt="ELTR / Элементарная Торговля">
-        </div>
-        <div>
-          <div class="pills" style="margin-bottom:.7rem">
-            <span class="pill" data-i18n="eltr-badge-1">Accounting &amp; Trade</span>
-            <span class="pill gold" data-i18n="eltr-badge-2">Flagship Project</span>
-            <span class="pill" data-i18n="eltr-badge-3">1C Development</span>
+      <h2 class="section-title"><span class="h">#</span> <span data-i18n="sec-1c-title">1C product</span></h2>
+      <p class="section-desc" data-i18n="sec-1c-desc">A current 1C product for practical trade, accounting, and process automation.</p>
+      <div class="grid eltr-grid">
+        <article class="card project-card">
+          <div class="proj-head">
+            <img src="assets/eltr.png" alt="ELTR / Элементарная Торговля">
+            <div><div class="proj-title" data-i18n="eltr-title">ELTR / ЭЛЕМЕНТАРНАЯ торговля</div><span class="pill" data-i18n="eltr-badge-1">1C: Accounting &amp; Trade</span></div>
           </div>
-          <h3 data-i18n="eltr-title">ELTR / ЭЛЕМЕНТАРНАЯ торговля</h3>
-          <p data-i18n="eltr-desc">A solution for trade and inventory management: small stores, retail chains, service centers, workshops, work crews, and warehouses. Designed to simplify daily operations without unnecessary complexity.</p>
+          <p class="proj-desc" data-i18n="eltr-desc">Accounting and trade management for small stores, service businesses, workshops, crews, and warehouses.</p>
+          <div class="proj-foot">
           <a href="https://eltr.od.ua/" class="btn btn-gold btn-sm" target="_blank" rel="noopener noreferrer">
             <span data-i18n="eltr-btn">Go to ELTR.od.ua</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </a>
-        </div>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -279,29 +258,32 @@
   <script>
     const i18n = {
       en: {
-        "title":"Serhii Zhyhunenko (SZA) — Data Engineer, AI Agent Architect & 1C Developer",
+        "title":"SZA — practical tools for files, data, and automation",
         "hdr-cta":"Contact",
-        "hero-title":"Serhii Zhyhunenko",
-        "hero-subtitle":"Data Engineer · AI Agent Architect",
-        "hero-desc":"Data warehouse integrator, developer and architect — Snowflake, Athena, MS SQL, MySQL and Oracle, across GCP and AWS. I also design and operate AI agents and automation workflows.",
-        "hero-1c":"1C Projects",
+        "hero-author":"Serhii Zhyhunenko · SZA",
+        "hero-title":"Tools for files, data, and everyday automation",
+        "hero-subtitle":"Windows, Android, 1C, and AI-assisted development",
+        "hero-desc":"A practical collection of independent projects for media, documents, storage, recurring actions, business accounting, and AI-assisted development. Each project page starts with what it does and how to begin using it.",
+        "hero-primary":"Current products","hero-1c":"Accounting & trade","hero-contact":"About & contact",
+        "projects-title":"My main current products",
+        "projects-desc":"Independent applications and working methods for files, media, documents, storage, automation, and AI-assisted development.",
         "gh-card-1-type":"Android App",
-        "gh-card-1-desc":"All-in-one media manager and player for Android & VR: sort and browse photos, videos, audio, and documents from local storage, SMB/NAS, SFTP/FTP, and cloud storage — on phones, tablets, TV boxes, car head units, and VR headsets.",
+        "gh-card-1-desc":"Browse, play, and organise media or documents from a phone, NAS, cloud, TV box, car head unit, or VR headset — without copying the whole library first.",
         "gh-card-2-type":"Windows Desktop",
-        "gh-card-2-desc":"Windows application for fast and easy media sorting: slideshow display, folder navigation, quick move, copy, rename, and delete actions.",
+        "gh-card-2-desc":"Work through a large photo or video folder quickly: view, navigate, then move, copy, rename, or delete with keyboard or mouse.",
         "gh-card-3-type":"Windows Tray Tool",
-        "gh-card-3-desc":"A lightweight Windows system tray utility that corrects text typed in the wrong keyboard layout (QWERTY <-> Cyrillic) with a global hotkey and active layout indicator.",
+        "gh-card-3-desc":"See the active keyboard layout while typing and fix already mistyped QWERTY/Cyrillic text with one global shortcut.",
         "gh-card-4-type":"CLI & GUI Tool",
-        "gh-card-4-desc":"Windows tool that converts EPUB, PDF, MOBI, AZW3, FB2, RTF, TXT, Markdown, and HTML into clean local HTML pages with tables of contents, reading themes, and saved reading position — read and translate for free right in your browser, with optional OCR and paid translation via Google Cloud or local Ollama.",
+        "gh-card-4-desc":"Open books and documents in clean local HTML, then read or translate them in the browser; choose GUI, command line, or the browser extension.",
         "gh-card-5-type":"CLI Storage Tool",
-        "gh-card-5-desc":"Windows CLI utility for drive benchmarking, fake-capacity detection, secure data wiping (secure wipe), and duplicate file analysis/management.",
+        "gh-card-5-desc":"Check a drive before trusting it, measure storage performance, find duplicates, or carry out deliberate cleanup from the Windows terminal.",
         "gh-card-6-type":"Windows Tray Utility",
-        "gh-card-6-desc":"Windows launcher that runs your apps and scripts in a single click — straight from the taskbar Jump List or tray. Supports EXE, batch, PowerShell, Python, and VBScript, with per-scenario admin elevation, autostart, scenario import/export/clone, and built-in yt-dlp downloads.",
+        "gh-card-6-desc":"Put your repeatable programs and scripts in the taskbar Jump List or tray, then run the right scenario in one click.",
         "gh-card-7-type":"AI Workflow Kit",
-        "gh-card-7-desc":"Portable, stack-agnostic kit for AI-assisted development: rules, skills, roles, a spec lifecycle, and persistent memory for agent-driven work in git repositories.",
-        "sec-1c-title":"1C Enterprise Solutions",
-        "sec-1c-desc":"A dedicated branch of my work is focused on 1C Enterprise solutions. Here, I build practical systems designed for accounting, trade management, and process automation.",
-        "eltr-badge-1":"Accounting & Trade","eltr-badge-2":"Flagship Project","eltr-badge-3":"1C Development",
+        "gh-card-7-desc":"Give an AI-assisted project a repeatable working method: research first, clear specifications, verification, and reusable project memory.",
+        "sec-1c-title":"1C product",
+        "sec-1c-desc":"A current 1C product for practical trade, accounting, and process automation.",
+        "eltr-badge-1":"1C: Accounting & Trade",
         "eltr-title":"ELTR / ЭЛЕМЕНТАРНАЯ торговля",
         "eltr-desc":"A solution for trade and inventory management: small stores, retail chains, service centers, workshops, work crews, and warehouses. Designed to simplify daily operations without unnecessary complexity.",
         "eltr-btn":"Go to ELTR.od.ua",
@@ -312,29 +294,32 @@
         "footer-copyright":"All rights reserved."
       },
       ru: {
-        "title":"Сергей Жигуненко (SZA) — Data Engineer, архитектор ИИ-агентов и 1С-разработчик",
+        "title":"SZA — практические инструменты для файлов, данных и автоматизации",
         "hdr-cta":"Контакты",
-        "hero-title":"Сергей Жигуненко",
-        "hero-subtitle":"Data Engineer · архитектор ИИ-агентов",
-        "hero-desc":"Интегратор, разработчик и архитектор хранилищ данных — Snowflake, Athena, MS SQL, MySQL и Oracle, на GCP и AWS. А также проектирую и эксплуатирую ИИ‑агентов и процессы автоматизации.",
-        "hero-1c":"Проекты 1С",
+        "hero-author":"Сергей Жигуненко · SZA",
+        "hero-title":"Инструменты для файлов, данных и повседневной автоматизации",
+        "hero-subtitle":"Windows, Android, 1С и разработка с ИИ-агентами",
+        "hero-desc":"Практическая подборка самостоятельных проектов для медиа, документов, накопителей, повторяемых действий, учёта и разработки с ИИ-агентами. Каждая страница проекта начинается с того, что он делает и как начать им пользоваться.",
+        "hero-primary":"Актуальные продукты","hero-1c":"Учёт и торговля","hero-contact":"Об авторе и контакты",
+        "projects-title":"Мои основные актуальные продукты",
+        "projects-desc":"Самостоятельные приложения и методы работы с файлами, медиа, документами, накопителями, автоматизацией и разработкой с ИИ-агентами.",
         "gh-card-1-type":"Android-приложение",
-        "gh-card-1-desc":"Универсальный менеджер и плеер медиафайлов для Android и VR: сортировка и просмотр фото, видео, аудио и документов с локального хранилища, SMB/NAS, SFTP/FTP и облака — на телефонах, планшетах, ТВ-приставках, автомагнитолах и VR-очках.",
+        "gh-card-1-desc":"Просматривайте, воспроизводите и разбирайте медиа или документы с телефона, NAS, облака, ТВ-приставки, автомагнитолы или VR-гарнитуры — без предварительного копирования всей библиотеки.",
         "gh-card-2-type":"Windows Desktop",
-        "gh-card-2-desc":"Windows-приложение для быстрой и удобной сортировки изображений и видео: слайд-шоу, навигация по папкам, быстрое перемещение, копирование, переименование и удаление медиафайлов.",
+        "gh-card-2-desc":"Быстро разберите большую папку фото или видео: просматривайте, переходите по файлам, затем перемещайте, копируйте, переименовывайте или удаляйте клавиатурой либо мышью.",
         "gh-card-3-type":"Утилита для трея Windows",
-        "gh-card-3-desc":"Небольшая утилита для системного трея Windows. Позволяет исправлять текст, набранный в неверной раскладке клавиатуры, с индикатором текущего языка и глобальной горячей клавишей.",
+        "gh-card-3-desc":"Видьте активную раскладку во время набора и исправляйте уже набранный текст в QWERTY/кириллице одной глобальной горячей клавишей.",
         "gh-card-4-type":"Инструмент CLI & GUI",
-        "gh-card-4-desc":"Windows-инструмент, который конвертирует EPUB, PDF, MOBI, AZW3, FB2, RTF, TXT, Markdown и HTML в аккуратные локальные HTML-страницы с оглавлением, темами чтения и сохранением места чтения — читайте и переводите бесплатно прямо в браузере, с опциональным OCR и платным переводом через Google Cloud или локальный Ollama.",
+        "gh-card-4-desc":"Открывайте книги и документы в аккуратном локальном HTML, затем читайте или переводите их в браузере; выберите GUI, командную строку или расширение браузера.",
         "gh-card-5-type":"CLI инструмент для дисков",
-        "gh-card-5-desc":"Windows CLI утилита для тестирования накопителей, быстрого поиска fake-capacity устройств, безопасного стирания данных (secure wipe) и поиска/анализа дубликатов файлов.",
+        "gh-card-5-desc":"Проверьте накопитель перед тем, как доверить ему данные, измерьте скорость, найдите дубликаты или выполните осознанную очистку из терминала Windows.",
         "gh-card-6-type":"Windows утилита для трея",
-        "gh-card-6-desc":"Windows-лаунчер, который запускает приложения и скрипты в один клик — прямо из Jump List на панели задач или из трея. Поддерживает EXE, batch, PowerShell, Python и VBScript, с повышением прав по сценарию, автозапуском, импортом/экспортом/клонированием сценариев и встроенной загрузкой через yt-dlp.",
+        "gh-card-6-desc":"Поместите повторяемые программы и скрипты в Jump List панели задач или трей, затем запускайте нужный сценарий одним кликом.",
         "gh-card-7-type":"Набор для ИИ-агентов",
-        "gh-card-7-desc":"Переносимый, не привязанный к стеку набор для разработки с ИИ-агентами: правила, навыки, роли, жизненный цикл спецификаций и постоянная память для работы в git-репозиториях.",
-        "sec-1c-title":"Решения на 1С",
-        "sec-1c-desc":"Отдельное направление моей работы связано с решениями на 1С. Здесь собраны практические проекты, ориентированные на учет, торговлю и автоматизацию рабочих процессов.",
-        "eltr-badge-1":"Учет и торговля","eltr-badge-2":"Флагманский проект","eltr-badge-3":"1С-разработка",
+        "gh-card-7-desc":"Дайте проекту с ИИ-агентами повторяемый метод работы: сначала исследование, затем ясные спецификации, проверка и память проекта.",
+        "sec-1c-title":"Продукт на 1С",
+        "sec-1c-desc":"Актуальный продукт на 1С для практической торговли, учёта и автоматизации процессов.",
+        "eltr-badge-1":"1С: учёт и торговля",
         "eltr-title":"ELTR / ЭЛЕМЕНТАРНАЯ торговля",
         "eltr-desc":"Решение для торговли и учета: небольшие магазины, сети, сервисные предприятия, мастерские, бригады и склады. Создано для упрощения ежедневной автоматизации и учета без излишней сложности.",
         "eltr-btn":"Перейти на ELTR.od.ua",
@@ -345,29 +330,32 @@
         "footer-copyright":"Все права защищены."
       },
       uk: {
-        "title":"Сергій Жигуненко (SZA) — Data Engineer, архітектор ШІ-агентів та 1С-розробник",
+        "title":"SZA — практичні інструменти для файлів, даних і автоматизації",
         "hdr-cta":"Контакти",
-        "hero-title":"Сергій Жигуненко",
-        "hero-subtitle":"Data Engineer · архітектор ШІ-агентів",
-        "hero-desc":"Інтегратор, розробник та архітектор сховищ даних — Snowflake, Athena, MS SQL, MySQL та Oracle, на GCP та AWS. А також проектую та експлуатую ШІ‑агентів і процеси автоматизації.",
-        "hero-1c":"Проекти 1С",
+        "hero-author":"Сергій Жигуненко · SZA",
+        "hero-title":"Інструменти для файлів, даних і щоденної автоматизації",
+        "hero-subtitle":"Windows, Android, 1С і розробка з ШІ-агентами",
+        "hero-desc":"Практична добірка самостійних проєктів для медіа, документів, накопичувачів, повторюваних дій, обліку та розробки з ШІ-агентами. Кожна сторінка проєкту починається з того, що він робить і як почати ним користуватися.",
+        "hero-primary":"Актуальні продукти","hero-1c":"Облік і торгівля","hero-contact":"Про автора і контакти",
+        "projects-title":"Мої основні актуальні продукти",
+        "projects-desc":"Самостійні застосунки та методи роботи з файлами, медіа, документами, накопичувачами, автоматизацією й розробкою з ШІ-агентами.",
         "gh-card-1-type":"Android-додаток",
-        "gh-card-1-desc":"Універсальний менеджер і плеєр медіафайлів для Android та VR: сортування й перегляд фото, відео, аудіо та документів з локального сховища, SMB/NAS, SFTP/FTP та хмари — на телефонах, планшетах, ТВ-приставках, автомагнітолах та VR-окулярах.",
+        "gh-card-1-desc":"Переглядайте, відтворюйте й упорядковуйте медіа або документи з телефона, NAS, хмари, ТВ-приставки, автомагнітоли чи VR-гарнітури — без попереднього копіювання всієї бібліотеки.",
         "gh-card-2-type":"Windows Desktop",
-        "gh-card-2-desc":"Windows-додаток для швидкого та зручного сортування зображень і відео: слайд-шоу, навігація по папках, швидке переміщення, копіювання, перейменування та видалення медіафайлів.",
+        "gh-card-2-desc":"Швидко розберіть велику папку фото чи відео: переглядайте, переходьте по файлах, потім переміщуйте, копіюйте, перейменовуйте або видаляйте клавіатурою чи мишею.",
         "gh-card-3-type":"Утиліта для трею Windows",
-        "gh-card-3-desc":"Невелика утиліта для системного трея Windows. Дозволяє виправляти текст, набраний у невірній розкладці клавіатури, з індикатором поточної мови та глобальною гарячою клавішею.",
+        "gh-card-3-desc":"Бачте активну розкладку під час набору та виправляйте вже набраний текст у QWERTY/кирилиці однією глобальною гарячою клавішею.",
         "gh-card-4-type":"Інструмент CLI & GUI",
-        "gh-card-4-desc":"Windows-інструмент, який конвертує EPUB, PDF, MOBI, AZW3, FB2, RTF, TXT, Markdown та HTML у охайні локальні HTML-сторінки зі змістом, темами читання та збереженням місця читання — читайте й перекладайте безкоштовно прямо в браузері, з опціональним OCR і платним перекладом через Google Cloud або локальний Ollama.",
+        "gh-card-4-desc":"Відкривайте книжки й документи в охайному локальному HTML, потім читайте або перекладайте їх у браузері; оберіть GUI, командний рядок чи розширення браузера.",
         "gh-card-5-type":"CLI інструмент для дисків",
-        "gh-card-5-desc":"Windows CLI утиліта для тестування накопичувачів, швидкого пошуку fake-capacity пристроїв, безпечного стирання даних (secure wipe) та пошуку/аналізу дублікатів файлів.",
+        "gh-card-5-desc":"Перевірте накопичувач перед тим, як довірити йому дані, виміряйте швидкість, знайдіть дублікати або виконайте усвідомлене очищення з термінала Windows.",
         "gh-card-6-type":"Windows утиліта для трею",
-        "gh-card-6-desc":"Windows-лаунчер, який запускає застосунки та скрипти в один клік — прямо з Jump List на панелі завдань або з трею. Підтримує EXE, batch, PowerShell, Python та VBScript, з підвищенням прав за сценарієм, автозапуском, імпортом/експортом/клонуванням сценаріїв та вбудованим завантаженням через yt-dlp.",
+        "gh-card-6-desc":"Помістіть повторювані програми й скрипти в Jump List панелі завдань або трей, потім запускайте потрібний сценарій одним кліком.",
         "gh-card-7-type":"Набір для ШІ-агентів",
-        "gh-card-7-desc":"Переносний, не прив'язаний до стеку набір для розробки з ШІ-агентами: правила, навички, ролі, життєвий цикл специфікацій і постійна пам'ять для роботи в git-репозиторіях.",
-        "sec-1c-title":"Рішення на 1С",
-        "sec-1c-desc":"Окремий напрямок моєї роботи пов'язаний з рішеннями на 1С. Тут зібрані практичні проекти, орієнтовані на облік, торгівлю та автоматизацію робочих процесів.",
-        "eltr-badge-1":"Облік та торгівля","eltr-badge-2":"Флагманський проект","eltr-badge-3":"1С-розробка",
+        "gh-card-7-desc":"Дайте проєкту з ШІ-агентами повторюваний метод роботи: спочатку дослідження, потім ясні специфікації, перевірка й пам'ять проєкту.",
+        "sec-1c-title":"Продукт на 1С",
+        "sec-1c-desc":"Актуальний продукт на 1С для практичної торгівлі, обліку та автоматизації процесів.",
+        "eltr-badge-1":"1С: облік і торгівля",
         "eltr-title":"ELTR / ЭЛЕМЕНТАРНАЯ торговля",
         "eltr-desc":"Рішення для торгівлі та обліку: невеликі магазини, мережі, сервісні підприємства, майстерні, бригади та склади. Створено для спрощення щоденної автоматизації та обліку без зайвої складності.",
         "eltr-btn":"Перейти на ELTR.od.ua",
