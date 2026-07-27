@@ -1,0 +1,43 @@
+{
+  "$comment": "Adoption stamp for the sza.od.ua portfolio hub. role portfolio: a personal index page, not a product with a store listing, so the privacy-page check does not apply. No version, no tag, no changelog - a site update is not a release.",
+
+  "canon": {
+    "version": "2026.07.27",
+    "coreDigest": "sha256:dae220bfd389416d775986ac24913efdf8b0a8b9e881608157c41e5371d23663",
+    "adoptedOn": "2026-07-27",
+    "model": "reference",
+    "contribRecord": "contrib/hub.md"
+  },
+
+  "role": "portfolio",
+
+  "overlay": [],
+  "shapes": [],
+  "editions": [],
+
+  "versionShape": {
+    "tagRegex": null,
+    "editionTagPrefixes": []
+  },
+
+  "ledgerShape": "none",
+  "ledgerFile": null,
+
+  "channels": [],
+
+  "site": {
+    "kind": "portfolio",
+    "root": ".",
+    "pages": ["index.html", "embed.html"]
+  },
+
+  "privacy": {
+    "page": null,
+    "carveOut": "zero-data",
+    "sensitiveAccess": false
+  },
+
+  "byteIdenticalPairs": [["index.html", "embed.html"]],
+  "vendorAllow": [],
+  "exemptions": []
+}
