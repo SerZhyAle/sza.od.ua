@@ -9,3 +9,12 @@ Desktop.ini
 
 # Local research scratch (downloaded site copies, palette mockups)
 .research/
+
+# Secrets and signing material - pre-empt the leak, never catch it afterwards.
+*.pfx
+*.snk
+*.jks
+*.keystore
+.env
+*token*
+*secret*
