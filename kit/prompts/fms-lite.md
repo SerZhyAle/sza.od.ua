@@ -6,7 +6,7 @@ use `sza-kit.css` (pasted above). Palette: **Pine + Gold**.
 
 ## What it is
 Windows (WinForms / .NET 4.8) **image & video sorter**: fast folder navigation, slideshow / random view,
-recent files, move/copy/rename/delete, image panel, customizable shortcuts, EN/RU UI. Broad video support —
+recent files, move/copy/rename/delete, image panel, customizable shortcuts, EN/RU UI. Broad video support -
 H.264/MP4 in-window, everything else falls back to a bundled **LibVLC** engine (no external codecs).
 Release bundles are **offline-ready** (VLC runtimes + OCR packs included).
 Audience: Windows users who sort large photo/video folders fast, keyboard-first.
@@ -19,7 +19,7 @@ Audience: Windows users who sort large photo/video folders fast, keyboard-first.
    - Sticky header: brand `Fast Media Sorter for Windows.` · lang **RU EN UA** · theme · Download.
    - H1 + tagline → **"what & for whom"**.
    - **Get-it block (above the fold):** winget in a `.copybox` (`winget install --id SerZhyAle.FastMediaSorter`);
-     GitHub Releases (dynamic latest — show `...-setup.exe` and portable `.zip`; static fallback to `/releases/latest`);
+     GitHub Releases (dynamic latest - show `...-setup.exe` and portable `.zip`; static fallback to `/releases/latest`);
      **quickstart**: install → pick a folder → sort with keys.
    - Feature sections (`.card` grid or numbered `<details>`): Navigation & slideshow, File operations, Video/LibVLC fallback,
      Offline bundles & OCR, Shortcuts.

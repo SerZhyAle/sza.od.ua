@@ -1,7 +1,7 @@
 # Unify: Universal Agent Kit (SerZhyAle/universal-agent-kit)
 
 You are working in the **universal-agent-kit** repo (single self-contained `index.html`). It has excellent docs UX
-(numbered `<details>` TOC, hash-open, theme toggle, pure-CSS i18n, copy buttons, ASCII diagrams) — **keep all of it**.
+(numbered `<details>` TOC, hash-open, theme toggle, pure-CSS i18n, copy buttons, ASCII diagrams) - **keep all of it**.
 Job: **recolor to Pine + Gold**, **add the brand fonts**, align languages, and add cross-linking. Follow the SZA Web
 Style Guide; use `sza-kit.css` (pasted above).
 
@@ -19,7 +19,7 @@ Style Guide; use `sza-kit.css` (pasted above).
    **Download kit (.zip)** + the existing "For a new project" / "For an existing project" quickstart anchors. Keep the
    adopt-prompt copy boxes.
 5. **Footer:** add the kit **tools-grid** (currently only the hub is linked) + **back-to-top** (long page).
-6. Keep the dry-witty voice (it's the reference for humor 3/5). Emoji already minimal — keep it that way.
+6. Keep the dry-witty voice (it's the reference for humor 3/5). Emoji already minimal - keep it that way.
 
 ## Done when
 Style-Guide Section 11 passes. Green+gold (incl. diagrams/meta), Outfit+Plus Jakarta Sans loaded, RU/EN/UA, tools-grid footer, all existing docs UX intact.

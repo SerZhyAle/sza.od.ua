@@ -17,10 +17,10 @@ Audience: power users, sysadmins, anyone verifying drives or cleaning duplicates
    the pre-paint theme/lang script in `<head>`.
 3. Build the page in the guide's order:
    - Sticky header: brand `FileDO.` · lang **RU EN UA** (no flags) · theme toggle · Download.
-   - H1 + one-line tagline. Then **"what it is & who it's for"** (1–2 sentences).
-   - **Get-it block (above the fold):** GitHub Releases download (dynamic latest — fetch the `.exe`/binary asset;
+   - H1 + one-line tagline. Then **"what it is & who it's for"** (1-2 sentences).
+   - **Get-it block (above the fold):** GitHub Releases download (dynamic latest - fetch the `.exe`/binary asset;
      static fallback to `/releases/latest`); winget command in a `.copybox` **if** a winget package exists
-     (verify in the repo/README — do not invent one); **quickstart**: download binary → put on PATH → run a first command.
+     (verify in the repo/README - do not invent one); **quickstart**: download binary → put on PATH → run a first command.
    - Feature sections (use `.card` grid or numbered `<details>`): Benchmark, Fake-capacity check, Secure wipe, Duplicates.
      For a CLI, lean on **`.copybox` example commands** for each (real commands from the repo's docs/README).
    - Footer: "More tools by SZA" grid (all siblings per the guide's cross-link map) + contact (sza@ukr.net).
@@ -29,7 +29,7 @@ Audience: power users, sysadmins, anyone verifying drives or cleaning duplicates
 
 ## Preserve / cross-link
 - Keep all real commands and behavior accurate to the repo; don't fabricate flags or packages.
-- Contextual link: FileDO pairs well with FastMediaSorter (fake-capacity / duplicate cleanup) — mention + link.
+- Contextual link: FileDO pairs well with FastMediaSorter (fake-capacity / duplicate cleanup) - mention + link.
 
 ## Done when
 All boxes in Style-Guide Section 11 pass. No Jekyll theme remnants, no indigo colors, green primary + gold secondary,

@@ -1,6 +1,6 @@
-# Unify: SZA Hub — sza.od.ua (SerZhyAle/sza.od.ua, this repo)
+# Unify: SZA Hub - sza.od.ua (SerZhyAle/sza.od.ua, this repo)
 
-You are working in the **hub/portfolio** repo. Files: `index.html` and `embed.html` (the Google-Sites embed copy —
+You are working in the **hub/portfolio** repo. Files: `index.html` and `embed.html` (the Google-Sites embed copy -
 **keep the two identical**). Job: **recolor to Pine + Gold**, adopt the kit, add contact **copy boxes**, refresh the
 project grid, and standardize the footer. Follow the SZA Web Style Guide; use `sza-kit.css` (pasted above).
 The hub has **no distribution block** (it's not an app).
@@ -20,8 +20,8 @@ The hub has **no distribution block** (it's not an app).
 5. **Project grid:** keep the cards; ensure links are correct and add the now-live **FileDO site**
    (`https://serzhyale.github.io/FileDO/`) as its "Site" button. **OneClickRunner** stays GitHub-only.
    Optionally add product icons consistently. Confirm each card points to the right Pages site + GitHub.
-6. **1C / ELTR highlight:** keep as-is (recolored) — ELTR stays on the hub only.
-7. **Footer:** keep it minimal — copyright + contact line (sza@ukr.net · GitHub · LinkedIn). **No tools-grid on the hub** — its project cards already list every tool, so the grid would only repeat them.
+6. **1C / ELTR highlight:** keep as-is (recolored) - ELTR stays on the hub only.
+7. **Footer:** keep it minimal - copyright + contact line (sza@ukr.net · GitHub · LinkedIn). **No tools-grid on the hub** - its project cards already list every tool, so the grid would only repeat them.
 8. Keep all three languages' content in sync (translate any new strings to RU/EN/UA). Blobs + back-to-top.
 
 ## Done when

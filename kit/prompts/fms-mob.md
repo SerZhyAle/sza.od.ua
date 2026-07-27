@@ -1,10 +1,10 @@
 # Unify: FastMediaSorter v2 (SerZhyAle/FastMediaSorter_mob_v2)
 
-You are working in the **FastMediaSorter_mob_v2** repo — the **biggest, most productized** site. Files: `index.html`,
+You are working in the **FastMediaSorter_mob_v2** repo - the **biggest, most productized** site. Files: `index.html`,
 `index-ru.html`, `index-uk.html`, `styles.css`. **Keep its strengths** (marked.js Feature Explorer, dynamic APK
 buttons from the GitHub Releases API, JSON-LD/OG/hreflang SEO, AdSense, perf-aware canvas hero). Job: **recolor to
 Pine + Gold**, swap fonts, add light mode + a sticky header, align languages, surface a Get-it block, and add
-cross-linking. Follow the SZA Web Style Guide; use `sza-kit.css` (pasted above). This is the highest-effort site —
+cross-linking. Follow the SZA Web Style Guide; use `sza-kit.css` (pasted above). This is the highest-effort site -
 budget time for hardcoded colors.
 
 ## Do
@@ -17,7 +17,7 @@ budget time for hardcoded colors.
    - `<meta name="theme-color">` `#070512`; the GitHub-corner SVG fill
    Map: standard/primary → green (`--acc`); the second/“VR/common” accents → gold (`--gold`) and green tints. Keep edition
    badges visually distinct using green / gold / a neutral (and you may keep **one** extra hue like cyan if three
-   distinct edition colors are truly needed — but lead with green+gold).
+   distinct edition colors are truly needed - but lead with green+gold).
 2. **Canvas hero JS:** the wave/particle colors are hardcoded HSL blues (`hsla(210±…,75%,60%)`). Re-hue to green
    (~140) and gold (~45). Keep the `visibilitychange` pause and resize re-init.
 3. **Fonts:** replace **Inter** with **Plus Jakarta Sans** (body); keep **Outfit** (headings). Update the CSS `@import`/links.

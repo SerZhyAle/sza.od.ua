@@ -1,0 +1,15 @@
+# https://sza.od.ua/ - Serhii Zhyhunenko (SZA) portfolio hub.
+# One hand-authored page served from the repo root by GitHub Pages.
+
+User-agent: *
+Allow: /
+
+# Not destinations, and both would split the hub's signal if indexed:
+#   google-sites-publish/ - a frozen render kept for reference, carries no canonical tag.
+#   github-root-redirect/ - a redirect stub meant to be copied into the SerZhyAle.github.io repo.
+# embed.html is deliberately left crawlable: it is byte-identical to index.html and declares
+# <link rel="canonical" href="https://sza.od.ua/">, so the crawler must be able to read that tag.
+Disallow: /google-sites-publish/
+Disallow: /github-root-redirect/
+
+Sitemap: https://sza.od.ua/sitemap.xml

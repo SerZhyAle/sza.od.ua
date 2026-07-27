@@ -16,10 +16,10 @@ Single self-contained `index.html` (inline `<style>`/`<script>`).
    Map: primary → green (`--acc`), single highlights → gold (`--gold`); keep code blocks dark.
 2. **Language:** switcher is EN/RU/UK → make it **RU EN UA** (order + labels; show Ukrainian as **UA**), no flags.
    Keep the pure-CSS `data-lang` engine; you may align localStorage keys to `sza-theme` / `sza-lang`.
-3. **Get-it block in the header zone:** it already has an install section (winget `SerZhyAle.DocHtmlTranslate`) lower down —
+3. **Get-it block in the header zone:** it already has an install section (winget `SerZhyAle.DocHtmlTranslate`) lower down -
    lift a Get-it block to right after the "what & for whom" lead: winget `.copybox` + GitHub Releases (dynamic) + a
    3-step quickstart (install → convert a file → optional translate). Keep the existing deep-linkable sections.
-4. **Footer:** standardize to the kit **tools-grid** (it already cross-links hub, FMS-Lite, UAK — expand to the full grid).
+4. **Footer:** standardize to the kit **tools-grid** (it already cross-links hub, FMS-Lite, UAK - expand to the full grid).
 5. Keep: theme toggle, copy boxes, numbered `<details>` + hash-open, expand/collapse-all, `prefers-reduced-motion`.
 
 ## Done when

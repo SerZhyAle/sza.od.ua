@@ -2,9 +2,9 @@
 
 Use this prompt in the target project repository together with:
 
-1. `kit/SZA-PROJECT-PAGE-CONTENT-SPEC.md` — mandatory content contract;
-2. `kit/SZA-WEB-STYLE-GUIDE.md` — visual and technical contract;
-3. `kit/sza-kit.css` — shared implementation tokens.
+1. `kit/SZA-PROJECT-PAGE-CONTENT-SPEC.md` - mandatory content contract;
+2. `kit/SZA-WEB-STYLE-GUIDE.md` - visual and technical contract;
+3. `kit/sza-kit.css` - shared implementation tokens.
 
 ## Task
 
@@ -22,7 +22,7 @@ useful material.
 1. Inspect the repository, current public page, README, release metadata, and
    existing documentation. Identify the actual Pages source before editing.
 2. Write a short implementation note in your response containing: job to be
-   done, audience, first outcome, 3–5 scenarios, real install channels, exact
+   done, audience, first outcome, 3-5 scenarios, real install channels, exact
    quickstart, constraints/risks, and relevant sibling link. Ask for a decision
    only if a fact cannot be verified.
 3. Build the page in the exact order required by the content specification.

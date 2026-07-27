@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  The hub is one page. embed.html is served too, but it is byte-identical to index.html and
+  canonicalizes to https://sza.od.ua/, so listing it here would ask crawlers to index a URL that
+  points away from itself. google-sites-publish/ and github-root-redirect/ are not destinations
+  and are excluded in robots.txt.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://sza.od.ua/</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>
