@@ -36,10 +36,15 @@ reached from CI, from another machine, or by anything that did not already know 
 - **The hub card i18n trap:** `setLanguage()` overwrites `textContent` from the `i18n` dictionaries on
   load, so the English text inline in a card is only a pre-JS fallback. **Every card edit is four edits** -
   inline fallback plus the `en`, `ru` and `uk` dictionaries. Editing the card body alone is a no-op at
-  runtime.
-- **Publish:** run `deploy.bat` (stage all, dated auto-commit, push `main`); Pages rebuilds on push and
-  the domain updates within ~1 min. It clears `GITHUB_TOKEN` first so keyring auth wins. A site update
-  is **not** a release - there is no version, tag, or changelog here.
+  runtime. All three locales are authored here and the page is continuously published, so there is no
+  release boundary to batch the rest of a locale set to - the whole fan-out is part of the one edit.
+- **Publish:** run `deploy.bat` (compliance gate, stage all, dated auto-commit, push `main`); Pages
+  rebuilds on push and the domain updates within ~1 min. It clears `GITHUB_TOKEN` first so keyring auth
+  wins. A site update is **not** a release - there is no version, tag, or changelog here.
+- **The publish is the gate scope.** With no release boundary, anything wrong in the tree reaches
+  sza.od.ua about a minute after the push, so `deploy.bat` runs the compliance gate first and refuses to
+  commit or push when it reports an error. `SZA_SKIP_GATE=1` publishes anyway; a machine without
+  PowerShell 7 or without the `sza` plugin skips the gate with a warning instead of blocking.
 - **`.nojekyll`** at repo root keeps Pages serving the hand-authored HTML verbatim.
 
 ## Working here
@@ -47,7 +52,9 @@ reached from CI, from another machine, or by anything that did not already know 
 - **The web page** follows `kit/SZA-WEB-STYLE-GUIDE.md` + `kit/sza-kit.css`; project-page content
   follows `kit/SZA-PROJECT-PAGE-CONTENT-SPEC.md`. Propagating a change across the surfaces is the
   `sza:feature-to-site` skill.
-- **Compliance gate:** `pwsh -File "$env:CLAUDE_PLUGIN_ROOT/tools/check-compliance.ps1"` - it reads
-  `.sza-canon.json` and reports what this repo owes the canon.
+- **Compliance gate:** `pwsh -File tools/check.ps1` - it resolves the installed `sza` plugin and runs the
+  canon gate against this repo. Do **not** call `$env:CLAUDE_PLUGIN_ROOT/tools/check-compliance.ps1`
+  directly: that variable is expanded for the plugin's own hook registrations and is not exported into a
+  tool shell, so the path collapses to `/tools/check-compliance.ps1` and exits 64.
 - **Language:** one home, [AUTHOR.md](https://github.com/SerZhyAle/sza-unified-rules/blob/main/rules/AUTHOR.md)
   "Language" in the canon. Nothing about it is repo-specific here.

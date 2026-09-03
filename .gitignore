@@ -18,3 +18,7 @@ Desktop.ini
 .env
 *token*
 *secret*
+
+# Local editor state - a per-machine tint, not a project setting, and `git add .` in deploy.bat
+# would publish it with the site.
+.vscode/
