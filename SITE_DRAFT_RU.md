@@ -55,8 +55,8 @@
 
 ### Email
 
-- Текст: `serzhyale@gmail.com`
-- Ссылка: `mailto:serzhyale@gmail.com`
+- Текст: `sza@ukr.net`
+- Ссылка: `mailto:sza@ukr.net`
 
 ## Проекты 1С
 

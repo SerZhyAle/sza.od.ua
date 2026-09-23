@@ -32,8 +32,8 @@ IT specialist • 1C • automation • desktop and mobile tools
     *   Текст: `1C projects`
     *   Ссылка: `https://eltr.od.ua/`
 *   **Email**:
-    *   Текст: `serzhyale@gmail.com`
-    *   Ссылка: `mailto:serzhyale@gmail.com`
+    *   Текст: `sza@ukr.net`
+    *   Ссылка: `mailto:sza@ukr.net`
 
 ---
 

@@ -2,8 +2,8 @@
 
 Use this prompt in the target project repository together with:
 
-1. `kit/SZA-PROJECT-PAGE-CONTENT-SPEC.md` - mandatory content contract;
-2. `kit/SZA-WEB-STYLE-GUIDE.md` - visual and technical contract;
+1. `PAGE-CONTENT` - the mandatory content contract, from the contracts catalog;
+2. `PAGE-STYLE` - the visual and technical contract, from the same catalog;
 3. `kit/sza-kit.css` - shared implementation tokens.
 
 ## Task

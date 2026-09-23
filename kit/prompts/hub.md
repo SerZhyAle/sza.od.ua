@@ -15,8 +15,8 @@ The hub has **no distribution block** (it's not an app).
    Keep the existing `data-i18n` text-swap engine if you prefer, but reorder/relabel the buttons and set the default via
    `navigator.language` (ru→RU, uk→UA, else EN). (Converting to the pure-CSS `data-lang` engine is optional, not required.)
 4. **Contact with copy boxes:** in the contact/footer area add `.copybox` entries for **phone `+356 9957 6364`** and
-   **email `sza@ukr.net`** (each with a working Copy button). **Standardize the primary email to `sza@ukr.net`**
-   (replace the current `serzhyale@gmail.com`; keep gmail only if you want a secondary line). Keep LinkedIn + GitHub links.
+   **email `sza@ukr.net`** (each with a working Copy button). Keep `sza@ukr.net` as the primary email; Gmail is
+   not rendered. Keep LinkedIn + GitHub links.
 5. **Project grid:** keep the cards; ensure links are correct and add the now-live **FileDO site**
    (`https://serzhyale.github.io/FileDO/`) as its "Site" button. **OneClickRunner** stays GitHub-only.
    Optionally add product icons consistently. Confirm each card points to the right Pages site + GitHub.

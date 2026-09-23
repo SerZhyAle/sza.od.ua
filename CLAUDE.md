@@ -20,11 +20,26 @@ is `rules/contrib/hub.md` in that repo, and its adoption stamp is `.sza-canon.js
 The canon moved out of this repository on 2026-07-27 (with its history) because a local path could not be
 reached from CI, from another machine, or by anything that did not already know to look for it.
 
+## Contracts catalog (the only place this repo names it)
+
+The shared contracts catalog is at **`P:\Contracts`**. This line is the one pointer: nothing else in this
+repository may carry that path, because whoever clones the repo does not have that drive. Contracts are
+**cited by id** - `PAGE-STYLE section 11`, `SITE-FAMILY-MAP rule 3` - never linked.
+
+`docs/contracts/` holds one pointer file per contract this repo touches: id, version, home, role, and what
+this repo owes. A pointer is a few lines; a pointer that grows a second page has become a copy. This repo
+**owns** `PAGE-CONTENT`, `PAGE-STYLE`, `SITE-FAMILY-MAP` and the `PAGE-CONTENT-VISION` record, so an
+amendment is written in the catalog first and the page follows - never the other way round. Its rows live
+in the catalog's `_meta/REGISTRY.md`; this repo edits only its own.
+
 ## What this repo is (two roles, one repo)
 
 1. **The portfolio website** `sza.od.ua` - a hand-authored single page served from the repo root via
    GitHub Pages, mirrored into Google Sites.
-2. **The web-kit home** - `kit/` holds the SZA web style system consumed by the other properties.
+2. **The web-kit home** - `kit/sza-kit.css` is the served deployment copy of the catalog's canonical
+   `product-web-pages/reference/sza-kit.css`, and must stay byte-identical to it. The style guide and the
+   content spec that used to sit beside it moved into the catalog on 2026-09-22; `kit/prompts/` stays, as
+   one-off per-repo migration instructions that bind nobody.
 
 ## Site facts (overlay)
 
@@ -49,8 +64,9 @@ reached from CI, from another machine, or by anything that did not already know 
 
 ## Working here
 
-- **The web page** follows `kit/SZA-WEB-STYLE-GUIDE.md` + `kit/sza-kit.css`; project-page content
-  follows `kit/SZA-PROJECT-PAGE-CONTENT-SPEC.md`. Propagating a change across the surfaces is the
+- **The web page** follows `PAGE-STYLE` + `kit/sza-kit.css`; its content follows the "Hub contract"
+  section of `PAGE-CONTENT`, and its footer and contact follow `SITE-FAMILY-MAP`. All three live in the
+  contracts catalog, with pointers in `docs/contracts/`. Propagating a change across the surfaces is the
   `sza:feature-to-site` skill.
 - **Compliance gate:** `pwsh -File tools/check.ps1` - it resolves the installed `sza` plugin and runs the
   canon gate against this repo. Do **not** call `$env:CLAUDE_PLUGIN_ROOT/tools/check-compliance.ps1`

@@ -9,7 +9,7 @@
 - Локальная папка с ассетами для загрузки в Google Sites
 
 Папка с изображениями:
-[assets/projects](P:\WEB\sites.google.comsiteszaodua\google-sites-publish\assets\projects)
+[assets/projects](assets/projects)
 
 ## Структура страницы
 
@@ -40,7 +40,7 @@
 - `LinkedIn` -> `https://www.linkedin.com/in/serhii-zhyhunenko-a4600388/`
 - `GitHub` -> `https://github.com/SerZhyAle`
 - `1C project` -> `https://eltr.od.ua/`
-- `Email` -> `mailto:serzhyale@gmail.com`
+- `Email` -> `mailto:sza@ukr.net`
 
 ## Мои ресурсы
 
@@ -50,7 +50,7 @@
 
 - LinkedIn: `https://www.linkedin.com/in/serhii-zhyhunenko-a4600388/`
 - GitHub: `https://github.com/SerZhyAle`
-- Email: `serzhyale@gmail.com`
+- Email: `sza@ukr.net`
 
 ## Проекты 1С
 
@@ -83,9 +83,9 @@
 - Repository:
   `https://github.com/SerZhyAle/CyrFlip`
 - Preferred image for wide card:
-  [cyrflip-preview.png](P:\WEB\sites.google.comsiteszaodua\google-sites-publish\assets\projects\cyrflip-preview.png)
+  [cyrflip-preview.png](assets/projects/cyrflip-preview.png)
 - Alternative square icon:
-  [cyrflip-icon.png](P:\WEB\sites.google.comsiteszaodua\google-sites-publish\assets\projects\cyrflip-icon.png)
+  [cyrflip-icon.png](assets/projects/cyrflip-icon.png)
 
 ### 2. FastMediaSorter_mob_v2
 
@@ -95,7 +95,7 @@
 - Repository:
   `https://github.com/SerZhyAle/FastMediaSorter_mob_v2`
 - Preferred image:
-  [fastmediasorter-mob-main-screen.png](P:\WEB\sites.google.comsiteszaodua\google-sites-publish\assets\projects\fastmediasorter-mob-main-screen.png)
+  [fastmediasorter-mob-main-screen.png](assets/projects/fastmediasorter-mob-main-screen.png)
 
 ### 3. Fast Media Sorter for Windows
 
@@ -105,9 +105,9 @@
 - Repository:
   `https://github.com/SerZhyAle/FastMediaSorter_Lite`
 - Preferred image for wide card:
-  [fastmediasorter-lite-preview.png](P:\WEB\sites.google.comsiteszaodua\google-sites-publish\assets\projects\fastmediasorter-lite-preview.png)
+  [fastmediasorter-lite-preview.png](assets/projects/fastmediasorter-lite-preview.png)
 - Alternative square icon:
-  [fastmediasorter-lite-icon-256.png](P:\WEB\sites.google.comsiteszaodua\google-sites-publish\assets\projects\fastmediasorter-lite-icon-256.png)
+  [fastmediasorter-lite-icon-256.png](assets/projects/fastmediasorter-lite-icon-256.png)
 
 ### 4. doc-html-translate
 
@@ -117,7 +117,7 @@
 - Repository:
   `https://github.com/SerZhyAle/doc-html-translate`
 - Square icon:
-  [doc-html-translate-icon-256.png](P:\WEB\sites.google.comsiteszaodua\google-sites-publish\assets\projects\doc-html-translate-icon-256.png)
+  [doc-html-translate-icon-256.png](assets/projects/doc-html-translate-icon-256.png)
 
 ### 5. FileDO
 
@@ -127,9 +127,9 @@
 - Repository:
   `https://github.com/SerZhyAle/FileDO`
 - Preferred image for wide card:
-  [filedo-preview.png](P:\WEB\sites.google.comsiteszaodua\google-sites-publish\assets\projects\filedo-preview.png)
+  [filedo-preview.png](assets/projects/filedo-preview.png)
 - Alternative square icon:
-  [filedo-icon.png](P:\WEB\sites.google.comsiteszaodua\google-sites-publish\assets\projects\filedo-icon.png)
+  [filedo-icon.png](assets/projects/filedo-icon.png)
 
 ### 6. OneClickRunner
 
@@ -139,7 +139,7 @@
 - Repository:
   `https://github.com/SerZhyAle/OneClickRunner`
 - Square icon:
-  [oneclickrunner-icon.png](P:\WEB\sites.google.comsiteszaodua\google-sites-publish\assets\projects\oneclickrunner-icon.png)
+  [oneclickrunner-icon.png](assets/projects/oneclickrunner-icon.png)
 
 ## Контакты
 
