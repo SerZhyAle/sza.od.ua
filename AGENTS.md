@@ -1,5 +1,8 @@
 # Repository Guidelines
 
+Read `CLAUDE.md` in full; it is the authoritative agent contract for this repository, including its
+`sza-unified-rules` canon pointer and reference consumption model.
+
 ## Project Structure & Publishing
 
 This is a hand-authored, static portfolio hub served by GitHub Pages. `index.html` is the canonical site page; `embed.html` is the Google Sites variant and must remain byte-identical to it. Root-level `assets/` contains site images and icons, while `kit/sza-kit.css` is the shared stylesheet served by the page. Keep that CSS byte-identical to its canonical counterpart described in `docs/contracts/PAGE-STYLE.md`.
