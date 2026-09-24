@@ -1,7 +1,7 @@
 # ICON-SET
 
 - **Id:** `ICON-SET`
-- **Version:** 0.11
+- **Version:** 0.13
 - **Home:** the shared contracts catalog, `iconography/README.md` - see [CLAUDE.md](../../CLAUDE.md) for where the catalog is
 - **Role:** consumer. This hub adopts the shared vocabulary for any action, state, or navigation glyph it ships.
 

@@ -1,7 +1,7 @@
 # PAGE-STYLE
 
 - **Id:** `PAGE-STYLE`
-- **Version:** 1.0
+- **Version:** 1.1
 - **Home:** the shared contracts catalog, `product-web-pages/PAGE-STYLE.md` - see [CLAUDE.md](../../CLAUDE.md) for where the catalog is
 - **Role:** producer and consumer. This repo owns the contract and its page is built from it.
 
