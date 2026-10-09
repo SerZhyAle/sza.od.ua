@@ -1,6 +1,6 @@
 # Iconography inventory
 
-This inventory records how the hub applies `ICON-SET` 0.11, `ICON-RENDER` 0.11, and `ICON-EXTERNAL` 0.9.
+This inventory records how the hub applies `ICON-SET` 0.28, `ICON-RENDER` 0.18, and `ICON-EXTERNAL` 0.12.
 
 ## Functional glyph
 

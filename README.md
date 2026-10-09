@@ -1,10 +1,10 @@
 # Serhii Zhyhunenko (SZA) - IT Portfolio & Contact Card
 
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-success?style=flat-square&logo=github)](https://serzhyale.github.io/sza.od.ua/embed.html)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-success?style=flat-square&logo=github)](https://sza.od.ua/)
 [![1C Projects](https://img.shields.io/badge/1C%20Projects-ELTR-blue?style=flat-square)](https://eltr.od.ua/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/serhii-zhyhunenko-a4600388/)
 
-This repository hosts the source code and assets for the personal portfolio website of **Serhii Zhyhunenko (SZA)**, located at [sza.od.ua](http://sza.od.ua).
+This repository hosts the source code and assets for the personal portfolio website of **Serhii Zhyhunenko (SZA)**, located at [sza.od.ua](https://sza.od.ua).
 
 The portfolio is designed as a premium, self-contained single-page application and is embedded directly into Google Sites.
 
@@ -12,7 +12,7 @@ The portfolio is designed as a premium, self-contained single-page application a
 
 ## 🚀 Live Portfolio
 The live page is built and hosted via GitHub Pages:
-👉 **[https://serzhyale.github.io/sza.od.ua/embed.html](https://serzhyale.github.io/sza.od.ua/embed.html)**
+👉 **[https://sza.od.ua/](https://sza.od.ua/)**
 
 ---
 
@@ -26,7 +26,8 @@ The live page is built and hosted via GitHub Pages:
 
 ## 📂 Repository Structure
 
-- `embed.html` - The main premium portfolio page embedded into Google Sites.
+- `index.html` - The canonical single-page portfolio hub served by GitHub Pages.
+- `embed.html` - The Google Sites embed variant, kept byte-identical to `index.html`.
 - `deploy.bat` - One-click Windows deployment script to stage, commit, and push changes to GitHub.
 - `GOOGLE_SITES_TEXT.md` - Copy-paste text template in Russian for native Google Sites layouts.
 - `google-sites-publish/` - Assets, preview screenshots, and mockups used during design setup.
@@ -39,7 +40,7 @@ The live page is built and hosted via GitHub Pages:
 *   **[ELTR / ЭЛЕМЕНТАРНАЯ торговля](https://eltr.od.ua/)** - Solutions for accounting, trade management, inventory, and point-of-sale workflow automation for shops, workshops, and warehouses.
 
 ### Android Apps
-*   **[FastMediaSorter v2](https://serzhyale.github.io/FastMediaSorter_mob_v2/)** - Batch media and document sorter with support for local, SMB, SFTP, FTP, and cloud folders.
+*   **[Fast Media Sorter & Organizer](https://serzhyale.github.io/FastMediaSorter_mob_v2/)** - Batch media and document sorter with support for local, SMB, SFTP, FTP, and cloud folders.
 
 ### Windows Utilities & Applications
 *   **[Fast Media Sorter for Windows](https://serzhyale.github.io/FastMediaSorter_Lite/)** - Slideshow-integrated Windows desktop file manager for rapid media sorting.
@@ -47,7 +48,7 @@ The live page is built and hosted via GitHub Pages:
 *   **[doc-html-translate](https://serzhyale.github.io/doc-html-translate/)** - Offline-first CLI/GUI ebook translator utilizing Google Translate API and local Ollama LLMs.
 *   **[FileDO](https://serzhyale.github.io/FileDO/)** - Command-line tool for storage device speed-testing, fake capacity checking, and duplicate file scanning.
 *   **[OneClickRunner](https://serzhyale.github.io/OneClickRunner/)** - System tray application manager to run scripts, tools, and commands in a single click.
-*   **[StreamsPlayer](https://serzhyale.github.io/StreamsPlayer/)** - Windows player for internet radio, live video, and RTSP streams.
+*   **[STREAMS Player](https://serzhyale.github.io/StreamsPlayer/)** - Windows player for internet radio, live video, and RTSP streams.
 
 ### Development Workflow
 *   **[Universal Agent Kit](https://serzhyale.github.io/universal-agent-kit/)** - A portable workflow kit for AI-assisted development in Git repositories.

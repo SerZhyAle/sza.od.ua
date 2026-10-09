@@ -4,9 +4,10 @@ Snapshot date: 2026-06-11
 
 ## Public site
 
-- URL: `https://sites.google.com/site/szaodua/`
-- Visible title: `Serhii Zhyhunenko (SZA)`
-- Platform: Google Sites viewer
+- Canonical public site: `https://sza.od.ua/` (custom-domained GitHub Pages hub)
+- Historical mirror / snapshot (2026-06-11): `https://sites.google.com/site/szaodua/`
+- Visible title on mirror: `Serhii Zhyhunenko (SZA)`
+- Mirror platform: Google Sites viewer
 - Detected source status: converted from Classic Sites
 - Detected theme markers in HTML: `QualityBasics`, font kit `Light`, color kit `Blue`
 

@@ -1,0 +1,16 @@
+# https://serzhyale.github.io/robots.txt - the ONLY robots.txt crawlers read for every
+# serzhyale.github.io/<repo>/ project page (RFC 9309). Source: sza.od.ua repo, github-root-redirect/.
+# HAZARD: a Disallow here de-indexes every product at once. Allow-all and Sitemap lines only;
+# any other change needs a portfolio-level review. Never add a CNAME to the user-site repo.
+User-agent: *
+Allow: /
+
+Sitemap: https://serzhyale.github.io/CyrFlip/sitemap.xml
+Sitemap: https://serzhyale.github.io/doc-html-translate/sitemap.xml
+Sitemap: https://serzhyale.github.io/FastMediaSorter_Lite/sitemap.xml
+Sitemap: https://serzhyale.github.io/FastMediaSorter_mob_v2/sitemap.xml
+Sitemap: https://serzhyale.github.io/FileDO/sitemap.xml
+Sitemap: https://serzhyale.github.io/knc_26/sitemap.xml
+Sitemap: https://serzhyale.github.io/OneClickRunner/sitemap.xml
+Sitemap: https://serzhyale.github.io/StreamsPlayer/sitemap.xml
+Sitemap: https://serzhyale.github.io/universal-agent-kit/sitemap.xml

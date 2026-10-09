@@ -1,7 +1,7 @@
 # ICON-RENDER
 
 - **Id:** `ICON-RENDER`
-- **Version:** 0.11
+- **Version:** 0.18
 - **Home:** the shared contracts catalog, `iconography/README.md` - see [CLAUDE.md](../../CLAUDE.md) for where the catalog is
 - **Role:** consumer. This hub renders any adopted action glyph according to the shared web rules.
 

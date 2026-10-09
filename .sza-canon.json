@@ -1,10 +1,11 @@
 {
-  "$comment": "Adoption stamp for the sza.od.ua portfolio hub. role portfolio: a personal index page, not a product with a store listing, so the privacy-page check does not apply. No version, no tag, no changelog - a site update is not a release.",
+  "$comment": "Adoption stamp for the sza.od.ua portfolio hub. role portfolio: a personal index page. No version, no tag, no changelog - a site update is not a release.",
 
   "canon": {
-    "version": "2026.09.22.2",
-    "coreDigest": "sha256:13abcb8a7c2f0a354328bdd03c12e75ea361b6f8208134dc1ba3d1bd884e567d",
+    "version": "2026.10.02.3",
+    "coreDigest": "sha256:410463a9ccdfd75af7a233fc91656c200fe05f047cf7617d7fc53d32e7b81afa",
     "adoptedOn": "2026-09-03",
+    "reconciledOn": "2026-10-02",
     "model": "reference",
     "contribRecord": "contrib/hub.md"
   },
@@ -23,6 +24,9 @@
   "ledgerShape": "none",
   "ledgerFile": null,
 
+  "docRegistryShape": 1,
+  "docRegistryFile": "docs/DOCUMENT_REGISTRY.jsonl",
+
   "channels": [],
 
   "site": {
@@ -39,5 +43,12 @@
 
   "byteIdenticalPairs": [["index.html", "embed.html"]],
   "vendorAllow": [],
-  "exemptions": []
+  "exemptions": [
+    {
+      "id": "advertising",
+      "path": "index.html",
+      "until": "2027-10-02",
+      "reason": "Google AdSense script loader on portfolio website declared as an exception per UI_UX.md section 3, capped until 2027-10-02."
+    }
+  ]
 }

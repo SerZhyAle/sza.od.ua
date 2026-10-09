@@ -1,7 +1,7 @@
 # RULE-DELIVERY
 
 - **Id:** `RULE-DELIVERY`
-- **Version:** 0.9
+- **Version:** 0.12
 - **Home:** the shared contracts catalog, `rule-adoption/README.md` - see [CLAUDE.md](../../CLAUDE.md) for where the catalog is
 - **Role:** consumer. This repository holds a version-and-digest adoption record for the shared canon.
 

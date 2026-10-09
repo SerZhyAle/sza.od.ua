@@ -66,7 +66,8 @@
     var t=localStorage.getItem('sza-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');
     document.documentElement.setAttribute('data-theme',t);
     var l=localStorage.getItem('sza-lang');
-    if(!l){var n=(navigator.language||'en').toLowerCase();l=n.indexOf('ru')===0?'ru':n.indexOf('uk')===0?'uk':'en';}
+    if(l==='uk')l='ua';
+    if(l!=='ru'&&l!=='en'&&l!=='ua'){var n=(navigator.language||'en').toLowerCase();l=n.indexOf('ru')==0?'ru':n.indexOf('uk')==0?'ua':'en';}
     document.documentElement.setAttribute('data-lang',l);
   }catch(e){}})();
   </script>
@@ -117,6 +118,7 @@
     .cbx-label{font-family:var(--font-heading);font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);display:block;margin-bottom:.35rem}
     /* Visible wording keeps the theme switch a text control, rather than an unmapped glyph. */
     .theme-btn{width:auto;min-width:44px;padding:0 .65rem;font-family:var(--font-heading);font-size:.72rem;font-weight:700}
+    .privacy-note{font-size:.82rem;color:var(--muted);margin-bottom:1rem;line-height:1.45}
   </style>
 </head>
 <body>
@@ -130,7 +132,7 @@
     <div class="seg" role="group" aria-label="Language" data-i18n-aria="language-label">
       <button data-lang="ru" onclick="setLanguage('ru')">RU</button>
       <button data-lang="en" onclick="setLanguage('en')" aria-pressed="true">EN</button>
-      <button data-lang="uk" onclick="setLanguage('uk')">UA</button>
+      <button data-lang="ua" onclick="setLanguage('ua')">UA</button>
     </div>
     <button class="theme-btn" id="themeBtn" aria-label="Switch to light theme" data-i18n="theme-label" data-i18n-aria="theme-to-light" onclick="toggleTheme()">Theme</button>
     <a class="btn btn-primary btn-sm" href="mailto:sza@ukr.net" data-i18n="hdr-cta">Contact</a>
@@ -198,7 +200,7 @@
         <article class="card project-card">
           <div class="proj-head">
             <img src="assets/doc_translate.ico" alt="doc-html-translate icon">
-            <div><div class="proj-title">Doc-HTML-Translate</div><span class="pill" data-i18n="gh-card-4-type">CLI &amp; GUI Tool</span></div>
+            <div><div class="proj-title">doc-html-translate</div><span class="pill" data-i18n="gh-card-4-type">CLI &amp; GUI Tool</span></div>
           </div>
           <p class="proj-desc" data-i18n="gh-card-4-desc">Converter for Windows: EPUB, PDF, MOBI, AZW3, FB2, RTF, TXT, and Markdown to local HTML with optional automatic ebook translation via Google Translate API or local Ollama LLMs.</p>
           <div class="proj-foot">
@@ -220,7 +222,7 @@
         <article class="card project-card">
           <div class="proj-head">
             <img src="assets/oneclickrunner.png" alt="OneClickRunner icon">
-            <div><div class="proj-title">One Click Runner</div><span class="pill" data-i18n="gh-card-6-type">Windows Tray Utility</span></div>
+            <div><div class="proj-title">OneClickRunner</div><span class="pill" data-i18n="gh-card-6-type">Windows Tray Utility</span></div>
           </div>
           <p class="proj-desc" data-i18n="gh-card-6-desc">Windows system tray application to instantly run frequently used software, console scripts, automation commands, and tasks in a single click.</p>
           <div class="proj-foot">
@@ -231,7 +233,7 @@
         <article class="card project-card">
           <div class="proj-head">
             <img src="assets/universal_agent_kit.svg" alt="Universal Agent Kit icon">
-            <div><div class="proj-title">universal-agent-kit</div><span class="pill" data-i18n="gh-card-7-type">AI Workflow Kit</span></div>
+            <div><div class="proj-title">Universal Agent Kit</div><span class="pill" data-i18n="gh-card-7-type">AI Workflow Kit</span></div>
           </div>
           <p class="proj-desc" data-i18n="gh-card-7-desc">Portable, stack-agnostic kit for AI-assisted development: rules, skills, roles, a spec lifecycle, and persistent memory for agent-driven work in git repositories.</p>
           <div class="proj-foot">
@@ -296,6 +298,7 @@
   <!-- FOOTER: MORE TOOLS BY SZA -->
   <footer class="site-footer">
     <div class="container">
+      <p class="privacy-note" data-i18n="privacy-note">Privacy: this site loads Google AdSense scripts by default, which may set cookies and transmit browser data to Google for ad delivery.</p>
       <div class="footer-bottom">
         <span>&copy; 2026 Serhii Zhyhunenko. <span data-i18n="footer-copyright">All rights reserved.</span></span>
         <span><a href="https://sza.od.ua">sza.od.ua</a> · <a href="https://github.com/SerZhyAle" target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://www.linkedin.com/in/serhii-zhyhunenko-a4600388/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="mailto:sza@ukr.net">sza@ukr.net</a></span>
@@ -347,7 +350,8 @@
         "contacts-text":"I am open to professional contacts, collaboration, and discussing custom solutions in 1C Enterprise development, workflow automation, desktop/mobile tools, and data/file processing utilities.",
         "phone-label":"Phone","email-label":"Email","copy":"Copy","copied":"Copied",
         "contacts-btn":"Get in Touch via Email",
-        "footer-copyright":"All rights reserved."
+        "footer-copyright":"All rights reserved.",
+        "privacy-note":"Privacy: this site loads Google AdSense scripts by default, which may set cookies and transmit browser data to Google for ad delivery."
       },
       ru: {
         "title":"SZA - практические инструменты для файлов, данных и автоматизации",
@@ -389,7 +393,8 @@
         "contacts-text":"Я открыт к профессиональным контактам, сотрудничеству и обсуждению прикладных решений в области 1С, автоматизации, desktop/mobile-разработки и создания инструментов для работы с файлами и данными.",
         "phone-label":"Телефон","email-label":"Эл. почта","copy":"Копировать","copied":"Скопировано",
         "contacts-btn":"Связаться по Email",
-        "footer-copyright":"Все права защищены."
+        "footer-copyright":"Все права защищены.",
+        "privacy-note":"Конфиденциальность: этот сайт по умолчанию загружает скрипт Google AdSense при посещении, который может устанавливать файлы cookie и передавать данные браузера компании Google для показа рекламы."
       },
       uk: {
         "title":"SZA - практичні інструменти для файлів, даних і автоматизації",
@@ -431,9 +436,11 @@
         "contacts-text":"Я відкритий до професійних контактів, співпраці та обговорення прикладних рішень в області 1С, автоматизації, desktop/mobile-розробки та створення інструментів для роботи з файлами та даними.",
         "phone-label":"Телефон","email-label":"Ел. пошта","copy":"Копіювати","copied":"Скопійовано",
         "contacts-btn":"Зв'язатися по Email",
-        "footer-copyright":"Всі права захищені."
+        "footer-copyright":"Всі права захищені.",
+        "privacy-note":"Конфіденційність: цей сайт за замовчуванням завантажує скрипт Google AdSense під час відвідування, який може встановлювати файли cookie та передавати дані браузера компанії Google для показу реклами."
       }
     };
+    i18n.ua = i18n.uk;
 
     function setMeta(t){var m=document.querySelector('meta[name=theme-color]');if(m)m.content=(t==='light')?'#eef3ea':'#0a0f0a';}
     function setMetaContent(selector,value){var m=document.querySelector(selector);if(m)m.setAttribute('content',value);}
@@ -449,15 +456,16 @@
       document.documentElement.setAttribute('data-theme',next);
       try{localStorage.setItem('sza-theme',next);}catch(e){}
       setMeta(next);
-      var lang=document.documentElement.getAttribute('data-lang')||'en'; if(!i18n[lang])lang='en';
+      var lang=document.documentElement.getAttribute('data-lang')||'en'; if(lang==='uk')lang='ua'; if(!i18n[lang])lang='en';
       setThemeButtonLabel(lang);
     }
 
     function setLanguage(lang){
+      if(lang==='uk')lang='ua';
       if(!i18n[lang])lang='en';
       try{localStorage.setItem('sza-lang',lang);}catch(e){}
       document.documentElement.setAttribute('data-lang',lang);
-      document.documentElement.lang=lang;
+      document.documentElement.lang=lang==='ua'?'uk':lang;
       document.querySelectorAll('.seg button[data-lang]').forEach(function(b){
         b.setAttribute('aria-pressed', b.getAttribute('data-lang')===lang?'true':'false');
       });
@@ -483,7 +491,7 @@
       document.querySelectorAll('.copy').forEach(function(b){
         b.addEventListener('click',function(){
           var txt=b.getAttribute('data-copy')||'';
-          var lang=localStorage.getItem('sza-lang')||'en'; if(!i18n[lang])lang='en';
+          var lang=localStorage.getItem('sza-lang')||'en'; if(lang==='uk')lang='ua'; if(!i18n[lang])lang='en';
           var done=function(){ b.textContent=i18n[lang].copied; b.classList.add('done');
             setTimeout(function(){ b.textContent=i18n[lang].copy; b.classList.remove('done'); },1600); };
           if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done).catch(done); }
@@ -495,8 +503,9 @@
 
     document.addEventListener('DOMContentLoaded',function(){
       var saved=null; try{saved=localStorage.getItem('sza-lang');}catch(e){}
+      if(saved==='uk')saved='ua';
       var lang=saved;
-      if(!lang){var n=(navigator.language||'en').toLowerCase(); lang=n.indexOf('ru')===0?'ru':n.indexOf('uk')===0?'uk':'en';}
+      if(!lang||(lang!=='ru'&&lang!=='en'&&lang!=='ua')){var n=(navigator.language||'en').toLowerCase(); lang=n.indexOf('ru')===0?'ru':n.indexOf('uk')===0?'ua':'en';}
       setLanguage(lang);
       setMeta(document.documentElement.getAttribute('data-theme')||'dark');
       wireCopy();

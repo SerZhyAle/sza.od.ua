@@ -1,7 +1,7 @@
 # REPO-LAYOUT
 
 - **Id:** `REPO-LAYOUT`
-- **Version:** 0.9
+- **Version:** 0.11
 - **Home:** the shared contracts catalog, `rule-adoption/README.md` - see [CLAUDE.md](../../CLAUDE.md) for where the catalog is
 - **Role:** consumer. The compliance tooling addresses this repository through its declared names.
 

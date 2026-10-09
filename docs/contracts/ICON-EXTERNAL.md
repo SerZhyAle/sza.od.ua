@@ -1,7 +1,7 @@
 # ICON-EXTERNAL
 
 - **Id:** `ICON-EXTERNAL`
-- **Version:** 0.9
+- **Version:** 0.12
 - **Home:** the shared contracts catalog, `iconography/README.md` - see [CLAUDE.md](../../CLAUDE.md) for where the catalog is
 - **Role:** consumer. This hub displays project identity artwork without turning it into control glyphs.
 
