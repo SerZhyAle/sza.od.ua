@@ -12,7 +12,7 @@ Copy every file of this folder, unmodified, to the root of `SerZhyAle/SerZhyAle.
 - `robots.txt` - the only `robots.txt` crawlers read for every project page; allow-all plus `Sitemap:` lines
 - `ads.txt` - the AdSense seller line; covers every page under the host (kept by the owner's decision of 2026-10-09)
 - `.nojekyll` - keeps Pages serving the files verbatim
-- `google<token>.html` - the Search Console HTML-file verification, once the owner has downloaded it (never removed)
+- `google4e1402891e346207.html` - the Search Console HTML-file verification token for https://serzhyale.github.io/ (never removed)
 - `README.md` - this file; the user-site repository tracks it too, so the two stay identical
 
 ## Target
