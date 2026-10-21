@@ -43,7 +43,7 @@ The live page is built and hosted via GitHub Pages:
 *   **[Fast Media Sorter & Organizer](https://serzhyale.github.io/FastMediaSorter_mob_v2/)** - Batch media and document sorter with support for local, SMB, SFTP, FTP, and cloud folders.
 
 ### Windows Utilities & Applications
-*   **[Fast Media Sorter for Windows](https://serzhyale.github.io/FastMediaSorter_Lite/)** - Slideshow-integrated Windows desktop file manager for rapid media sorting.
+*   **[Fast Media Sorter & Sharing for Windows](https://serzhyale.github.io/FastMediaSorter_Lite/)** - Photo and video sorter for Windows: one key per file to move, copy, rename, or delete. Optional SFTP folder sharing to an Android phone stays off until switched on; the separate Folder Share Server edition runs sharing as a Windows service, with the viewer optional.
 *   **[CyrFlip](https://serzhyale.github.io/CyrFlip/)** - System tray utility to correct layout typos on the fly with custom hotkeys.
 *   **[doc-html-translate](https://serzhyale.github.io/doc-html-translate/)** - Offline-first CLI/GUI ebook translator utilizing Google Translate API and local Ollama LLMs.
 *   **[FileDO](https://serzhyale.github.io/FileDO/)** - Command-line tool for storage device speed-testing, fake capacity checking, and duplicate file scanning.

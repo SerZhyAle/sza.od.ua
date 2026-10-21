@@ -2,10 +2,10 @@
   "$comment": "Adoption stamp for the sza.od.ua portfolio hub. role portfolio: a personal index page. No version, no tag, no changelog - a site update is not a release.",
 
   "canon": {
-    "version": "2026.10.02.3",
-    "coreDigest": "sha256:410463a9ccdfd75af7a233fc91656c200fe05f047cf7617d7fc53d32e7b81afa",
+    "version": "2026.10.21.2",
+    "coreDigest": "sha256:a68993630be3f1748d7d9be44540c2b2301dc5bd737e8ec1e058dfcc1b3c5d35",
     "adoptedOn": "2026-09-03",
-    "reconciledOn": "2026-10-02",
+    "reconciledOn": "2026-10-21",
     "model": "reference",
     "contribRecord": "contrib/hub.md"
   },

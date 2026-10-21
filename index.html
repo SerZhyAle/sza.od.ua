@@ -63,12 +63,14 @@
   <!-- Pre-paint: resolve theme + language before first paint (no flash) -->
   <script>
   (function(){try{
-    var t=localStorage.getItem('sza-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');
+    var t=localStorage.getItem('sza-theme');
+    if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';
     document.documentElement.setAttribute('data-theme',t);
     var l=localStorage.getItem('sza-lang');
     if(l==='uk')l='ua';
     if(l!=='ru'&&l!=='en'&&l!=='ua'){var n=(navigator.language||'en').toLowerCase();l=n.indexOf('ru')==0?'ru':n.indexOf('uk')==0?'ua':'en';}
     document.documentElement.setAttribute('data-lang',l);
+    document.documentElement.setAttribute('data-ui-profile',matchMedia('(pointer: coarse)').matches?'touch':'pointer');
   }catch(e){}})();
   </script>
 
@@ -82,9 +84,6 @@
 
   <style>
     /* ---- hub-specific (built on the kit) ---- */
-    /* full-width layout: override the kit's centered 1100px column for this page */
-    .container,
-    .site-header{max-width:min(1760px,94vw)}
     /* put the extra width to use: 4-up project grid on large monitors */
     @media(min-width:1360px){#github-projects .grid,.eltr-grid{grid-template-columns:repeat(4,1fr)}}
     .hero{text-align:left;padding:1.2rem 0}
@@ -92,7 +91,7 @@
     .hero-id .av-text{min-width:0}
     .hero-id .av-text h1{font-size:clamp(1.7rem,4vw,2.3rem);margin:0;line-height:1.1}
     .hero-id .av-text .kicker{display:block;margin:.2rem 0 0}
-    .hero .lead{margin:0 0 .9rem;max-width:1720px}
+    .hero .lead{margin:0 0 .9rem}
     .hero .eyebrow{display:block;color:var(--muted);font-family:var(--font-heading);font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin:0 0 .55rem}
     .hero .avatar{position:relative;width:60px;height:60px;margin:0;flex:none;border-radius:50%;background:var(--bg-2);border:1px solid var(--border);animation:logoIn .7s cubic-bezier(.34,1.2,.4,1) both, glow 3s 1s infinite alternate}
     .hero .avatar img{position:relative;width:100%;height:100%;border-radius:50%;object-fit:contain;padding:10%}
@@ -101,7 +100,7 @@
     html[data-theme="light"] .hero .avatar img{filter:invert(1)}
     @keyframes glow{from{box-shadow:0 0 9px rgba(63,185,80,.22)}to{box-shadow:0 0 22px rgba(63,185,80,.5)}}
     @keyframes logoIn{from{opacity:0;transform:scale(.7) translateY(4px)}to{opacity:1;transform:scale(1) translateY(0)}}
-    .button-group{display:flex;flex-wrap:wrap;justify-content:flex-start;gap:.7rem;margin-top:.2rem}
+    .button-group{margin-top:.2rem}
     .section-title{display:flex;align-items:center;gap:.7rem;font-family:var(--font-heading);font-size:1.6rem;font-weight:700;margin-bottom:.4rem}
     .section-title .h{color:var(--acc)}
     .section-title::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
@@ -111,13 +110,11 @@
     .proj-head img{width:46px;height:46px;object-fit:contain;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid var(--border);padding:4px}
     .proj-title{font-family:var(--font-heading);font-weight:700;font-size:1.1rem;line-height:1.25;margin-bottom:.25rem}
     .proj-desc{color:var(--muted);font-size:.88rem;flex-grow:1;margin-bottom:1.2rem}
-    .proj-foot{display:flex;gap:.6rem;margin-top:auto;flex-wrap:wrap}
-    .contact-card{text-align:center;padding:2.2rem}
-    .contact-boxes{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;align-items:center;margin:1.4rem 0}
+    .proj-foot{margin-top:auto}
+    .contact-card{text-align:left;padding:2.2rem}
+    .contact-boxes{display:flex;flex-wrap:wrap;gap:1rem;justify-content:flex-start;align-items:center;margin:1.4rem 0 0}
     .contact-boxes .cbx{text-align:left}
     .cbx-label{font-family:var(--font-heading);font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);display:block;margin-bottom:.35rem}
-    /* Visible wording keeps the theme switch a text control, rather than an unmapped glyph. */
-    .theme-btn{width:auto;min-width:44px;padding:0 .65rem;font-family:var(--font-heading);font-size:.72rem;font-weight:700}
     .privacy-note{font-size:.82rem;color:var(--muted);margin-bottom:1rem;line-height:1.45}
   </style>
 </head>
@@ -130,12 +127,12 @@
   <header class="site-header">
     <span class="brand">SZA<span class="dot">.</span></span>
     <div class="seg" role="group" aria-label="Language" data-i18n-aria="language-label">
-      <button data-lang="ru" onclick="setLanguage('ru')">RU</button>
-      <button data-lang="en" onclick="setLanguage('en')" aria-pressed="true">EN</button>
-      <button data-lang="ua" onclick="setLanguage('ua')">UA</button>
+      <button type="button" data-lang="ru" onclick="setLanguage('ru')">RU</button>
+      <button type="button" data-lang="en" onclick="setLanguage('en')" aria-pressed="true">EN</button>
+      <button type="button" data-lang="ua" onclick="setLanguage('ua')">UA</button>
     </div>
-    <button class="theme-btn" id="themeBtn" aria-label="Switch to light theme" data-i18n="theme-label" data-i18n-aria="theme-to-light" onclick="toggleTheme()">Theme</button>
-    <a class="btn btn-primary btn-sm" href="mailto:sza@ukr.net" data-i18n="hdr-cta">Contact</a>
+    <button type="button" class="theme-btn" id="themeBtn" aria-label="Switch to light theme" data-i18n-aria="theme-to-light" onclick="toggleTheme()"><span class="gi gi-theme" aria-hidden="true"></span><span data-i18n="theme-label">Theme</span></button>
+    <a class="btn" href="mailto:sza@ukr.net"><span class="gi gi-email" aria-hidden="true"></span><span data-i18n="hdr-cta">Contact</span></a>
   </header>
 
   <div class="container">
@@ -151,9 +148,9 @@
         </div>
       </div>
       <p class="lead" data-i18n="hero-desc">A practical collection of independent projects: sort and play media, work with documents, check storage, automate repeated actions, organise business accounting, or build a disciplined workflow with AI agents. Open the project that matches the task in front of you.</p>
-      <div class="button-group">
+      <div class="button-group btn-row">
         <a href="#github-projects" class="btn btn-primary" data-i18n="hero-primary">Main projects</a>
-        <a href="#1c-projects" class="btn btn-gold" data-i18n="hero-1c">Accounting &amp; trade</a>
+        <a href="#1c-projects" class="btn" data-i18n="hero-1c">Accounting &amp; trade</a>
         <a href="#contacts" class="btn btn-ghost" data-i18n="hero-contact">About &amp; contact</a>
       </div>
     </header>
@@ -170,19 +167,19 @@
             <div><div class="proj-title">Fast Media Sorter &amp; Organizer</div><span class="pill" data-i18n="gh-card-1-type">Android App</span></div>
           </div>
           <p class="proj-desc" data-i18n="gh-card-1-desc">Android application for batch sorting of photos, videos, audio, and documents. Supports local folders, SMB / SFTP / FTP network shares, and cloud storage (Dropbox, Google Drive, OneDrive).</p>
-          <div class="proj-foot">
-            <a href="https://serzhyale.github.io/FastMediaSorter_mob_v2/" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer"><span data-i18n="open-project">Open project</span></a>
+          <div class="proj-foot btn-row">
+            <a href="https://serzhyale.github.io/FastMediaSorter_mob_v2/" class="btn" target="_blank" rel="noopener noreferrer"><span data-i18n="open-project">Open project</span><span class="gi gi-external" aria-hidden="true"></span><span class="sr">, <span data-i18n="ext-window">Open in new window</span></span></a>
           </div>
         </article>
         <!-- 2 -->
         <article class="card project-card">
           <div class="proj-head">
-            <img src="assets/fms_lite.png" alt="Fast Media Sorter for Windows icon">
-            <div><div class="proj-title">Fast Media Sorter for Windows</div><span class="pill" data-i18n="gh-card-2-type">Windows Desktop</span></div>
+            <img src="assets/fms_lite.png" alt="Fast Media Sorter &amp; Sharing for Windows icon">
+            <div><div class="proj-title">Fast Media Sorter &amp; Sharing for Windows</div><span class="pill" data-i18n="gh-card-2-type">Windows Desktop</span></div>
           </div>
-          <p class="proj-desc" data-i18n="gh-card-2-desc">Windows application for fast and easy media sorting: slideshow display, folder navigation, quick move, copy, rename, and delete actions.</p>
-          <div class="proj-foot">
-            <a href="https://serzhyale.github.io/FastMediaSorter_Lite/" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer"><span data-i18n="open-project">Open project</span></a>
+          <p class="proj-desc" data-i18n="gh-card-2-desc">Sort a large photo or video folder with one key per file: view, then move, copy, rename, or delete. Optional SFTP folder sharing opens chosen folders on an Android phone and stays off until you switch it on. The separate Folder Share Server edition runs sharing as a Windows service, with the viewer optional.</p>
+          <div class="proj-foot btn-row">
+            <a href="https://serzhyale.github.io/FastMediaSorter_Lite/" class="btn" target="_blank" rel="noopener noreferrer"><span data-i18n="open-project">Open project</span><span class="gi gi-external" aria-hidden="true"></span><span class="sr">, <span data-i18n="ext-window">Open in new window</span></span></a>
           </div>
         </article>
         <!-- 3 -->
@@ -192,8 +189,8 @@
             <div><div class="proj-title">CyrFlip</div><span class="pill" data-i18n="gh-card-3-type">Windows Tray Tool</span></div>
           </div>
           <p class="proj-desc" data-i18n="gh-card-3-desc">A lightweight Windows system tray utility that corrects text typed in the wrong keyboard layout (QWERTY &lt;-&gt; Cyrillic) with a global hotkey and active layout indicator.</p>
-          <div class="proj-foot">
-            <a href="https://serzhyale.github.io/CyrFlip/" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer"><span data-i18n="open-project">Open project</span></a>
+          <div class="proj-foot btn-row">
+            <a href="https://serzhyale.github.io/CyrFlip/" class="btn" target="_blank" rel="noopener noreferrer"><span data-i18n="open-project">Open project</span><span class="gi gi-external" aria-hidden="true"></span><span class="sr">, <span data-i18n="ext-window">Open in new window</span></span></a>
           </div>
         </article>
         <!-- 4 -->
@@ -203,8 +200,8 @@
             <div><div class="proj-title">doc-html-translate</div><span class="pill" data-i18n="gh-card-4-type">CLI &amp; GUI Tool</span></div>
           </div>
           <p class="proj-desc" data-i18n="gh-card-4-desc">Converter for Windows: EPUB, PDF, MOBI, AZW3, FB2, RTF, TXT, and Markdown to local HTML with optional automatic ebook translation via Google Translate API or local Ollama LLMs.</p>
-          <div class="proj-foot">
-            <a href="https://serzhyale.github.io/doc-html-translate/" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer"><span data-i18n="open-project">Open project</span></a>
+          <div class="proj-foot btn-row">
+            <a href="https://serzhyale.github.io/doc-html-translate/" class="btn" target="_blank" rel="noopener noreferrer"><span data-i18n="open-project">Open project</span><span class="gi gi-external" aria-hidden="true"></span><span class="sr">, <span data-i18n="ext-window">Open in new window</span></span></a>
           </div>
         </article>
         <!-- 5 -->
@@ -214,8 +211,8 @@
             <div><div class="proj-title">FileDO</div><span class="pill" data-i18n="gh-card-5-type">CLI Storage Tool</span></div>
           </div>
           <p class="proj-desc" data-i18n="gh-card-5-desc">Windows CLI utility for drive benchmarking, fake-capacity detection, secure data wiping (secure wipe), and duplicate file analysis/management.</p>
-          <div class="proj-foot">
-            <a href="https://serzhyale.github.io/FileDO/" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer"><span data-i18n="open-project">Open project</span></a>
+          <div class="proj-foot btn-row">
+            <a href="https://serzhyale.github.io/FileDO/" class="btn" target="_blank" rel="noopener noreferrer"><span data-i18n="open-project">Open project</span><span class="gi gi-external" aria-hidden="true"></span><span class="sr">, <span data-i18n="ext-window">Open in new window</span></span></a>
           </div>
         </article>
         <!-- 6 -->
@@ -225,8 +222,8 @@
             <div><div class="proj-title">OneClickRunner</div><span class="pill" data-i18n="gh-card-6-type">Windows Tray Utility</span></div>
           </div>
           <p class="proj-desc" data-i18n="gh-card-6-desc">Windows system tray application to instantly run frequently used software, console scripts, automation commands, and tasks in a single click.</p>
-          <div class="proj-foot">
-            <a href="https://serzhyale.github.io/OneClickRunner/" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer"><span data-i18n="open-project">Open project</span></a>
+          <div class="proj-foot btn-row">
+            <a href="https://serzhyale.github.io/OneClickRunner/" class="btn" target="_blank" rel="noopener noreferrer"><span data-i18n="open-project">Open project</span><span class="gi gi-external" aria-hidden="true"></span><span class="sr">, <span data-i18n="ext-window">Open in new window</span></span></a>
           </div>
         </article>
         <!-- 7 -->
@@ -236,8 +233,8 @@
             <div><div class="proj-title">Universal Agent Kit</div><span class="pill" data-i18n="gh-card-7-type">AI Workflow Kit</span></div>
           </div>
           <p class="proj-desc" data-i18n="gh-card-7-desc">Portable, stack-agnostic kit for AI-assisted development: rules, skills, roles, a spec lifecycle, and persistent memory for agent-driven work in git repositories.</p>
-          <div class="proj-foot">
-            <a href="https://serzhyale.github.io/universal-agent-kit/" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer"><span data-i18n="open-project">Open project</span></a>
+          <div class="proj-foot btn-row">
+            <a href="https://serzhyale.github.io/universal-agent-kit/" class="btn" target="_blank" rel="noopener noreferrer"><span data-i18n="open-project">Open project</span><span class="gi gi-external" aria-hidden="true"></span><span class="sr">, <span data-i18n="ext-window">Open in new window</span></span></a>
           </div>
         </article>
         <!-- 8 -->
@@ -247,8 +244,8 @@
             <div><div class="proj-title">STREAMS Player</div><span class="pill" data-i18n="gh-card-8-type">Windows Desktop</span></div>
           </div>
           <p class="proj-desc" data-i18n="gh-card-8-desc">Windows player for internet radio, live video, and RTSP channels: browse a curated catalog, filter by category, language, country, or media type, then play in the main or a focused window.</p>
-          <div class="proj-foot">
-            <a href="https://serzhyale.github.io/StreamsPlayer/" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer"><span data-i18n="open-project">Open project</span></a>
+          <div class="proj-foot btn-row">
+            <a href="https://serzhyale.github.io/StreamsPlayer/" class="btn" target="_blank" rel="noopener noreferrer"><span data-i18n="open-project">Open project</span><span class="gi gi-external" aria-hidden="true"></span><span class="sr">, <span data-i18n="ext-window">Open in new window</span></span></a>
           </div>
         </article>
       </div>
@@ -265,8 +262,8 @@
             <div><div class="proj-title" data-i18n="eltr-title">ELTR / ЭЛЕМЕНТАРНАЯ торговля</div><span class="pill" data-i18n="eltr-badge-1">1C: Accounting &amp; Trade</span></div>
           </div>
           <p class="proj-desc" data-i18n="eltr-desc">Accounting and trade management for small stores, service businesses, workshops, crews, and warehouses.</p>
-          <div class="proj-foot">
-            <a href="https://eltr.od.ua/" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer"><span data-i18n="open-project">Open project</span></a>
+          <div class="proj-foot btn-row">
+            <a href="https://eltr.od.ua/" class="btn" target="_blank" rel="noopener noreferrer"><span data-i18n="open-project">Open project</span><span class="gi gi-external" aria-hidden="true"></span><span class="sr">, <span data-i18n="ext-window">Open in new window</span></span></a>
           </div>
         </article>
       </div>
@@ -279,15 +276,15 @@
         <p class="lead" data-i18n="contacts-text">I am open to professional contacts, collaboration, and discussing custom solutions in 1C Enterprise development, workflow automation, desktop/mobile tools, and data/file processing utilities.</p>
         <div class="contact-boxes">
           <div class="cbx">
-            <span class="cbx-label" data-i18n="phone-label">Phone</span>
-            <div class="copybox">+356 9957 6364<button class="copy" data-i18n="copy" data-copy="+356 9957 6364">Copy</button></div>
+            <span class="cbx-label" id="lbl-phone" data-i18n="phone-label">Phone</span>
+            <div class="copybox"><span class="cb-text">+356 9957 6364</span><button type="button" class="copy" aria-describedby="lbl-phone" data-copy="+356 9957 6364"><span class="gi gi-copy" aria-hidden="true"></span><span class="cl"><span class="cl-idle" data-i18n="copy">Copy</span><span class="cl-done" data-i18n="copied">Copied</span></span></button></div>
           </div>
           <div class="cbx">
-            <span class="cbx-label" data-i18n="email-label">Email</span>
-            <div class="copybox">sza@ukr.net<button class="copy" data-i18n="copy" data-copy="sza@ukr.net">Copy</button></div>
+            <span class="cbx-label" id="lbl-email" data-i18n="email-label">Email</span>
+            <div class="copybox"><span class="cb-text">sza@ukr.net</span><button type="button" class="copy" aria-describedby="lbl-email" data-copy="sza@ukr.net"><span class="gi gi-copy" aria-hidden="true"></span><span class="cl"><span class="cl-idle" data-i18n="copy">Copy</span><span class="cl-done" data-i18n="copied">Copied</span></span></button></div>
           </div>
-          <a href="mailto:sza@ukr.net" class="btn btn-primary">
-            <span data-i18n="contacts-btn">Get in Touch via Email</span>
+          <a href="mailto:sza@ukr.net" class="btn">
+            <span class="gi gi-email" aria-hidden="true"></span><span data-i18n="contacts-btn">Get in Touch via Email</span>
           </a>
         </div>
       </div>
@@ -306,7 +303,8 @@
     </div>
   </footer>
 
-  <button class="to-top" id="toTop" aria-label="Scroll to top" data-i18n-aria="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 11h3v10h2V11h3l-4-4-4 4zM4 3v2h16V3H4z" fill="currentColor"/></svg></button>
+  <button type="button" class="to-top" id="toTop" aria-label="Scroll to top" title="Scroll to top" data-i18n-aria="scroll-top" data-i18n-title="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><span class="gi gi-top" aria-hidden="true"></span></button>
+  <span class="sr" role="status" aria-live="polite" id="copyStatus"></span>
 
   <script>
     const i18n = {
@@ -321,13 +319,13 @@
         "hero-subtitle":"Windows, Android, 1C, and AI-assisted development",
         "hero-desc":"A practical collection of independent projects for media, documents, storage, recurring actions, business accounting, and AI-assisted development. Each project page starts with what it does and how to begin using it.",
         "hero-primary":"Current products","hero-1c":"Accounting & trade","hero-contact":"About & contact",
-        "open-project":"Open project",
+        "open-project":"Open project","ext-window":"Open in new window",
         "projects-title":"My main current products",
         "projects-desc":"Independent applications and working methods for files, media, documents, storage, automation, and AI-assisted development.",
         "gh-card-1-type":"Android App",
         "gh-card-1-desc":"Browse, play, and organise media or documents from a phone, NAS, cloud, TV box, car head unit, or VR headset - without copying the whole library first.",
         "gh-card-2-type":"Windows Desktop",
-        "gh-card-2-desc":"Work through a large photo or video folder quickly: view, navigate, then move, copy, rename, or delete with keyboard or mouse.",
+        "gh-card-2-desc":"Sort a large photo or video folder with one key per file: view, then move, copy, rename, or delete. Optional SFTP folder sharing opens chosen folders on an Android phone and stays off until you switch it on. The separate Folder Share Server edition runs sharing as a Windows service, with the viewer optional.",
         "gh-card-3-type":"Windows Tray Tool",
         "gh-card-3-desc":"See the active keyboard layout while typing and fix already mistyped QWERTY/Cyrillic text with one global shortcut.",
         "gh-card-4-type":"CLI & GUI Tool",
@@ -364,13 +362,13 @@
         "hero-subtitle":"Windows, Android, 1С и разработка с ИИ-агентами",
         "hero-desc":"Практическая подборка самостоятельных проектов для медиа, документов, накопителей, повторяемых действий, учёта и разработки с ИИ-агентами. Каждая страница проекта начинается с того, что он делает и как начать им пользоваться.",
         "hero-primary":"Актуальные продукты","hero-1c":"Учёт и торговля","hero-contact":"Об авторе и контакты",
-        "open-project":"Открыть проект",
+        "open-project":"Открыть проект","ext-window":"Открыть в новом окне",
         "projects-title":"Мои основные актуальные продукты",
         "projects-desc":"Самостоятельные приложения и методы работы с файлами, медиа, документами, накопителями, автоматизацией и разработкой с ИИ-агентами.",
         "gh-card-1-type":"Android-приложение",
         "gh-card-1-desc":"Просматривайте, воспроизводите и разбирайте медиа или документы с телефона, NAS, облака, ТВ-приставки, автомагнитолы или VR-гарнитуры - без предварительного копирования всей библиотеки.",
         "gh-card-2-type":"Windows Desktop",
-        "gh-card-2-desc":"Быстро разберите большую папку фото или видео: просматривайте, переходите по файлам, затем перемещайте, копируйте, переименовывайте или удаляйте клавиатурой либо мышью.",
+        "gh-card-2-desc":"Разберите большую папку фото или видео, нажимая одну клавишу на файл: просматривайте, затем перемещайте, копируйте, переименовывайте или удаляйте. Необязательный общий доступ к папкам по SFTP открывает выбранные папки на телефоне с Android и остаётся выключенным, пока вы его не включите. Отдельная редакция Folder Share Server запускает общий доступ как службу Windows; просмотрщик в ней необязателен.",
         "gh-card-3-type":"Утилита для трея Windows",
         "gh-card-3-desc":"Видьте активную раскладку во время набора и исправляйте уже набранный текст в QWERTY/кириллице одной глобальной горячей клавишей.",
         "gh-card-4-type":"Инструмент CLI & GUI",
@@ -407,13 +405,13 @@
         "hero-subtitle":"Windows, Android, 1С і розробка з ШІ-агентами",
         "hero-desc":"Практична добірка самостійних проєктів для медіа, документів, накопичувачів, повторюваних дій, обліку та розробки з ШІ-агентами. Кожна сторінка проєкту починається з того, що він робить і як почати ним користуватися.",
         "hero-primary":"Актуальні продукти","hero-1c":"Облік і торгівля","hero-contact":"Про автора і контакти",
-        "open-project":"Відкрити проєкт",
+        "open-project":"Відкрити проєкт","ext-window":"Відкрити в новому вікні",
         "projects-title":"Мої основні актуальні продукти",
         "projects-desc":"Самостійні застосунки та методи роботи з файлами, медіа, документами, накопичувачами, автоматизацією й розробкою з ШІ-агентами.",
         "gh-card-1-type":"Android-додаток",
         "gh-card-1-desc":"Переглядайте, відтворюйте й упорядковуйте медіа або документи з телефона, NAS, хмари, ТВ-приставки, автомагнітоли чи VR-гарнітури - без попереднього копіювання всієї бібліотеки.",
         "gh-card-2-type":"Windows Desktop",
-        "gh-card-2-desc":"Швидко розберіть велику папку фото чи відео: переглядайте, переходьте по файлах, потім переміщуйте, копіюйте, перейменовуйте або видаляйте клавіатурою чи мишею.",
+        "gh-card-2-desc":"Розберіть велику папку фото чи відео, натискаючи одну клавішу на файл: переглядайте, потім переміщуйте, копіюйте, перейменовуйте або видаляйте. Необов'язковий спільний доступ до папок через SFTP відкриває обрані папки на телефоні з Android і залишається вимкненим, доки ви його не ввімкнете. Окрема редакція Folder Share Server запускає спільний доступ як службу Windows; переглядач у ній необов'язковий.",
         "gh-card-3-type":"Утиліта для трею Windows",
         "gh-card-3-desc":"Бачте активну розкладку під час набору та виправляйте вже набраний текст у QWERTY/кирилиці однією глобальною гарячою клавішею.",
         "gh-card-4-type":"Інструмент CLI & GUI",
@@ -484,6 +482,10 @@
         var k=el.getAttribute('data-i18n-aria');
         if(i18n[lang][k]!=null) el.setAttribute('aria-label',i18n[lang][k]);
       });
+      document.querySelectorAll('[data-i18n-title]').forEach(function(el){
+        var k=el.getAttribute('data-i18n-title');
+        if(i18n[lang][k]!=null) el.setAttribute('title',i18n[lang][k]);
+      });
       setThemeButtonLabel(lang);
     }
 
@@ -491,9 +493,10 @@
       document.querySelectorAll('.copy').forEach(function(b){
         b.addEventListener('click',function(){
           var txt=b.getAttribute('data-copy')||'';
-          var lang=localStorage.getItem('sza-lang')||'en'; if(lang==='uk')lang='ua'; if(!i18n[lang])lang='en';
-          var done=function(){ b.textContent=i18n[lang].copied; b.classList.add('done');
-            setTimeout(function(){ b.textContent=i18n[lang].copy; b.classList.remove('done'); },1600); };
+          var done=function(){ b.classList.add('done');
+            var lang=document.documentElement.getAttribute('data-lang')||'en'; if(!i18n[lang])lang='en';
+            var s=document.getElementById('copyStatus'); if(s){ s.textContent=''; setTimeout(function(){ s.textContent=i18n[lang].copied; },30); }
+            setTimeout(function(){ b.classList.remove('done'); },1600); };
           if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done).catch(done); }
           else{ var t=document.createElement('textarea'); t.value=txt; document.body.appendChild(t); t.select();
             try{document.execCommand('copy');}catch(e){} document.body.removeChild(t); done(); }

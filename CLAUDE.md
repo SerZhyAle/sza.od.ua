@@ -72,5 +72,9 @@ in the catalog's `_meta/REGISTRY.md`; this repo edits only its own.
   canon gate against this repo. Do **not** call `$env:CLAUDE_PLUGIN_ROOT/tools/check-compliance.ps1`
   directly: that variable is expanded for the plugin's own hook registrations and is not exported into a
   tool shell, so the path collapses to `/tools/check-compliance.ps1` and exits 64.
+- **UI check:** `pwsh -NoProfile -File tools/ui-check.ps1` - rendered geometry, contrast and behaviour checks of
+  the page and of the kit showcase in a headless Chrome (PowerShell 7 only, no node or python); results and
+  captures go to `docs/ui-evidence/`. Run it after any change to `kit/sza-kit.css`, a control or the page layer.
+  The profile, permanent variants and what is not proven are in `docs/UI_PROFILE.md`.
 - **Language:** one home, [AUTHOR.md](https://github.com/SerZhyAle/sza-unified-rules/blob/main/rules/AUTHOR.md)
   "Language" in the canon. Nothing about it is repo-specific here.

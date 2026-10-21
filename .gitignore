@@ -23,4 +23,8 @@ Desktop.ini
 # would publish it with the site.
 .vscode/
 
+# Planning and agent scratch - never published. deploy.bat runs `git add .`, so anything not listed here
+# reaches sza.od.ua about a minute after the push. The plan lives in PLAN/ (DOCUMENTATION_CONCEPT section 5).
 docs/
+PLAN/
+temp/

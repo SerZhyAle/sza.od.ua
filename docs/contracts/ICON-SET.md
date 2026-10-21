@@ -1,7 +1,7 @@
 # ICON-SET
 
 - **Id:** `ICON-SET`
-- **Version:** 0.28
+- **Version:** 0.36
 - **Home:** the shared contracts catalog, `iconography/README.md` - see [CLAUDE.md](../../CLAUDE.md) for where the catalog is
 - **Role:** consumer. This hub adopts the shared vocabulary for any action, state, or navigation glyph it ships.
 
@@ -13,5 +13,6 @@
 
 ## Current adoption
 
-- `nav.scroll-top` is the only functional glyph on the hub; it uses the catalog's supplied SVG and canonical EN / RU / UK name.
-- Theme, email, and copy affordances use visible text, so they do not claim a vocabulary glyph.
+- Read at 0.36 on 2026-10-21. Five meanings, all active: `nav.scroll-top` (back to top), `app.theme` (theme control),
+  `action.email` (Contact and email commands), `action.copy` (copy controls) and `nav.open-external` (the trailing
+  marker of every project link; its EN / RU / UK names are the accessible text).
