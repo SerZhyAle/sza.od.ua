@@ -61,6 +61,9 @@ function Ev([string]$js) {
   return $r.result.value
 }
 function Pause([int]$ms = 150) { Start-Sleep -Milliseconds $ms }
+# After an action that navigates (the language control, the root page's forward): wait for the new document.
+function Settle([int]$ms = 700) { Pause $ms; for ($i = 0; $i -lt 50; $i++) { try { if ((Ev 'document.readyState') -eq 'complete') { break } } catch { }; Pause 100 } }
+function Locale-Url([string]$lang) { if ($lang -eq 'en') { return $hubUrl }; return ([Uri](Join-Path $root "$lang/index.html")).AbsoluteUri }
 function Rect([string]$sel) {
   $js = "(function(){var e=document.querySelector('$sel');if(!e)return null;e.scrollIntoView({block:'center',behavior:'instant'});var r=e.getBoundingClientRect();return JSON.stringify({x:r.left+r.width/2,y:r.top+r.height/2,w:r.width,h:r.height,l:r.left,t:r.top})})()"
   $v = Ev $js; if (-not $v) { throw "no element $sel" }; return $v | ConvertFrom-Json
@@ -315,8 +318,10 @@ try {
     )
     foreach ($s in $scn) {
       $name = "hub-$($s.id)-$($s.w)-$(if($s.touch){'touch'}else{'pointer'})-$($s.scheme)-$($s.lang)-$(if($s.size){$s.size}else{'ordinary'})$(if($s.forced -eq 'active'){'-forced-colors'})"
-      Open-Page $hubUrl $s.w $s.h $s.touch $s.scheme $s.forced
-      if ($s.lang -ne 'en') { Ev "setLanguage('$($s.lang)')" | Out-Null }
+      # Each locale is its own page (PAGE-STYLE 3.7): the scenario opens it directly.
+      Open-Page (Locale-Url $s.lang) $s.w $s.h $s.touch $s.scheme $s.forced
+      $docLang = Ev 'document.documentElement.lang'
+      Check 'locale-page' $name ($docLang -eq $s.lang) "html lang=$docLang"
       if ($s.size) { Ev "document.documentElement.setAttribute('data-ui-size','$($s.size)')" | Out-Null }
       Pause 250
       $prof = Ev "document.documentElement.getAttribute('data-ui-profile')"
@@ -332,9 +337,9 @@ try {
         Check 'full-width' $name ([bool]$okw) 'container is at least viewport minus 80'
         $capped = Ev "JSON.stringify([].filter.call(document.querySelectorAll('html,body,.container,.site-header,.hero,.section,.site-footer,.section-desc,.lead,.hero-id'),function(e){return ['none','100%'].indexOf(getComputedStyle(e).maxWidth)<0}).map(function(e){return e.tagName+'.'+e.className+'='+getComputedStyle(e).maxWidth}))" | ConvertFrom-Json
         Check 'no-max-width-on-wrappers' $name (@($capped).Count -eq 0) ("capped: " + (@($capped) -join '; '))
-        $edges = Ev "JSON.stringify({head:document.querySelector('.site-header .brand').getBoundingClientRect().left,hero:document.querySelector('.hero-id').getBoundingClientRect().left,foot:document.querySelector('.footer-bottom').getBoundingClientRect().left})" | ConvertFrom-Json
+        $edges = Ev "(()=>{const brand=document.querySelector('.site-header .brand');const text=document.createRange();text.selectNodeContents(brand.firstChild);return JSON.stringify({head:text.getBoundingClientRect().left,hero:document.querySelector('.hero-id').getBoundingClientRect().left,foot:document.querySelector('.footer-bottom').getBoundingClientRect().left})})()" | ConvertFrom-Json
         Check 'left-edge-aligned' $name ([math]::Abs($edges.hero - $edges.foot) -lt 1.5) "hero $($edges.hero) footer $($edges.foot)"
-        Info 'header-brand-inset' $name "header brand text starts at $($edges.head), hero at $($edges.hero): inset $([math]::Round($edges.head - $edges.hero, 1)) px (kit .brand padding-inline; PAGE-STYLE 5 Width asks one x position)"
+        Check 'header-brand-inset' $name ([math]::Abs($edges.head - $edges.hero) -lt 1.5) "brand text $($edges.head), hero $($edges.hero)"
       }
       if ($s.id -eq 'H3') {
         $ov = [double](Ev "document.documentElement.scrollWidth-(window.__W||innerWidth)")
@@ -358,10 +363,18 @@ try {
     Ev "document.getElementById('themeBtn').focus();true" | Out-Null; KEnter
     $t3 = Ev "document.documentElement.getAttribute('data-theme')"
     Check 'theme-keyboard-enter' $b ($t3 -eq $themeBefore) "after Enter $t3"
-    Click '.seg button[data-lang="ru"]'
-    $lg = Ev "JSON.stringify({lang:document.documentElement.lang,p:document.querySelector('.seg button[data-lang=ru]').getAttribute('aria-pressed'),copy:document.querySelector('.copy .cl-idle').textContent,ext:document.querySelector('.proj-foot .sr span').textContent})" | ConvertFrom-Json
-    Check 'language-switch' $b ($lg.lang -eq 'ru' -and $lg.p -eq 'true' -and $lg.copy -eq 'Копировать' -and $lg.ext) ($lg | ConvertTo-Json -Compress)
-    Click '.seg button[data-lang="en"]'
+    # The harness clears localStorage on every new document, so the write the control makes before it navigates is
+    # recorded by a spy into sessionStorage, which survives the navigation.
+    $spy = "(function(){var o=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){if(this===localStorage&&k==='sza-lang')sessionStorage.setItem('__szaLang',v);return o.apply(this,arguments)}})();true"
+    Ev $spy | Out-Null
+    Click '.seg button[data-lang="ru"]'; Settle
+    $lg = Ev "JSON.stringify({path:location.pathname,lang:document.documentElement.lang,p:document.querySelector('.seg button[data-lang=ru]').getAttribute('aria-pressed'),copy:document.querySelector('.copy .cl-idle').textContent,ext:document.querySelector('.proj-foot a.btn .sr:last-child').textContent,saved:sessionStorage.getItem('__szaLang')})" | ConvertFrom-Json
+    Check 'language-switch' $b ($lg.path -like '*/ru/index.html' -and $lg.lang -eq 'ru' -and $lg.p -eq 'true' -and $lg.copy -eq 'Копировать' -and $lg.ext -and $lg.saved -eq 'ru') ($lg | ConvertTo-Json -Compress)
+    Ev $spy | Out-Null
+    Click '.seg button[data-lang="en"]'; Settle
+    $back = Ev "JSON.stringify({path:location.pathname,lang:document.documentElement.lang,saved:sessionStorage.getItem('__szaLang')})" | ConvertFrom-Json
+    Check 'language-switch-back' $b ($back.lang -eq 'en' -and $back.saved -eq 'en' -and $back.path -notlike '*/ru/*') ($back | ConvertTo-Json -Compress)
+    Ev "sessionStorage.removeItem('__szaLang');true" | Out-Null
     # copy: state word reserves width, neighbours do not move, repeated activation
     $before = Ev "(function(){var c=document.querySelectorAll('.copybox .copy');return JSON.stringify([].map.call(c,function(x){var r=x.getBoundingClientRect();return[r.left,r.width,x.parentElement.getBoundingClientRect().right]}))})()" | ConvertFrom-Json
     Click '.copybox .copy'
@@ -392,8 +405,8 @@ try {
     # ---- hub behaviour: touch (tap vs scroll)
     $b = 'hub-behaviour-touch-360'
     Open-Page $hubUrl 360 740 $true 'dark'
-    $r = Rect '.seg button[data-lang="ru"]'; Tap $r.x $r.y
-    Check 'touch-tap-language' $b ((Ev "document.documentElement.getAttribute('data-lang')") -eq 'ru') 'tap on RU switches language'
+    $r = Rect '.seg button[data-lang="ru"]'; Tap $r.x $r.y; Settle
+    Check 'touch-tap-language' $b ((Ev "document.documentElement.getAttribute('data-lang')") -eq 'ru') 'tap on RU opens the Russian page'
     $r = Rect '#themeBtn'; $t0 = Ev "document.documentElement.getAttribute('data-theme')"; Tap $r.x $r.y
     Check 'touch-tap-theme' $b ((Ev "document.documentElement.getAttribute('data-theme')") -ne $t0) 'tap on Theme toggles the theme'
     # drag that scrolls must not activate a button
@@ -420,12 +433,45 @@ try {
       $seedJs = "try{localStorage.setItem('sza-theme','$($c.theme)');localStorage.setItem('sza-lang','$($c.lang)')}catch(e){}"
       $seed = Cdp 'Page.addScriptToEvaluateOnNewDocument' @{ source = $seedJs }
       Open-Page $hubUrl 1280 900 $false $c.scheme
-      Pause 300
+      Settle
       $got = Ev "JSON.stringify({theme:document.documentElement.getAttribute('data-theme'),lang:document.documentElement.getAttribute('data-lang'),html:document.documentElement.lang})" | ConvertFrom-Json
       Check 'stored-theme-fallback' $b ($got.theme -eq $c.wantTheme) "stored '$($c.theme)', prefers $($c.scheme) -> data-theme=$($got.theme), wanted $($c.wantTheme)"
       Check 'stored-lang-fallback' $b ($got.lang -eq $c.wantLang -and $got.html -eq $c.wantHtml) "stored '$($c.lang)' -> data-lang=$($got.lang) lang=$($got.html), wanted $($c.wantLang) / $($c.wantHtml)"
       Cdp 'Page.removeScriptToEvaluateOnNewDocument' @{ identifier = $seed.identifier } | Out-Null
     }
+
+    # Locale queries take precedence over a saved choice and save only supported storage values; the root page then
+    # forwards to the chosen locale's page (PAGE-STYLE 3.7). The write happens before the forward and the harness clears
+    # localStorage on the new document, so a spy in the seed records it into sessionStorage.
+    $spySeed = "(function(){var o=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){if(this===localStorage&&k==='sza-lang')sessionStorage.setItem('__szaLang',v);return o.apply(this,arguments)}})();"
+    $queries = @(
+      @{ query = '?lang=uk&l=ru'; want = 'ua'; html = 'uk' },
+      @{ query = '?lang=de&l=ru'; want = 'ru'; html = 'ru' },
+      @{ query = '?lang=xx'; want = 'en'; html = 'en' },
+      @{ query = '?lang=english'; want = 'en'; html = 'en' },
+      @{ query = '?lang=russian'; want = 'en'; html = 'en' },
+      @{ query = '?lang=ua'; want = 'ua'; html = 'uk' },
+      @{ query = '?l=ua'; want = 'ua'; html = 'uk' }
+    )
+    foreach ($c in $queries) {
+      Ev "try{sessionStorage.removeItem('__szaLang')}catch(e){};true" | Out-Null
+      $seed = Cdp 'Page.addScriptToEvaluateOnNewDocument' @{ source = "try{localStorage.setItem('sza-lang','en')}catch(e){}" + $spySeed }
+      Open-Page ($hubUrl + $c.query) 1280 900 $false 'dark'
+      Settle
+      $got = Ev "JSON.stringify({lang:document.documentElement.getAttribute('data-lang'),html:document.documentElement.lang,saved:sessionStorage.getItem('__szaLang')||localStorage.getItem('sza-lang')})" | ConvertFrom-Json
+      Check 'locale-query' $c.query ($got.lang -eq $c.want -and $got.html -eq $c.html -and $got.saved -eq $c.want) "data-lang=$($got.lang), lang=$($got.html), saved=$($got.saved); expected $($c.want)/$($c.html)/$($c.want)"
+      Cdp 'Page.removeScriptToEvaluateOnNewDocument' @{ identifier = $seed.identifier } | Out-Null
+    }
+    Ev "try{sessionStorage.removeItem('__szaLang')}catch(e){};true" | Out-Null
+    $seed = Cdp 'Page.addScriptToEvaluateOnNewDocument' @{ source = $spySeed }
+    Open-Page ($hubUrl + '?l=ru&source=check#contacts') 1280 900 $false 'dark'
+    Settle
+    $fw = Ev "JSON.stringify({path:location.pathname,search:location.search,hash:location.hash,lang:document.documentElement.lang})" | ConvertFrom-Json
+    Check 'locale-query-forward' 'hub-language-switch' ($fw.path -like '*/ru/index.html' -and $fw.search -eq '?source=check' -and $fw.hash -eq '#contacts' -and $fw.lang -eq 'ru') 'the root forwards ?l=ru to the Russian page, drops the locale query, keeps the rest of the query and the hash'
+    Click '.seg button[data-lang="ua"]'; Settle
+    $urlState = Ev "JSON.stringify({path:location.pathname,hash:location.hash,lang:document.documentElement.lang,saved:sessionStorage.getItem('__szaLang')})" | ConvertFrom-Json
+    Check 'locale-query-switch' 'hub-language-switch' ($urlState.path -like '*/uk/index.html' -and $urlState.hash -eq '#contacts' -and $urlState.lang -eq 'uk' -and $urlState.saved -eq 'ua') 'the switch stores ua and opens the Ukrainian page with the hash kept'
+    Cdp 'Page.removeScriptToEvaluateOnNewDocument' @{ identifier = $seed.identifier } | Out-Null
   }
 
   # ------------------------------------------------------------ showcase scenarios
@@ -448,6 +494,10 @@ try {
         $name = "showcase-$($s.id)-$($s.w)-" + ($s.q -replace '[=&]', '-')
         Open-Page ($showUrl + '?' + $s.q) $s.w $s.h $s.touch ($(if ($s.q -match 'theme=light') { 'light' } else { 'dark' }))
         Test-Geometry $name | Out-Null
+        if ($s.id -in 'S1', 'S7') {
+          $aligned = Ev "(()=>{const h=document.querySelector('.site-header'),b=h.querySelector('.brand'),r=document.createRange();r.selectNodeContents(b);const hr=h.getBoundingClientRect(),tr=r.getBoundingClientRect();return Math.abs(getComputedStyle(b).direction==='rtl'?hr.right-tr.right:tr.left-hr.left)<1.5})()"
+          Check 'showcase-brand-aligned' $name ([bool]$aligned) 'brand text meets the logical start edge of the header'
+        }
         if ($s.id -in 'S1', 'S2') { Test-Contrast $name $showTargets; Test-OptMarks $name }
         Capture $name
       }

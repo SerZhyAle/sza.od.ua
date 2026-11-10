@@ -7,7 +7,7 @@
 - [UI profile](UI_PROFILE.md) - the hub's input and size profile, permanent variants, applicability and evidence for the unified UI contracts
 - [Canon and contracts synchronisation notice 2026-10-02](contracts/PLAN-2026-10-02-canon-and-contracts-sync.md)
 - [Contract synchronization round 2026-10-07](DONE/PLAN-2026-10-07-contract-sync.md)
-- [Free promotion campaign 2026-10-09](DONE/PLAN-2026-10-09-free-promotion-campaign.md)
+- [Free promotion campaign 2026-10-09](../PLAN/S0007_free-promotion-campaign.md)
 - [PAGE-CONTENT-VISION translation task](DONE/PLAN-2026-12-31-page-content-vision-translation.md)
 - [StreamsPlayer taxonomy follow-up](DONE/PLAN-2026-12-31-streamsplayer-taxonomy.md)
 - [In-app help: the hub's portfolio role 2026-10-16](PLAN-2026-10-16-in-app-help-hub-role.md)

@@ -1,15 +1,15 @@
 # PAGE-STYLE
 
 - **Id:** `PAGE-STYLE`
-- **Version:** 3.4
+- **Version:** 3.7
 - **Home:** the shared contracts catalog, `product-web-pages/PAGE-STYLE.md` - see [CLAUDE.md](../../CLAUDE.md) for where the catalog is
 - **Role:** producer and consumer. This repo owns the contract and its page is built from it.
 
 ## What this repo must do to stay conformant
 
 - `kit/sza-kit.css` is the deployment copy of the catalog's `product-web-pages/reference/sza-kit.css`,
-  which is canonical (30629 bytes, SHA-256 `4aba1dee10cb902ee21ca4d86e4fbeed3bf7931c64b69fe15619727fd038c141`,
-  the 2026-10-21 revision that implements BUTTONS, UI-SIZING, COLLAPSIBLE-GROUP and BOOLEAN-OPTION).
+  which is canonical (30691 bytes, SHA-256 `425dacf803b8e3035f3a66a3b6fa72698efa6bd477ecf088ac39aa30e1c322a0`,
+  the 2026-11-10 revision that aligns the header brand with the content edge).
   They must be byte-identical; `index.html` serves this repo's copy.
 - The kit is never edited in a repo; `.gitattributes` marks `kit/sza-kit.css -text`. The page layer carries no
   button, group or checkbox adapter and no `max-width` on the page, a container or running text.
@@ -20,6 +20,9 @@
 - Buttons and glyph controls follow the kit's BUTTONS markup (3.3 amendment); the one primary command is the
   hero's. Profile, scale and the permanent variants are in [../UI_PROFILE.md](../UI_PROFILE.md).
 - Amendments are written in the catalog first, then here.
+- 3.5: the page may read locale queries; the hub reads `lang`, then `l`, maps `uk` to stored `ua`, and saves a valid query.
+- 3.6: the kit aligns brand text with the shared content edge; consumers re-vendor and verify their headers.
+- 3.7: the hub publishes one page per locale (`/`, `/uk/`, `/ru/`) rendered by `tools/build-locales.ps1`; the segmented control navigates and the root forwards only on an explicit choice.
 - 3.4 (section 9): the mark of the exchange server is the second full-colour picture a page may carry, unaltered,
   as a head image or inline beside the name, never an action glyph; the kit has no component for it and gains none
   (owner decision K1). The hub page draws no mark, so nothing on it changes.
@@ -29,3 +32,5 @@
 - Read at 3.3 on 2026-10-21 (ticket `docs/PLAN-2026-10-17-unified-ui-contracts.md`): the revised kit is vendored,
   the controls are migrated and measured in a headless browser (89 checks, 0 failed). The rest of section 11 was not
   re-run; physical-device, real-font and screen-reader proof are owed (UI_PROFILE section 6).
+
+- S0004, 2026-11-10: the revised kit and locale resolver passed 140 headless checks. Other consumers must re-vendor; physical and assistive proof remains owed.

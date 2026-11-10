@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="{{@lang}}" data-lang="{{@key}}" data-theme="dark">
+<head>
+  <!-- {{@generated}} -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0f0a">
+  <title>{{title}}</title>
+  <meta name="description" content="{{meta-description}}">
+  <link rel="canonical" href="{{@url}}">
+  <link rel="alternate" hreflang="en" href="https://sza.od.ua/">
+  <link rel="alternate" hreflang="uk" href="https://sza.od.ua/uk/">
+  <link rel="alternate" hreflang="ru" href="https://sza.od.ua/ru/">
+  <link rel="alternate" hreflang="x-default" href="https://sza.od.ua/">
+
+  <!-- Open Graph / Twitter: static per locale page, the same strings as the title and description above. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Serhii Zhyhunenko (SZA)">
+  <meta property="og:title" content="{{title}}">
+  <meta property="og:description" content="{{meta-description}}">
+  <meta property="og:url" content="{{@url}}">
+  <meta property="og:image" content="https://sza.od.ua/android-chrome-512x512.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="og:image:alt" content="{{logo-alt}}">
+  <meta property="og:locale" content="{{og-locale}}">
+  <meta property="og:locale:alternate" content="{{og-locale-alt-1}}">
+  <meta property="og:locale:alternate" content="{{og-locale-alt-2}}">
+  <!-- summary, not summary_large_image: the only real preview asset is a 512x512 square logo,
+       and a wide card would crop it. Swap both lines together if a 1200x630 banner is ever drawn. -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{{title}}">
+  <meta name="twitter:description" content="{{meta-description}}">
+  <meta name="twitter:image" content="https://sza.od.ua/android-chrome-512x512.png">
+  <meta name="twitter:image:alt" content="{{logo-alt}}">
+
+  <!-- Structured data: one @graph - WebSite, this WebPage, the Person, and the ItemList of the product pages.
+       Each list item points at the product's own landing, which carries that product's SoftwareApplication. -->
+  <script type="application/ld+json">
+{{@jsonld}}
+  </script>
+
+  <!-- Favicons -->
+  <link rel="icon" href="{{@root}}favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{@root}}favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{@root}}favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{@root}}apple-touch-icon.png">
+  <link rel="manifest" href="{{@root}}site.webmanifest">
+
+  <!-- Pre-paint: theme and input profile before first paint. The English root page also honours an explicit
+       language choice - a valid ?lang= / ?l= query or a stored sza-lang - by forwarding to /ru/ or /uk/
+       (PAGE-STYLE 3.7). It never forwards on navigator.language, so a crawler reads English here. -->
+  <script>
+  (function(){try{
+    var d=document.documentElement,t=null;try{t=localStorage.getItem('sza-theme');}catch(e){}
+    if(t!=='dark'&&t!=='light')t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';
+    d.setAttribute('data-theme',t);
+    d.setAttribute('data-ui-profile',matchMedia('(pointer: coarse)').matches?'touch':'pointer');
+    if({{@forward}}){
+      var ok=['ru','en','uk','ua'],p=new URLSearchParams(location.search),q=(p.get('lang')||'').toLowerCase();
+      if(ok.indexOf(q)<0)q=(p.get('l')||'').toLowerCase();
+      if(ok.indexOf(q)<0)q='';
+      if(q==='uk')q='ua';
+      var l=q;if(!l)try{l=localStorage.getItem('sza-lang');}catch(e){}
+      if(l==='uk')l='ua';
+      if(q)try{localStorage.setItem('sza-lang',q);}catch(e){}
+      if(l==='ru'||l==='ua'){p.delete('lang');p.delete('l');var s=p.toString();
+        location.replace((l==='ru'?'ru/':'uk/')+(location.protocol==='file:'?'index.html':'')+(s?'?'+s:'')+location.hash);}
+    }
+  }catch(e){}})();
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- SZA shared kit (Pine + Gold) -->
+  <link rel="stylesheet" href="{{@root}}kit/sza-kit.css">
+
+  <style>
+    /* ---- hub-specific (built on the kit) ---- */
+    /* put the extra width to use: 4-up project grid on large monitors */
+    @media(min-width:1360px){#github-projects .grid,.eltr-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+    /* a winget command in a copy box scrolls inside its card instead of widening the grid column */
+    .proj-foot .copybox{min-width:0}
+    .hero{text-align:left;padding:1.2rem 0}
+    .hero-id{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
+    .hero-id .av-text{min-width:0}
+    .hero-id .av-text h1{font-size:clamp(1.7rem,4vw,2.3rem);margin:0;line-height:1.1}
+    .hero-id .av-text .kicker{display:block;margin:.2rem 0 0}
+    .hero .lead{margin:0 0 .9rem}
+    .hero .eyebrow{display:block;color:var(--muted);font-family:var(--font-heading);font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin:0 0 .55rem}
+    .hero .avatar{position:relative;width:60px;height:60px;margin:0;flex:none;border-radius:50%;background:var(--bg-2);border:1px solid var(--border);animation:logoIn .7s cubic-bezier(.34,1.2,.4,1) both, glow 3s 1s infinite alternate}
+    .hero .avatar img{position:relative;width:100%;height:100%;border-radius:50%;object-fit:contain;padding:10%}
+    @media(max-width:480px){.hero-id{gap:.75rem}.hero .avatar{width:48px;height:48px}.hero-id .av-text{flex:1 1 0}.hero-id .av-text h1{font-size:1.55rem}}
+    /* white logo = direct variant (dark theme); invert just the logo to black for the light theme */
+    html[data-theme="light"] .hero .avatar img{filter:invert(1)}
+    @keyframes glow{from{box-shadow:0 0 9px rgba(63,185,80,.22)}to{box-shadow:0 0 22px rgba(63,185,80,.5)}}
+    @keyframes logoIn{from{opacity:0;transform:scale(.7) translateY(4px)}to{opacity:1;transform:scale(1) translateY(0)}}
+    .button-group{margin-top:.2rem}
+    .section-title{display:flex;align-items:center;gap:.7rem;font-family:var(--font-heading);font-size:1.6rem;font-weight:700;margin-bottom:.4rem}
+    .section-title .h{color:var(--acc)}
+    .section-title::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
+    .section-desc{color:var(--muted);max-width:none;font-size:.95rem;margin-bottom:1.6rem}
+    .project-card{display:flex;flex-direction:column}
+    .proj-head{display:flex;gap:.9rem;align-items:center;margin-bottom:1rem}
+    .proj-head img{width:46px;height:46px;object-fit:contain;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid var(--border);padding:4px}
+    .proj-title{font-family:var(--font-heading);font-weight:700;font-size:1.1rem;line-height:1.25;margin-bottom:.25rem}
+    .proj-title a{color:var(--text)}
+    .proj-title a:hover,.proj-title a:focus-visible{color:var(--acc-strong);text-decoration:underline}
+    .proj-title .gi-external{width:.8em;height:.8em;margin-left:.3em;vertical-align:baseline}
+    .proj-desc{color:var(--muted);font-size:.88rem;flex-grow:1;margin-bottom:1.2rem}
+    .proj-foot{margin-top:auto;display:flex;flex-direction:column;gap:.8rem}
+    .proj-foot .cbx{min-width:0}
+    .contact-card{text-align:left;padding:2.2rem}
+    .contact-boxes{display:flex;flex-wrap:wrap;gap:1rem;justify-content:flex-start;align-items:center;margin:1.4rem 0 0}
+    .contact-boxes .cbx{text-align:left}
+    .cbx-label{font-family:var(--font-heading);font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);display:block;margin-bottom:.35rem}
+    .privacy-note{font-size:.82rem;color:var(--muted);margin-bottom:1rem;line-height:1.45}
+  </style>
+</head>
+<body>
+
+  <!-- BACKGROUND -->
+  <div class="bg-blobs"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
+
+  <!-- STICKY HEADER -->
+  <header class="site-header">
+    <span class="brand">SZA<span class="dot">.</span></span>
+    <div class="seg" role="group" aria-label="{{language-label}}">
+      <button type="button" data-lang="ru" lang="ru" aria-pressed="{{@pressed-ru}}" onclick="goLanguage('ru')">RU</button>
+      <button type="button" data-lang="en" lang="en" aria-pressed="{{@pressed-en}}" onclick="goLanguage('en')">EN</button>
+      <button type="button" data-lang="ua" lang="uk" aria-pressed="{{@pressed-ua}}" onclick="goLanguage('ua')">UA</button>
+    </div>
+    <button type="button" class="theme-btn" id="themeBtn" aria-label="{{theme-to-light}}" data-to-light="{{theme-to-light}}" data-to-dark="{{theme-to-dark}}" onclick="toggleTheme()"><span class="gi gi-theme" aria-hidden="true"></span><span>{{theme-label}}</span></button>
+    <a class="btn" href="mailto:sza@ukr.net"><span class="gi gi-email" aria-hidden="true"></span><span>{{hdr-cta}}</span></a>
+  </header>
+
+  <div class="container">
+
+    <!-- HERO -->
+    <header class="hero">
+      <div class="hero-id">
+        <div class="avatar"><img src="{{@root}}assets/sz18_out_800x800_white_on_transp.webp" alt="{{logo-alt}}" width="60" height="60"></div>
+        <div class="av-text">
+          <span class="eyebrow">{{hero-author}}</span>
+          <h1>{{hero-title}}</h1>
+          <span class="kicker">{{hero-subtitle}}</span>
+        </div>
+      </div>
+      <p class="lead">{{hero-desc}}</p>
+      <div class="button-group btn-row">
+        <a href="#github-projects" class="btn btn-primary">{{hero-primary}}</a>
+        <a href="#1c-projects" class="btn">{{hero-1c}}</a>
+        <a href="#contacts" class="btn btn-ghost">{{hero-contact}}</a>
+      </div>
+    </header>
+
+    <!-- PRODUCTS (cards rendered from tools/hub/products.json) -->
+    <section class="section" id="github-projects">
+      <h2 class="section-title"><span class="h" aria-hidden="true">#</span> <span>{{projects-title}}</span></h2>
+      <p class="section-desc">{{projects-desc}}</p>
+      <div class="grid">
+{{@cards-main}}
+      </div>
+    </section>
+
+    <!-- 1C / ELTR -->
+    <section class="section" id="1c-projects">
+      <h2 class="section-title"><span class="h" aria-hidden="true">#</span> <span>{{sec-1c-title}}</span></h2>
+      <p class="section-desc">{{sec-1c-desc}}</p>
+      <div class="grid eltr-grid">
+{{@cards-1c}}
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contacts">
+      <h2 class="section-title"><span class="h" aria-hidden="true">#</span> <span>{{contacts-title}}</span></h2>
+      <div class="card contact-card">
+        <p class="lead">{{contacts-text}}</p>
+        <div class="contact-boxes">
+          <div class="cbx">
+            <span class="cbx-label" id="lbl-phone">{{phone-label}}</span>
+            <div class="copybox"><span class="cb-text">+356 9957 6364</span><button type="button" class="copy" aria-describedby="lbl-phone" data-copy="+356 9957 6364"><span class="gi gi-copy" aria-hidden="true"></span><span class="cl"><span class="cl-idle">{{copy}}</span><span class="cl-done">{{copied}}</span></span></button></div>
+          </div>
+          <div class="cbx">
+            <span class="cbx-label" id="lbl-email">{{email-label}}</span>
+            <div class="copybox"><span class="cb-text">sza@ukr.net</span><button type="button" class="copy" aria-describedby="lbl-email" data-copy="sza@ukr.net"><span class="gi gi-copy" aria-hidden="true"></span><span class="cl"><span class="cl-idle">{{copy}}</span><span class="cl-done">{{copied}}</span></span></button></div>
+          </div>
+          <a href="mailto:sza@ukr.net" class="btn">
+            <span class="gi gi-email" aria-hidden="true"></span><span>{{contacts-btn}}</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <p class="privacy-note">{{privacy-note}}</p>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Serhii Zhyhunenko. <span>{{footer-copyright}}</span></span>
+        <span><a href="https://sza.od.ua">sza.od.ua</a> · <a href="https://github.com/SerZhyAle" target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://www.linkedin.com/in/serhii-zhyhunenko-a4600388/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="mailto:sza@ukr.net">sza@ukr.net</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <button type="button" class="to-top" id="toTop" aria-label="{{scroll-top}}" title="{{scroll-top}}" onclick="window.scrollTo({top:0,behavior:'smooth'})"><span class="gi gi-top" aria-hidden="true"></span></button>
+  <span class="sr" role="status" aria-live="polite" id="copyStatus"></span>
+
+  <script>
+    var HUB_ROOT='{{@root}}';
+
+    function setMeta(t){var m=document.querySelector('meta[name=theme-color]');if(m)m.content=(t==='light')?'#eef3ea':'#0a0f0a';}
+    function setThemeButtonLabel(){
+      var b=document.getElementById('themeBtn');
+      if(!b)return;
+      var theme=document.documentElement.getAttribute('data-theme')||'dark';
+      b.setAttribute('aria-label',b.getAttribute(theme==='light'?'data-to-dark':'data-to-light'));
+    }
+
+    function toggleTheme(){
+      var next=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+      document.documentElement.setAttribute('data-theme',next);
+      try{localStorage.setItem('sza-theme',next);}catch(e){}
+      setMeta(next);
+      setThemeButtonLabel();
+    }
+
+    /* A choice is stored (sza-lang keeps ru / en / ua) and then opens that locale's own page. */
+    function goLanguage(k){
+      if(k==='uk')k='ua';
+      if(k!=='ru'&&k!=='en'&&k!=='ua')return;
+      try{localStorage.setItem('sza-lang',k);}catch(e){}
+      if(document.documentElement.getAttribute('data-lang')===k)return;
+      var to=HUB_ROOT+(k==='ru'?'ru/':k==='ua'?'uk/':'');
+      if(location.protocol==='file:')to+='index.html';else if(!to)to='./';
+      location.href=to+location.hash;
+    }
+
+    function wireCopy(){
+      document.querySelectorAll('.copy').forEach(function(b){
+        b.addEventListener('click',function(){
+          var txt=b.getAttribute('data-copy')||'';
+          var done=function(){ b.classList.add('done');
+            var s=document.getElementById('copyStatus'),w=b.querySelector('.cl-done');
+            if(s){ s.textContent=''; setTimeout(function(){ s.textContent=w?w.textContent:''; },30); }
+            setTimeout(function(){ b.classList.remove('done'); },1600); };
+          if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done).catch(done); }
+          else{ var t=document.createElement('textarea'); t.value=txt; document.body.appendChild(t); t.select();
+            try{document.execCommand('copy');}catch(e){} document.body.removeChild(t); done(); }
+        });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded',function(){
+      setMeta(document.documentElement.getAttribute('data-theme')||'dark');
+      setThemeButtonLabel();
+      wireCopy();
+      var tt=document.getElementById('toTop');
+      window.addEventListener('scroll',function(){ tt.classList.toggle('show', window.scrollY>600); });
+    });
+  </script>
+</body>
+</html>

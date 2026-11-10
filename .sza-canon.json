@@ -32,7 +32,7 @@
   "site": {
     "kind": "portfolio",
     "root": ".",
-    "pages": ["index.html", "embed.html"]
+    "pages": ["index.html", "embed.html", "uk/index.html", "ru/index.html"]
   },
 
   "privacy": {
@@ -43,12 +43,5 @@
 
   "byteIdenticalPairs": [["index.html", "embed.html"]],
   "vendorAllow": [],
-  "exemptions": [
-    {
-      "id": "advertising",
-      "path": "index.html",
-      "until": "2027-10-02",
-      "reason": "Google AdSense script loader on portfolio website declared as an exception per UI_UX.md section 3, capped until 2027-10-02."
-    }
-  ]
+  "exemptions": []
 }

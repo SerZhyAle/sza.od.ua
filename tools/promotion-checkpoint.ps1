@@ -3,7 +3,7 @@
   Promotion checkpoint collector for sza.od.ua portfolio and serzhyale.github.io host root.
 .DESCRIPTION
   Read-only portfolio metrics checkpoint script per canon PROMOTION.md section 7 and
-  PLAN-2026-10-09-free-promotion-campaign.md (P6).
+  S0007_free-promotion-campaign.md (P6).
   Gathers status of host-root robots.txt, sitemaps, hub repository metadata, traffic,
   and dependent product tickets' reported metrics.
   Outputs docs/promotion-checkpoints/<YYYY-MM-DD>.md without making any git pushes or commits.
@@ -235,7 +235,7 @@ $sb = [System.Text.StringBuilder]::new()
 [void]$sb.AppendLine("# Portfolio Promotion Checkpoint - $Date")
 [void]$sb.AppendLine("")
 [void]$sb.AppendLine("**Generated:** $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss zzz')")
-[void]$sb.AppendLine("**Contract:** canon `PROMOTION.md` section 7 and `PLAN-2026-10-09-free-promotion-campaign.md` (P6)")
+[void]$sb.AppendLine("**Contract:** canon `PROMOTION.md` section 7 and `S0007_free-promotion-campaign.md` (P6)")
 [void]$sb.AppendLine("")
 [void]$sb.AppendLine('## 1. Host Root (`serzhyale.github.io`)')
 [void]$sb.AppendLine("")

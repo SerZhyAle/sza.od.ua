@@ -1,0 +1,97 @@
+{
+  "$comment": "One record per hub card, in page order. Rendered by tools/build-locales.ps1 into the cards, the JSON-LD ItemList and llms.txt / llms-full.txt. A channel enters only once it answers and the product's own landing or README names it (SITE-FAMILY-MAP 1.11 rule 2). Text lives in strings.json under the keys named here.",
+  "products": [
+    {
+      "id": "fms-android", "section": "main", "name": "Fast Media Sorter & Organizer",
+      "url": "https://serzhyale.github.io/FastMediaSorter_mob_v2/",
+      "icon": "fms_mob.webp", "typeKey": "gh-card-1-type", "descKey": "gh-card-1-desc",
+      "os": "Android", "category": "MultimediaApplication",
+      "channels": [
+        { "kind": "link", "label": "Google Play", "url": "https://play.google.com/store/apps/details?id=com.sza.fastmediasorter" },
+        { "kind": "link", "label": "GitHub Releases", "url": "https://github.com/SerZhyAle/FastMediaSorter_mob_v2/releases/latest" }
+      ]
+    },
+    {
+      "id": "fms-windows", "section": "main", "name": "Fast Media Sorter & Sharing for Windows",
+      "url": "https://serzhyale.github.io/FastMediaSorter_Lite/",
+      "icon": "fms_lite.webp", "typeKey": "gh-card-2-type", "descKey": "gh-card-2-desc",
+      "os": "Windows", "category": "MultimediaApplication",
+      "channels": [
+        { "kind": "winget", "id": "SerZhyAle.FastMediaSorter" },
+        { "kind": "link", "label": "Microsoft Store", "url": "https://apps.microsoft.com/detail/9N59Z73WZ53C" },
+        { "kind": "link", "label": "GitHub Releases", "url": "https://github.com/SerZhyAle/FastMediaSorter_Lite/releases/latest" }
+      ]
+    },
+    {
+      "id": "cyrflip", "section": "main", "name": "CyrFlip",
+      "url": "https://serzhyale.github.io/CyrFlip/",
+      "icon": "cyrflip.webp", "typeKey": "gh-card-3-type", "descKey": "gh-card-3-desc",
+      "os": "Windows", "category": "UtilitiesApplication",
+      "channels": [
+        { "kind": "winget", "id": "SerZhyAle.CyrFlip" },
+        { "kind": "link", "label": "Microsoft Store", "url": "https://apps.microsoft.com/detail/9NB4W41NGQJ4" },
+        { "kind": "link", "label": "GitHub Releases", "url": "https://github.com/SerZhyAle/CyrFlip/releases/latest" }
+      ]
+    },
+    {
+      "id": "doc-html-translate", "section": "main", "name": "doc-html-translate",
+      "url": "https://serzhyale.github.io/doc-html-translate/",
+      "icon": "doc_translate.ico", "typeKey": "gh-card-4-type", "descKey": "gh-card-4-desc",
+      "os": "Windows", "category": "UtilitiesApplication",
+      "channels": [
+        { "kind": "winget", "id": "SerZhyAle.DocHtmlTranslate" },
+        { "kind": "link", "label": "Microsoft Store", "url": "https://apps.microsoft.com/detail/9PMHSWQPR6V1" },
+        { "kind": "link", "label": "GitHub Releases", "url": "https://github.com/SerZhyAle/doc-html-translate/releases/latest" }
+      ]
+    },
+    {
+      "id": "filedo", "section": "main", "name": "FileDO",
+      "url": "https://serzhyale.github.io/FileDO/",
+      "icon": "filedo.webp", "typeKey": "gh-card-5-type", "descKey": "gh-card-5-desc",
+      "os": "Windows", "category": "UtilitiesApplication",
+      "channels": [
+        { "kind": "winget", "id": "SerZhyAle.FileDO" },
+        { "kind": "link", "label": "Microsoft Store", "url": "https://apps.microsoft.com/detail/9PH1LPCMRG83" },
+        { "kind": "link", "label": "GitHub Releases", "url": "https://github.com/SerZhyAle/FileDO/releases/latest" }
+      ]
+    },
+    {
+      "id": "oneclickrunner", "section": "main", "name": "OneClickRunner",
+      "url": "https://serzhyale.github.io/OneClickRunner/",
+      "icon": "oneclickrunner.webp", "typeKey": "gh-card-6-type", "descKey": "gh-card-6-desc",
+      "os": "Windows", "category": "UtilitiesApplication",
+      "channels": [
+        { "kind": "link", "label": "GitHub Releases", "url": "https://github.com/SerZhyAle/OneClickRunner/releases/latest" }
+      ]
+    },
+    {
+      "id": "universal-agent-kit", "section": "main", "name": "Universal Agent Kit",
+      "url": "https://serzhyale.github.io/universal-agent-kit/",
+      "icon": "universal_agent_kit.svg", "typeKey": "gh-card-7-type", "descKey": "gh-card-7-desc",
+      "os": null, "category": null,
+      "channels": [
+        { "kind": "link", "labelKey": "download-kit", "url": "https://serzhyale.github.io/universal-agent-kit/universal-agent-kit.zip", "external": false }
+      ]
+    },
+    {
+      "id": "streams-player", "section": "main", "name": "STREAMS Player",
+      "url": "https://serzhyale.github.io/StreamsPlayer/",
+      "icon": "streamsplayer.webp", "typeKey": "gh-card-8-type", "descKey": "gh-card-8-desc",
+      "os": "Windows", "category": "MultimediaApplication",
+      "channels": [
+        { "kind": "winget", "id": "SerZhyAle.StreamsPlayer" },
+        { "kind": "link", "label": "Microsoft Store", "url": "https://apps.microsoft.com/detail/9NBTD5SXB8TB" },
+        { "kind": "link", "label": "GitHub Releases", "url": "https://github.com/SerZhyAle/StreamsPlayer/releases/latest" }
+      ]
+    },
+    {
+      "id": "eltr", "section": "1c", "name": "ELTR / ЭЛЕМЕНТАРНАЯ торговля", "nameKey": "eltr-title",
+      "url": "https://eltr.od.ua/",
+      "icon": "eltr.webp", "iconAlt": "ELTR / Элементарная Торговля", "typeKey": "eltr-badge-1", "descKey": "eltr-desc",
+      "os": "1C:Enterprise 8", "category": "BusinessApplication",
+      "channels": [
+        { "kind": "link", "labelKey": "download", "url": "https://eltr.od.ua/site/elementarytrade/skacat" }
+      ]
+    }
+  ]
+}

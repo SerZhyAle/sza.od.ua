@@ -4,7 +4,7 @@ docs-check.ps1 - read-only check of the hub's local docs/ corpus against DOC-INT
   rule 1  docs/DOCUMENT_REGISTRY.jsonl: every line parses, has no duplicate key and carries the required fields
   rule 2  both ways: every declared path exists, every .md/.html/.jsonl under docs/ is declared
   rule 3  every relative link in docs/**/*.md resolves to a file (anchors are not checked)
-  rule 5  no em/en dash and no three-dot ellipsis in docs prose (code fences skipped)
+  rule 5  no em/en dash and no three-dot ellipsis in maintained docs prose (code fences and the preserved external specification skipped)
   rule 6  every image cited in docs/**/*.md exists
 
 Rule 4 (generated documentation drift) and rule 7 (offline safety beyond the cited images) are not scripted: nothing
@@ -55,6 +55,8 @@ foreach ($f in Get-ChildItem docs -Recurse -File -Filter *.md) {
   foreach ($m in [regex]::Matches($txt, '!\[[^\]]*\]\(([^)\s]+)')) {
     if (-not (Test-Path -LiteralPath (Join-Path $f.DirectoryName $m.Groups[1].Value))) { Find "rule 6: $(Rel $f.FullName) cites missing image '$($m.Groups[1].Value)'" }
   }
+  # Preserve the external specification verbatim; S0008 is the maintained plan derived from it.
+  if ((Rel $f.FullName) -eq 'docs/sza-research-workspace/sza.od.ua-specification.md') { continue }
   $in = $false; $i = 0
   foreach ($l in (Get-Content -LiteralPath $f.FullName -Encoding utf8)) {
     $i++

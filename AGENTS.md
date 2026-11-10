@@ -11,16 +11,16 @@ Use `google-sites-publish/` only for the published Google Sites render and suppo
 
 ## Development & Validation
 
-There is no build system or automated test suite. Work directly in the HTML, CSS, and assets, then open `index.html` in a browser for a visual smoke test.
+There is no build system or automated test suite. Between publishes, inspect what changed and run the fast check; for page changes, a direct look at `index.html` is useful.
 
-- `pwsh -NoProfile -File tools/check.ps1` runs the SZA compliance gate. It reports `SKIPPED` and exits successfully when the optional `sza` plugin is unavailable.
-- `deploy.bat "Describe the change"` runs the gate, stages all changes, creates a dated commit (or uses the supplied message), and pushes `main`. Review `git status` first: this command publishes everything staged by `git add .`.
+- `pwsh -NoProfile -File tools/fast-check.ps1` checks the page and embed for byte identity.
+- Before publishing, follow the complete pre-flight in `CLAUDE.md`. `deploy.bat "Describe the change"` then runs the compliance gate, stages all changes, creates a dated commit (or uses the supplied message), and pushes `main`. Review `git status` first: this command publishes everything staged by `git add .`.
 
 ## Coding Style & Content
 
 Preserve the existing HTML/CSS/JavaScript formatting and use two-space indentation in page markup. Prefer the existing CSS custom properties and component patterns over one-off inline styling. Name new assets descriptively in lowercase, for example `assets/project-name-preview.png`.
 
-The page has EN, RU, and UK content dictionaries. Because `setLanguage()` replaces card text at runtime, every card copy change requires four matching edits: the inline fallback plus `en`, `ru`, and `uk` entries. Keep `index.html` and `embed.html` identical after every edit.
+The pages `index.html` (en), `uk/index.html`, `ru/index.html`, the byte copy `embed.html`, and `llms.txt` / `llms-full.txt` are rendered by `tools/build-locales.ps1` from `tools/hub/template.html`, `tools/hub/strings.json` (en, ru, uk) and `tools/hub/products.json`. Never edit an output: change the source, every locale in the same edit, then run the build; `-Check` fails on a stale output.
 
 ## Commits & Pull Requests
 

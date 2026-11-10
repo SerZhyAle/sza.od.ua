@@ -1,0 +1,29 @@
+# SZA - Serhii Zhyhunenko
+
+> Serhii Zhyhunenko (SZA): practical tools for files, data, and everyday automation. Explore current Windows, Android, 1C, and AI-assisted development projects.
+
+A practical collection of independent projects for media, documents, storage, recurring actions, business accounting, and AI-assisted development. Each project page starts with what it does and how to begin using it. The hub at https://sza.od.ua/ is a static page in English, with Ukrainian at https://sza.od.ua/uk/ and Russian at https://sza.od.ua/ru/. Each product page is the authority for what it does and how to install it.
+
+## Products
+
+- [Fast Media Sorter & Organizer](https://serzhyale.github.io/FastMediaSorter_mob_v2/): Browse, play, and organise media or documents from a phone, NAS, cloud, TV box, car head unit, or VR headset - without copying the whole library first.
+- [Fast Media Sorter & Sharing for Windows](https://serzhyale.github.io/FastMediaSorter_Lite/): Sort a large photo or video folder with one key per file: view, then move, copy, rename, or delete. Optional SFTP folder sharing opens chosen folders on an Android phone and stays off until you switch it on. The separate Folder Share Server edition runs sharing as a Windows service, with the viewer optional.
+- [CyrFlip](https://serzhyale.github.io/CyrFlip/): See the active keyboard layout while typing and fix already mistyped QWERTY/Cyrillic text with one global shortcut.
+- [doc-html-translate](https://serzhyale.github.io/doc-html-translate/): Open books and documents in clean local HTML, then read or translate them in the browser; choose GUI, command line, or the browser extension.
+- [FileDO](https://serzhyale.github.io/FileDO/): Check a drive before trusting it, measure storage performance, find duplicates, or carry out deliberate cleanup from the Windows terminal.
+- [OneClickRunner](https://serzhyale.github.io/OneClickRunner/): Put your repeatable programs and scripts in the taskbar Jump List or tray, then run the right scenario in one click. The same launcher is also built into CyrFlip.
+- [Universal Agent Kit](https://serzhyale.github.io/universal-agent-kit/): Give an AI-assisted project a repeatable working method: research first, clear specifications, verification, and reusable project memory.
+- [STREAMS Player](https://serzhyale.github.io/StreamsPlayer/): Watch and listen to internet radio, live video, and RTSP streams from one place: search a curated catalog, filter by category, language, country, or media type, then play in the main or a focused window.
+- [ELTR / ЭЛЕМЕНТАРНАЯ торговля](https://eltr.od.ua/): A solution for trade and inventory management: small stores, retail chains, service centers, workshops, work crews, and warehouses. Designed to simplify daily operations without unnecessary complexity.
+
+## Contact
+
+- Email: sza@ukr.net
+- GitHub: https://github.com/SerZhyAle
+- LinkedIn: https://www.linkedin.com/in/serhii-zhyhunenko-a4600388/
+
+## Optional
+
+- [Full product list with install channels](https://sza.od.ua/llms-full.txt)
+- [Українська версія](https://sza.od.ua/uk/)
+- [Русская версия](https://sza.od.ua/ru/)

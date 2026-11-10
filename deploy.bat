@@ -39,6 +39,9 @@ if defined SZA_SKIP_GATE (
     echo [INFO] Running the canon compliance gate..
     "%PWSH%" -NoProfile -File "%~dp0tools\check.ps1"
     if errorlevel 1 set "SZA_GATE_FAILED=1"
+    echo [INFO] Checking that the locale pages and llms files match their source..
+    "%PWSH%" -NoProfile -File "%~dp0tools\build-locales.ps1" -Check
+    if errorlevel 1 set "SZA_GATE_FAILED=1"
 )
 if defined SZA_GATE_FAILED (
     echo.

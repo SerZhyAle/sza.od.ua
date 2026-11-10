@@ -1,7 +1,7 @@
 # SITE-FAMILY-MAP
 
 - **Id:** `SITE-FAMILY-MAP`
-- **Version:** 1.9
+- **Version:** 1.11
 - **Home:** the shared contracts catalog, `product-web-pages/SITE-FAMILY-MAP.md` - see [CLAUDE.md](../../CLAUDE.md) for where the catalog is
 - **Role:** producer. This repo owns the map every other product's footer states.
 
@@ -15,7 +15,7 @@
   URLs in Section 2.
 - Tool labels: Fast Media Sorter & Organizer (Android, 1.3), STREAMS Player (Windows, 1.4), Fast Media Sorter & Sharing
   for Windows (1.9). The card title is the label verbatim; the Server edition is an install intent of that product, not
-  a ninth card, and the card keeps its one URL.
+  a ninth card; the card links the landing first (1.11).
 - CyrFlip and OneClickRunner join the contextual cross-links under rule 4.
 - Adding or repointing a tool is an amendment in the catalog first, and then work on eight other pages.
 - The map's *Help index* column (1.6) holds a product's in-app help index and is filled only once the address
@@ -25,3 +25,5 @@
   mark named by its file (`EXCHANGE-MARK` rule 12). The hub renders no section 2a entry and links no shared page from a
   card or the footer (owner decision M1, `PLAN/S0002_exchange-server-mark.md`); a record is a catalog edit with no hub
   page edit after it, and a record is written only after every one of its routes answers 200.
+- (1.11) After the landing link a card may carry one link or copy box per distribution channel the product's own
+  landing or README names and that answers (store listing, winget id, GitHub Releases, download page) - never a help index.

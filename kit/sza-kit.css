@@ -151,7 +151,7 @@ img{max-width:100%;height:auto}
   padding:calc(8px*var(--ui-scale));margin:14px var(--gutter);max-width:var(--wide);
   border:1px solid var(--border);border-radius:14px;
   background:color-mix(in srgb,var(--bg-2) 78%,transparent);backdrop-filter:saturate(140%) blur(10px)}
-.brand{font-family:var(--font-heading);font-weight:800;font-size:15px;letter-spacing:.2px;margin-right:auto;padding-inline:calc(8px*var(--ui-scale));color:var(--text)}
+.brand{font-family:var(--font-heading);font-weight:800;font-size:15px;letter-spacing:.2px;margin-inline-start:calc(-1px - 8px*var(--ui-scale));margin-inline-end:auto;padding-inline-end:calc(8px*var(--ui-scale));color:var(--text)}
 .brand .dot{color:var(--acc)}
 
 /* ---------- CONTROLS : BUTTONS 2.0 + UI-SIZING 1.1 ----------

@@ -43,17 +43,21 @@ in the catalog's `_meta/REGISTRY.md`; this repo edits only its own.
 
 ## Site facts (overlay)
 
-- **Live page:** root `index.html`, served by GitHub Pages, custom-domained to `sza.od.ua` (root
-  `CNAME`). `embed.html` is the Google-Sites-embedded variant and is kept **byte-identical** to
-  `index.html` - edit both in lockstep, and the compliance gate now enforces it. `google-sites-publish/`
-  is a published render, never hand-edited in place. `github-root-redirect/` forwards the apex/origin to
-  the canonical domain.
-- **The hub card i18n trap:** `setLanguage()` overwrites `textContent` from the `i18n` dictionaries on
-  load, so the English text inline in a card is only a pre-JS fallback. **Every card edit is four edits** -
-  inline fallback plus the `en`, `ru` and `uk` dictionaries. Editing the card body alone is a no-op at
-  runtime. All three locales are authored here and the page is continuously published, so there is no
-  release boundary to batch the rest of a locale set to - the whole fan-out is part of the one edit.
-- **Publish:** run `deploy.bat` (compliance gate, stage all, dated auto-commit, push `main`); Pages
+- **Live pages:** English at root `index.html` (also `x-default`), Ukrainian at `uk/index.html`, Russian at
+  `ru/index.html`, served by GitHub Pages, custom-domained to `sza.od.ua` (root `CNAME`). `embed.html` is the
+  Google-Sites-embedded variant, **byte-identical** to `index.html`; the compliance gate enforces it.
+  `google-sites-publish/` is a published render, never hand-edited in place. `github-root-redirect/` forwards
+  the apex/origin to the canonical domain. `llms.txt` and `llms-full.txt` are the AI-discovery files.
+- **One source, rendered (PAGE-STYLE 3.7):** all of the above are render targets of `tools/build-locales.ps1`,
+  which reads `tools/hub/template.html`, `tools/hub/strings.json` (en, ru, uk) and `tools/hub/products.json`
+  (cards and their verified channels). **Never edit an output** - edit the source and run
+  `pwsh -NoProfile -File tools/build-locales.ps1`. A card edit is the template or `products.json` plus the `en`,
+  `ru` and `uk` entries in `strings.json`, in one edit; the build refuses a key missing from any locale. All three
+  locales are authored here and the page is continuously published, so the whole fan-out is part of the one edit.
+  `-Check` writes nothing and fails on a stale output; `deploy.bat` and `tools/fast-check.ps1` run it.
+- **Card channels (SITE-FAMILY-MAP 1.11):** a card links its landing first, then one link or winget copy box per
+  channel that answers and that the product's own landing or README names. No ads and no trackers on any page.
+- **Publish:** complete the pre-flight below, then run `deploy.bat` (compliance gate, stage all, dated auto-commit, push `main`); Pages
   rebuilds on push and the domain updates within ~1 min. It clears `GITHUB_TOKEN` first so keyring auth
   wins. A site update is **not** a release - there is no version, tag, or changelog here.
 - **The publish is the gate scope.** With no release boundary, anything wrong in the tree reaches
@@ -68,13 +72,26 @@ in the catalog's `_meta/REGISTRY.md`; this repo edits only its own.
   section of `PAGE-CONTENT`, and its footer and contact follow `SITE-FAMILY-MAP`. All three live in the
   contracts catalog, with pointers in `docs/contracts/`. Propagating a change across the surfaces is the
   `sza:feature-to-site` skill.
-- **Compliance gate:** `pwsh -File tools/check.ps1` - it resolves the installed `sza` plugin and runs the
-  canon gate against this repo. Do **not** call `$env:CLAUDE_PLUGIN_ROOT/tools/check-compliance.ps1`
-  directly: that variable is expanded for the plugin's own hook registrations and is not exported into a
-  tool shell, so the path collapses to `/tools/check-compliance.ps1` and exits 64.
-- **UI check:** `pwsh -NoProfile -File tools/ui-check.ps1` - rendered geometry, contrast and behaviour checks of
-  the page and of the kit showcase in a headless Chrome (PowerShell 7 only, no node or python); results and
-  captures go to `docs/ui-evidence/`. Run it after any change to `kit/sza-kit.css`, a control or the page layer.
-  The profile, permanent variants and what is not proven are in `docs/UI_PROFILE.md`.
+- **Between publishes:** no full build or check longer than 5 seconds, unless the owner names the run
+  (canon TESTING_AND_QA section 2). Inspect what changed and run `pwsh -NoProfile -File tools/fast-check.ps1`.
+  Record each deferred slow rung in the ticket audit as a `RELEASE` item naming its command and say
+  "not built, not tested until the release".
+- **Publish pre-flight:** before `deploy.bat`, run `pwsh -NoProfile -File tools/docs-check.ps1`,
+  `pwsh -NoProfile -File tools/ui-check.ps1`, and `pwsh -NoProfile -File tools/promotion-checkpoint.ps1`;
+  resolve findings before publishing. The docs check needs the local corpus and registry, which are absent
+  in some clones, and does not check anchors. The UI check covers rendered geometry, contrast and behaviour
+  of the page and kit showcase; it writes captures to `docs/ui-evidence/`. Its limits are in
+  `docs/UI_PROFILE.md`. The promotion checkpoint probes live endpoints and writes a report under
+  `docs/promotion-checkpoints/`; review that report and `git status` before publishing. These checks remain
+  manual pre-flight steps so the existing deploy gate and `SZA_SKIP_GATE` behavior stay unchanged.
+- **Publish gate:** `deploy.bat` runs `pwsh -NoProfile -File tools/check.ps1`, the full canon gate. It
+  resolves the installed `sza` plugin. Do **not** call `$env:CLAUDE_PLUGIN_ROOT/tools/check-compliance.ps1`
+  directly: the variable is not exported into a tool shell and the path collapses to `/tools/check-compliance.ps1`.
+- **Measured tiers (2026-11-10):** `tools/fast-check.ps1`, 0.297 s, fast, timed direct PowerShell process
+  including startup (exit 0); `tools/docs-check.ps1`, 0.541 s, fast on this corpus, timed the same way
+  (exit 0), and also required at publish. Reclassify a check if it grows beyond 5 seconds. The full
+  `tools/check.ps1`, `tools/ui-check.ps1` and `tools/promotion-checkpoint.ps1` have no recorded wall time
+  and are release tier until a publish measures them. UI evidence from 2026-11-10 records 140 passes but
+  no duration; no slow check was run to obtain a time.
 - **Language:** one home, [AUTHOR.md](https://github.com/SerZhyAle/sza-unified-rules/blob/main/rules/AUTHOR.md)
   "Language" in the canon. Nothing about it is repo-specific here.

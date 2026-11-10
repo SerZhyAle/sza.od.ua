@@ -3,8 +3,8 @@
 Compact pointers only; contract text is held in the shared catalog named by `CLAUDE.md`.
 
 - [PAGE-CONTENT](PAGE-CONTENT.md) 1.5 - owner and consumer
-- [PAGE-STYLE](PAGE-STYLE.md) 3.4 - owner and consumer
-- [SITE-FAMILY-MAP](SITE-FAMILY-MAP.md) 1.9 - owner and producer
+- [PAGE-STYLE](PAGE-STYLE.md) 3.7 - owner and consumer
+- [SITE-FAMILY-MAP](SITE-FAMILY-MAP.md) 1.11 - owner and producer
 - [PAGE-CONTENT-VISION](PAGE-CONTENT-VISION.md) 1.2 - owner of record
 - [UPDATE-MANIFEST](UPDATE-MANIFEST.md) 0.12 - owner only
 - [ICON-SET](ICON-SET.md) 0.36 - consumer
@@ -20,5 +20,6 @@ Compact pointers only; contract text is held in the shared catalog named by `CLA
 - [BOOLEAN-OPTION](BOOLEAN-OPTION.md) 2.0 - out of scope for surfaces (kit reference only)
 - [COLLAPSIBLE-GROUP](COLLAPSIBLE-GROUP.md) 1.1 - out of scope for surfaces (kit reference only)
 - [SETTINGS-NAVIGATION](SETTINGS-NAVIGATION.md) 2.0 - out of scope: no settings surface
-- [DOC-INTERNAL-QUALITY](DOC-INTERNAL-QUALITY.md) 0.10 - scoped consumer: the local `docs/` corpus
-- [DOC-EXTERNAL-QUALITY](DOC-EXTERNAL-QUALITY.md) 0.12 - out of scope: the hub publishes no documentation corpus
+- [DOC-INTERNAL-QUALITY](DOC-INTERNAL-QUALITY.md) 0.11 - scoped consumer: the local `docs/` corpus
+- [DOC-EXTERNAL-QUALITY](DOC-EXTERNAL-QUALITY.md) 0.13 - out of scope: the hub publishes no documentation corpus
+- [TEST-LAB](TEST-LAB.md) 0.1 - reporter; owner of the web profile `TEST-LAB-WEB`

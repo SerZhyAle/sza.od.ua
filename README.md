@@ -1,10 +1,10 @@
-# Serhii Zhyhunenko (SZA) - IT Portfolio & Contact Card
+# sza.od.ua - SZA tools for files, data, and everyday automation
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-success?style=flat-square&logo=github)](https://sza.od.ua/)
 [![1C Projects](https://img.shields.io/badge/1C%20Projects-ELTR-blue?style=flat-square)](https://eltr.od.ua/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/serhii-zhyhunenko-a4600388/)
 
-This repository hosts the source code and assets for the personal portfolio website of **Serhii Zhyhunenko (SZA)**, located at [sza.od.ua](https://sza.od.ua).
+This repository hosts the source and assets of [sza.od.ua](https://sza.od.ua/), the hub of the tools by **Serhii Zhyhunenko (SZA)** for Windows, Android, 1C, and AI-assisted development.
 
 The portfolio is designed as a premium, self-contained single-page application and is embedded directly into Google Sites.
 

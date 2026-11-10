@@ -1,0 +1,104 @@
+# SZA - Serhii Zhyhunenko
+
+> Serhii Zhyhunenko (SZA): practical tools for files, data, and everyday automation. Explore current Windows, Android, 1C, and AI-assisted development projects.
+
+A practical collection of independent projects for media, documents, storage, recurring actions, business accounting, and AI-assisted development. Each project page starts with what it does and how to begin using it. The hub at https://sza.od.ua/ is a static page in English, with Ukrainian at https://sza.od.ua/uk/ and Russian at https://sza.od.ua/ru/. Each product page is the authority for what it does and how to install it.
+
+## Products
+
+### Fast Media Sorter & Organizer
+
+- Type: Android App
+- Platform: Android
+- Product page: https://serzhyale.github.io/FastMediaSorter_mob_v2/
+- Google Play: https://play.google.com/store/apps/details?id=com.sza.fastmediasorter
+- GitHub Releases: https://github.com/SerZhyAle/FastMediaSorter_mob_v2/releases/latest
+
+Browse, play, and organise media or documents from a phone, NAS, cloud, TV box, car head unit, or VR headset - without copying the whole library first.
+
+### Fast Media Sorter & Sharing for Windows
+
+- Type: Windows Desktop
+- Platform: Windows
+- Product page: https://serzhyale.github.io/FastMediaSorter_Lite/
+- Install with winget: `winget install --id SerZhyAle.FastMediaSorter -e`
+- Microsoft Store: https://apps.microsoft.com/detail/9N59Z73WZ53C
+- GitHub Releases: https://github.com/SerZhyAle/FastMediaSorter_Lite/releases/latest
+
+Sort a large photo or video folder with one key per file: view, then move, copy, rename, or delete. Optional SFTP folder sharing opens chosen folders on an Android phone and stays off until you switch it on. The separate Folder Share Server edition runs sharing as a Windows service, with the viewer optional.
+
+### CyrFlip
+
+- Type: Windows Tray Tool
+- Platform: Windows
+- Product page: https://serzhyale.github.io/CyrFlip/
+- Install with winget: `winget install --id SerZhyAle.CyrFlip -e`
+- Microsoft Store: https://apps.microsoft.com/detail/9NB4W41NGQJ4
+- GitHub Releases: https://github.com/SerZhyAle/CyrFlip/releases/latest
+
+See the active keyboard layout while typing and fix already mistyped QWERTY/Cyrillic text with one global shortcut.
+
+### doc-html-translate
+
+- Type: CLI & GUI Tool
+- Platform: Windows
+- Product page: https://serzhyale.github.io/doc-html-translate/
+- Install with winget: `winget install --id SerZhyAle.DocHtmlTranslate -e`
+- Microsoft Store: https://apps.microsoft.com/detail/9PMHSWQPR6V1
+- GitHub Releases: https://github.com/SerZhyAle/doc-html-translate/releases/latest
+
+Open books and documents in clean local HTML, then read or translate them in the browser; choose GUI, command line, or the browser extension.
+
+### FileDO
+
+- Type: CLI Storage Tool
+- Platform: Windows
+- Product page: https://serzhyale.github.io/FileDO/
+- Install with winget: `winget install --id SerZhyAle.FileDO -e`
+- Microsoft Store: https://apps.microsoft.com/detail/9PH1LPCMRG83
+- GitHub Releases: https://github.com/SerZhyAle/FileDO/releases/latest
+
+Check a drive before trusting it, measure storage performance, find duplicates, or carry out deliberate cleanup from the Windows terminal.
+
+### OneClickRunner
+
+- Type: Windows Tray Utility
+- Platform: Windows
+- Product page: https://serzhyale.github.io/OneClickRunner/
+- GitHub Releases: https://github.com/SerZhyAle/OneClickRunner/releases/latest
+
+Put your repeatable programs and scripts in the taskbar Jump List or tray, then run the right scenario in one click. The same launcher is also built into CyrFlip.
+
+### Universal Agent Kit
+
+- Type: AI Workflow Kit
+- Product page: https://serzhyale.github.io/universal-agent-kit/
+- Download kit (.zip): https://serzhyale.github.io/universal-agent-kit/universal-agent-kit.zip
+
+Give an AI-assisted project a repeatable working method: research first, clear specifications, verification, and reusable project memory.
+
+### STREAMS Player
+
+- Type: Windows Desktop
+- Platform: Windows
+- Product page: https://serzhyale.github.io/StreamsPlayer/
+- Install with winget: `winget install --id SerZhyAle.StreamsPlayer -e`
+- Microsoft Store: https://apps.microsoft.com/detail/9NBTD5SXB8TB
+- GitHub Releases: https://github.com/SerZhyAle/StreamsPlayer/releases/latest
+
+Watch and listen to internet radio, live video, and RTSP streams from one place: search a curated catalog, filter by category, language, country, or media type, then play in the main or a focused window.
+
+### ELTR / ЭЛЕМЕНТАРНАЯ торговля
+
+- Type: 1C: Accounting & Trade
+- Platform: 1C:Enterprise 8
+- Product page: https://eltr.od.ua/
+- Download: https://eltr.od.ua/site/elementarytrade/skacat
+
+A solution for trade and inventory management: small stores, retail chains, service centers, workshops, work crews, and warehouses. Designed to simplify daily operations without unnecessary complexity.
+
+## Contact
+
+- Email: sza@ukr.net
+- GitHub: https://github.com/SerZhyAle
+- LinkedIn: https://www.linkedin.com/in/serhii-zhyhunenko-a4600388/
