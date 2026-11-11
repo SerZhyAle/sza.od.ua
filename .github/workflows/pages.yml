@@ -1,0 +1,50 @@
+# Publishes sza.od.ua from an allowlist of the site files (S0007, F3 and F35).
+# Everything outside the list below - kit/prompts/, the notes, docs/, PLAN/, google-sites-publish/,
+# github-root-redirect/, tools/, .claude/, .sza-profile.json - stays tracked in git and is not served.
+# Takes effect once the repository's Pages source is "GitHub Actions" (build_type workflow); while the
+# legacy branch build is still selected, the deploy step of this job fails and the legacy build serves the root.
+name: Publish site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Stage the allowlisted site files
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p _site/kit
+          cp index.html embed.html robots.txt sitemap.xml llms.txt llms-full.txt site.webmanifest CNAME _site/
+          cp favicon.ico favicon-16x16.png favicon-32x32.png favicon-96x96.png apple-touch-icon.png \
+             android-chrome-192x192.png android-chrome-512x512.png _site/
+          cp -r uk ru assets _site/
+          cp kit/sza-kit.css _site/kit/
+          find _site -type f | sort
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

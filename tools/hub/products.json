@@ -1,9 +1,10 @@
 {
-  "$comment": "One record per hub card, in page order. Rendered by tools/build-locales.ps1 into the cards, the JSON-LD ItemList and llms.txt / llms-full.txt. A channel enters only once it answers and the product's own landing or README names it (SITE-FAMILY-MAP 1.11 rule 2). Text lives in strings.json under the keys named here.",
+  "$comment": "One record per hub card, in page order. Rendered by tools/build-locales.ps1 into the cards, the JSON-LD ItemList and llms.txt / llms-full.txt. A channel enters only once it answers and the product's own landing or README names it (SITE-FAMILY-MAP 1.11 rule 2). Text lives in strings.json under the keys named here. localeUrls carries a card's landing for the ru and uk pages, only where the product's own landing declares that URL by hreflang.",
   "products": [
     {
       "id": "fms-android", "section": "main", "name": "Fast Media Sorter & Organizer",
       "url": "https://serzhyale.github.io/FastMediaSorter_mob_v2/",
+      "localeUrls": { "ru": "https://serzhyale.github.io/FastMediaSorter_mob_v2/index-ru.html", "uk": "https://serzhyale.github.io/FastMediaSorter_mob_v2/index-uk.html" },
       "icon": "fms_mob.webp", "typeKey": "gh-card-1-type", "descKey": "gh-card-1-desc",
       "os": "Android", "category": "MultimediaApplication",
       "channels": [
@@ -14,6 +15,7 @@
     {
       "id": "fms-windows", "section": "main", "name": "Fast Media Sorter & Sharing for Windows",
       "url": "https://serzhyale.github.io/FastMediaSorter_Lite/",
+      "localeUrls": { "ru": "https://serzhyale.github.io/FastMediaSorter_Lite/lang/ru/", "uk": "https://serzhyale.github.io/FastMediaSorter_Lite/lang/uk/" },
       "icon": "fms_lite.webp", "typeKey": "gh-card-2-type", "descKey": "gh-card-2-desc",
       "os": "Windows", "category": "MultimediaApplication",
       "channels": [
@@ -36,6 +38,7 @@
     {
       "id": "doc-html-translate", "section": "main", "name": "doc-html-translate",
       "url": "https://serzhyale.github.io/doc-html-translate/",
+      "localeUrls": { "ru": "https://serzhyale.github.io/doc-html-translate/?lang=ru", "uk": "https://serzhyale.github.io/doc-html-translate/?lang=uk" },
       "icon": "doc_translate.ico", "typeKey": "gh-card-4-type", "descKey": "gh-card-4-desc",
       "os": "Windows", "category": "UtilitiesApplication",
       "channels": [
@@ -76,6 +79,7 @@
     {
       "id": "streams-player", "section": "main", "name": "STREAMS Player",
       "url": "https://serzhyale.github.io/StreamsPlayer/",
+      "localeUrls": { "ru": "https://serzhyale.github.io/StreamsPlayer/ru/", "uk": "https://serzhyale.github.io/StreamsPlayer/uk/" },
       "icon": "streamsplayer.webp", "typeKey": "gh-card-8-type", "descKey": "gh-card-8-desc",
       "os": "Windows", "category": "MultimediaApplication",
       "channels": [

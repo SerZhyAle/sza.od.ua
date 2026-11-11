@@ -34,8 +34,8 @@ in the catalog's `_meta/REGISTRY.md`; this repo edits only its own.
 
 ## What this repo is (two roles, one repo)
 
-1. **The portfolio website** `sza.od.ua` - a hand-authored single page served from the repo root via
-   GitHub Pages, mirrored into Google Sites.
+1. **The portfolio website** `sza.od.ua` - a hand-authored single page served via GitHub Pages from an
+   allowlist of the site files (`.github/workflows/pages.yml`), mirrored into Google Sites.
 2. **The web-kit home** - `kit/sza-kit.css` is the served deployment copy of the catalog's canonical
    `product-web-pages/reference/sza-kit.css`, and must stay byte-identical to it. The style guide and the
    content spec that used to sit beside it moved into the catalog on 2026-09-22; `kit/prompts/` stays, as
@@ -64,7 +64,11 @@ in the catalog's `_meta/REGISTRY.md`; this repo edits only its own.
   sza.od.ua about a minute after the push, so `deploy.bat` runs the compliance gate first and refuses to
   commit or push when it reports an error. `SZA_SKIP_GATE=1` publishes anyway; a machine without
   PowerShell 7 or without the `sza` plugin skips the gate with a warning instead of blocking.
-- **`.nojekyll`** at repo root keeps Pages serving the hand-authored HTML verbatim.
+- **What is served (S0007 F3):** `.github/workflows/pages.yml` publishes only the site files it lists - the
+  pages, `assets/`, `kit/sza-kit.css`, `robots.txt`, `sitemap.xml`, the `llms` files, the favicons,
+  `site.webmanifest` and `CNAME`. Everything else stays tracked and is not served; a new served file is added to
+  that list in the same edit. The list takes effect once the Pages source is "GitHub Actions"; until that switch
+  the legacy branch build serves the whole root and `.nojekyll` keeps it from running Jekyll.
 
 ## Working here
 

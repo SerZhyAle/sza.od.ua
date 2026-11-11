@@ -19,21 +19,19 @@
   <meta property="og:title" content="{{title}}">
   <meta property="og:description" content="{{meta-description}}">
   <meta property="og:url" content="{{@url}}">
-  <meta property="og:image" content="https://sza.od.ua/android-chrome-512x512.png">
+  <meta property="og:image" content="https://sza.od.ua/assets/sza-hub-preview.png">
   <meta property="og:image:type" content="image/png">
-  <meta property="og:image:width" content="512">
-  <meta property="og:image:height" content="512">
-  <meta property="og:image:alt" content="{{logo-alt}}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{preview-alt}}">
   <meta property="og:locale" content="{{og-locale}}">
   <meta property="og:locale:alternate" content="{{og-locale-alt-1}}">
   <meta property="og:locale:alternate" content="{{og-locale-alt-2}}">
-  <!-- summary, not summary_large_image: the only real preview asset is a 512x512 square logo,
-       and a wide card would crop it. Swap both lines together if a 1200x630 banner is ever drawn. -->
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{title}}">
   <meta name="twitter:description" content="{{meta-description}}">
-  <meta name="twitter:image" content="https://sza.od.ua/android-chrome-512x512.png">
-  <meta name="twitter:image:alt" content="{{logo-alt}}">
+  <meta name="twitter:image" content="https://sza.od.ua/assets/sza-hub-preview.png">
+  <meta name="twitter:image:alt" content="{{preview-alt}}">
 
   <!-- Structured data: one @graph - WebSite, this WebPage, the Person, and the ItemList of the product pages.
        Each list item points at the product's own landing, which carries that product's SoftwareApplication. -->
@@ -181,6 +179,7 @@
       <h2 class="section-title"><span class="h" aria-hidden="true">#</span> <span>{{contacts-title}}</span></h2>
       <div class="card contact-card">
         <p class="lead">{{contacts-text}}</p>
+        <p>{{contacts-reply}}</p>
         <div class="contact-boxes">
           <div class="cbx">
             <span class="cbx-label" id="lbl-phone">{{phone-label}}</span>

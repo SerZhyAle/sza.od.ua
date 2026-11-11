@@ -7,6 +7,7 @@
     "language-label": "Language", "theme-label": "Theme", "theme-to-light": "Switch to light theme", "theme-to-dark": "Switch to dark theme", "scroll-top": "Scroll to top",
     "hdr-cta": "Contact",
     "logo-alt": "SZA logo",
+    "preview-alt": "SZA logo beside the line \"Practical tools for files, data, and automation\" and the address sza.od.ua",
     "hero-author": "Serhii Zhyhunenko · SZA",
     "hero-title": "Tools for files, data, and everyday automation",
     "hero-subtitle": "Windows, Android, 1C, and AI-assisted development",
@@ -41,6 +42,7 @@
     "contacts-text": "I am open to professional contacts, collaboration, and discussing custom solutions in 1C Enterprise development, workflow automation, desktop/mobile tools, and data/file processing utilities.",
     "phone-label": "Phone", "email-label": "Email", "copy": "Copy", "copied": "Copied",
     "contacts-btn": "Get in Touch via Email",
+    "contacts-reply": "I reply within 3 working days.",
     "footer-copyright": "All rights reserved.",
     "privacy-note": "Privacy: this site shows no ads, sets no cookies, and runs no analytics. Fonts load from Google Fonts; the theme and language you choose stay in your browser's local storage."
   },
@@ -51,6 +53,7 @@
     "language-label": "Язык", "theme-label": "Тема", "theme-to-light": "Включить светлую тему", "theme-to-dark": "Включить тёмную тему", "scroll-top": "В начало страницы",
     "hdr-cta": "Контакты",
     "logo-alt": "Логотип SZA",
+    "preview-alt": "Логотип SZA рядом со строкой «Practical tools for files, data, and automation» и адресом sza.od.ua",
     "hero-author": "Сергей Жигуненко · SZA",
     "hero-title": "Инструменты для файлов, данных и повседневной автоматизации",
     "hero-subtitle": "Windows, Android, 1С и разработка с ИИ-агентами",
@@ -85,6 +88,7 @@
     "contacts-text": "Я открыт к профессиональным контактам, сотрудничеству и обсуждению прикладных решений в области 1С, автоматизации, desktop/mobile-разработки и создания инструментов для работы с файлами и данными.",
     "phone-label": "Телефон", "email-label": "Эл. почта", "copy": "Копировать", "copied": "Скопировано",
     "contacts-btn": "Связаться по Email",
+    "contacts-reply": "Отвечаю в течение 3 рабочих дней.",
     "footer-copyright": "Все права защищены.",
     "privacy-note": "Конфиденциальность: на сайте нет рекламы, cookie и аналитики. Шрифты загружаются с Google Fonts; выбранные тема и язык хранятся в локальном хранилище вашего браузера."
   },
@@ -95,6 +99,7 @@
     "language-label": "Мова", "theme-label": "Тема", "theme-to-light": "Увімкнути світлу тему", "theme-to-dark": "Увімкнути темну тему", "scroll-top": "На початок сторінки",
     "hdr-cta": "Контакти",
     "logo-alt": "Логотип SZA",
+    "preview-alt": "Логотип SZA поруч із рядком «Practical tools for files, data, and automation» і адресою sza.od.ua",
     "hero-author": "Сергій Жигуненко · SZA",
     "hero-title": "Інструменти для файлів, даних і щоденної автоматизації",
     "hero-subtitle": "Windows, Android, 1С і розробка з ШІ-агентами",
@@ -129,6 +134,7 @@
     "contacts-text": "Я відкритий до професійних контактів, співпраці та обговорення прикладних рішень в області 1С, автоматизації, desktop/mobile-розробки та створення інструментів для роботи з файлами та даними.",
     "phone-label": "Телефон", "email-label": "Ел. пошта", "copy": "Копіювати", "copied": "Скопійовано",
     "contacts-btn": "Зв'язатися по Email",
+    "contacts-reply": "Відповідаю протягом 3 робочих днів.",
     "footer-copyright": "Всі права захищені.",
     "privacy-note": "Конфіденційність: на сайті немає реклами, cookie та аналітики. Шрифти завантажуються з Google Fonts; обрані тема й мова зберігаються в локальному сховищі вашого браузера."
   }

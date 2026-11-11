@@ -37,7 +37,6 @@
 
   "privacy": {
     "page": null,
-    "carveOut": "zero-data",
     "sensitiveAccess": false
   },
 
