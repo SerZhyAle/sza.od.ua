@@ -5,10 +5,10 @@
   "envPrefix": "SZA",
   "paths": {
     "specsDir": "PLAN",
-    "specArchiveDir": "PLAN/archive"
+    "specArchiveDir": "PLAN/DONE"
   },
   "grammar": {
-    "specFilePattern": "^PLAN/(archive/)?S\\d{4}_(?!spec_)"
+    "specFilePattern": "^PLAN/(DONE/)?S\\d{4}_(?!spec_)"
   },
   "probes": {
     "enabled": false
