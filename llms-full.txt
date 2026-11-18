@@ -88,6 +88,22 @@ Give an AI-assisted project a repeatable working method: research first, clear s
 
 Watch and listen to internet radio, live video, and RTSP streams from one place: search a curated catalog, filter by category, language, country, or media type, then play in the main or a focused window.
 
+### DeviceInfo
+
+- Type: Android and Wear OS App
+- Platform: Android
+- Product page: https://serzhyale.github.io/DeviceInfo_Android/
+
+See the full specification of your Android phone and Wear OS watch: system, hardware and SoC, display, memory and storage, battery with charge speed and estimated runtime, sensors, cameras, network, and diagnostics. A phone app and a watch app, with no server, no account, no telemetry, and no internet permission.
+
+### Tourist
+
+- Type: Android and Wear OS hiking kit
+- Platform: Android and Wear OS
+- Product page: https://serzhyale.github.io/Tourist_Android/
+
+A hiking kit for your phone and Wear OS watch: compass dashboard, SOS, a flashlight that stays on in the rain, and a stopwatch for the group.
+
 ### ELTR / ЭЛЕМЕНТАРНАЯ торговля
 
 - Type: 1C: Accounting & Trade

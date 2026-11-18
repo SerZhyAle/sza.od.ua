@@ -23,3 +23,4 @@ Compact pointers only; contract text is held in the shared catalog named by `CLA
 - [DOC-INTERNAL-QUALITY](DOC-INTERNAL-QUALITY.md) 0.11 - scoped consumer: the local `docs/` corpus
 - [DOC-EXTERNAL-QUALITY](DOC-EXTERNAL-QUALITY.md) 0.13 - out of scope: the hub publishes no documentation corpus
 - [TEST-LAB](TEST-LAB.md) 0.1 - reporter; owner of the web profile `TEST-LAB-WEB`
+- [RELEASE-LEDGER](RELEASE-LEDGER.md) 0.1 - out of scope: unversioned static site, keeps no release ledger

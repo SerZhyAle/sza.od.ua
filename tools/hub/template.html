@@ -72,7 +72,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- SZA shared kit (Pine + Gold) -->
   <link rel="stylesheet" href="{{@root}}kit/sza-kit.css">
@@ -117,6 +117,23 @@
     .contact-boxes .cbx{text-align:left}
     .cbx-label{font-family:var(--font-heading);font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);display:block;margin-bottom:.35rem}
     .privacy-note{font-size:.82rem;color:var(--muted);margin-bottom:1rem;line-height:1.45}
+    /* phone (the kit's own 480 px breakpoint): the first product link sits inside the first screen. The platform line
+       under the H1, the second intro sentence and the products subtitle restate text the page already carries (the
+       card type labels, the first intro sentence), so they leave the phone page; the three hero commands stay
+       (docs/UI_PROFILE.md V2, V6, V10). */
+    @media(max-width:480px){
+      .hero{padding:0 0 .25rem}
+      .hero-id{margin-bottom:.6rem}
+      .hero .eyebrow{margin-bottom:.35rem}
+      .hero-id .av-text h1{font-size:1.4rem}
+      .hero-id .av-text .kicker{display:none}
+      .hero .lead{margin-bottom:.6rem}
+      .hero .lead-more{display:none}
+      #github-projects{padding-top:.75rem}
+      #github-projects .section-title{font-size:1.35rem;margin-bottom:.75rem}
+      #github-projects .section-desc{display:none}
+      .project-card{padding:1rem}
+    }
   </style>
 </head>
 <body>
@@ -148,7 +165,7 @@
           <span class="kicker">{{hero-subtitle}}</span>
         </div>
       </div>
-      <p class="lead">{{hero-desc}}</p>
+      <p class="lead">{{hero-desc}}<span class="lead-more"> {{hero-desc-more}}</span></p>
       <div class="button-group btn-row">
         <a href="#github-projects" class="btn btn-primary">{{hero-primary}}</a>
         <a href="#1c-projects" class="btn">{{hero-1c}}</a>

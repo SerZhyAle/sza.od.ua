@@ -147,7 +147,7 @@ function Render-Llms([bool]$full) {
   [void]$o.AppendLine()
   [void]$o.AppendLine("> $(T $s 'meta-description')")
   [void]$o.AppendLine()
-  [void]$o.AppendLine("$(T $s 'hero-desc') The hub at https://sza.od.ua/ is a static page in English, with Ukrainian at https://sza.od.ua/uk/ and Russian at https://sza.od.ua/ru/. Each product page is the authority for what it does and how to install it.")
+  [void]$o.AppendLine("$(T $s 'hero-desc') $(T $s 'hero-desc-more') The hub at https://sza.od.ua/ is a static page in English, with Ukrainian at https://sza.od.ua/uk/ and Russian at https://sza.od.ua/ru/. Each product page is the authority for what it does and how to install it.")
   [void]$o.AppendLine()
   [void]$o.AppendLine('## Products')
   [void]$o.AppendLine()

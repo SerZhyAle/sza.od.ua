@@ -9,6 +9,7 @@ Sitemap: https://serzhyale.github.io/CyrFlip/sitemap.xml
 Sitemap: https://serzhyale.github.io/doc-html-translate/sitemap.xml
 Sitemap: https://serzhyale.github.io/FastMediaSorter_Lite/sitemap.xml
 Sitemap: https://serzhyale.github.io/FastMediaSorter_mob_v2/sitemap.xml
+Sitemap: https://serzhyale.github.io/FastMediaSorter_WEB/sitemap.xml
 Sitemap: https://serzhyale.github.io/FileDO/sitemap.xml
 Sitemap: https://serzhyale.github.io/knc_26/sitemap.xml
 Sitemap: https://serzhyale.github.io/OneClickRunner/sitemap.xml

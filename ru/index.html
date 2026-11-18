@@ -87,7 +87,7 @@
         "@type": "ItemList",
         "@id": "https://sza.od.ua/ru/#products",
         "name": "Мои основные актуальные продукты",
-        "numberOfItems": 9,
+        "numberOfItems": 11,
         "itemListElement": [
           {
             "@type": "ListItem",
@@ -140,6 +140,18 @@
           {
             "@type": "ListItem",
             "position": 9,
+            "name": "DeviceInfo",
+            "url": "https://serzhyale.github.io/DeviceInfo_Android/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 10,
+            "name": "Tourist",
+            "url": "https://serzhyale.github.io/Tourist_Android/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 11,
             "name": "ELTR / ЭЛЕМЕНТАРНАЯ торговля",
             "url": "https://eltr.od.ua/"
           }
@@ -182,7 +194,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- SZA shared kit (Pine + Gold) -->
   <link rel="stylesheet" href="../kit/sza-kit.css">
@@ -227,6 +239,23 @@
     .contact-boxes .cbx{text-align:left}
     .cbx-label{font-family:var(--font-heading);font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);display:block;margin-bottom:.35rem}
     .privacy-note{font-size:.82rem;color:var(--muted);margin-bottom:1rem;line-height:1.45}
+    /* phone (the kit's own 480 px breakpoint): the first product link sits inside the first screen. The platform line
+       under the H1, the second intro sentence and the products subtitle restate text the page already carries (the
+       card type labels, the first intro sentence), so they leave the phone page; the three hero commands stay
+       (docs/UI_PROFILE.md V2, V6, V10). */
+    @media(max-width:480px){
+      .hero{padding:0 0 .25rem}
+      .hero-id{margin-bottom:.6rem}
+      .hero .eyebrow{margin-bottom:.35rem}
+      .hero-id .av-text h1{font-size:1.4rem}
+      .hero-id .av-text .kicker{display:none}
+      .hero .lead{margin-bottom:.6rem}
+      .hero .lead-more{display:none}
+      #github-projects{padding-top:.75rem}
+      #github-projects .section-title{font-size:1.35rem;margin-bottom:.75rem}
+      #github-projects .section-desc{display:none}
+      .project-card{padding:1rem}
+    }
   </style>
 </head>
 <body>
@@ -258,7 +287,7 @@
           <span class="kicker">Windows, Android, 1С и разработка с ИИ-агентами</span>
         </div>
       </div>
-      <p class="lead">Практическая подборка самостоятельных проектов для медиа, документов, накопителей, повторяемых действий, учёта и разработки с ИИ-агентами. Каждая страница проекта начинается с того, что он делает и как начать им пользоваться.</p>
+      <p class="lead">Практическая подборка самостоятельных проектов для медиа, документов, накопителей, повторяемых действий, учёта и разработки с ИИ-агентами.<span class="lead-more"> Каждая страница проекта начинается с того, что он делает и как начать им пользоваться.</span></p>
       <div class="button-group btn-row">
         <a href="#github-projects" class="btn btn-primary">Актуальные продукты</a>
         <a href="#1c-projects" class="btn">Учёт и торговля</a>
@@ -383,6 +412,30 @@
               <a href="https://serzhyale.github.io/StreamsPlayer/ru/" class="btn" target="_blank" rel="noopener noreferrer"><span>Страница продукта</span><span class="sr"> - STREAMS Player</span><span class="gi gi-external" aria-hidden="true"></span><span class="sr">, Открыть в новом окне</span></a>
               <a href="https://apps.microsoft.com/detail/9NBTD5SXB8TB" class="btn btn-ghost" target="_blank" rel="noopener noreferrer"><span>Microsoft Store</span><span class="sr"> - STREAMS Player</span><span class="gi gi-external" aria-hidden="true"></span><span class="sr">, Открыть в новом окне</span></a>
               <a href="https://github.com/SerZhyAle/StreamsPlayer/releases/latest" class="btn btn-ghost" target="_blank" rel="noopener noreferrer"><span>GitHub Releases</span><span class="sr"> - STREAMS Player</span><span class="gi gi-external" aria-hidden="true"></span><span class="sr">, Открыть в новом окне</span></a>
+            </div>
+          </div>
+        </article>
+        <article class="card project-card">
+          <div class="proj-head">
+            <img src="../assets/deviceinfo.png" alt="Значок DeviceInfo" width="46" height="46" loading="lazy" decoding="async">
+            <div><h3 class="proj-title"><a href="https://serzhyale.github.io/DeviceInfo_Android/ru/" target="_blank" rel="noopener">DeviceInfo<span class="gi gi-external" aria-hidden="true"></span><span class="sr">, Открыть в новом окне</span></a></h3><span class="pill">Приложение для Android и Wear OS</span></div>
+          </div>
+          <p class="proj-desc">Полная спецификация вашего телефона на Android и часов на Wear OS: система, аппаратная часть и SoC, экран, память и накопитель, батарея со скоростью зарядки и оценкой времени работы, датчики, камеры, сеть и диагностика. Приложение для телефона и приложение для часов работают без сервера, аккаунта и телеметрии и не запрашивают доступ в интернет.</p>
+          <div class="proj-foot">
+            <div class="btn-row">
+              <a href="https://serzhyale.github.io/DeviceInfo_Android/ru/" class="btn" target="_blank" rel="noopener noreferrer"><span>Страница продукта</span><span class="sr"> - DeviceInfo</span><span class="gi gi-external" aria-hidden="true"></span><span class="sr">, Открыть в новом окне</span></a>
+            </div>
+          </div>
+        </article>
+        <article class="card project-card">
+          <div class="proj-head">
+            <img src="../assets/tourist.png" alt="Значок Tourist" width="46" height="46" loading="lazy" decoding="async">
+            <div><h3 class="proj-title"><a href="https://serzhyale.github.io/Tourist_Android/ru/" target="_blank" rel="noopener">Tourist<span class="gi gi-external" aria-hidden="true"></span><span class="sr">, Открыть в новом окне</span></a></h3><span class="pill">Набор для похода на Android и Wear OS</span></div>
+          </div>
+          <p class="proj-desc">Набор для похода на телефон и часы Wear OS: панель с компасом, SOS, фонарик, который не гаснет под дождём, и секундомер для группы.</p>
+          <div class="proj-foot">
+            <div class="btn-row">
+              <a href="https://serzhyale.github.io/Tourist_Android/ru/" class="btn" target="_blank" rel="noopener noreferrer"><span>Страница продукта</span><span class="sr"> - Tourist</span><span class="gi gi-external" aria-hidden="true"></span><span class="sr">, Открыть в новом окне</span></a>
             </div>
           </div>
         </article>

@@ -11,7 +11,7 @@ What it runs (BUTTONS 2.0, UI-SIZING 1.1, COLLAPSIBLE-GROUP 1.1, BOOLEAN-OPTION 
 
 It drives a headless Chrome over the DevTools protocol from PowerShell 7 alone (no node, no python, no package).
 External requests (web fonts, the AdSense loader) are blocked so a run is deterministic and offline: the captures
-therefore show the system-font fallback, not Outfit / Plus Jakarta Sans. That is stated in every report.
+therefore show the system-font fallback, not Manrope / Golos Text. That is stated in every report.
 
 Usage:  pwsh -NoProfile -File tools/ui-check.ps1 [-Target all|hub|showcase] [-Out <dir>] [-Showcase <file>] [-HubPage <file>] [-NoCapture]
 Exit:   0 every check passed, 1 at least one check failed, 2 the browser could not be driven.
@@ -314,7 +314,8 @@ try {
       @{ id = 'H9'; w = 1280; h = 900;  touch = $false; scheme = 'dark';  lang = 'en'; size = '';        forced = 'active' },
       @{ id = 'H10'; w = 360; h = 740;  touch = $true;  scheme = 'dark';  lang = 'en'; size = 'compact'; forced = 'none' },
       @{ id = 'H11'; w = 1920; h = 1000; touch = $false; scheme = 'dark';  lang = 'en'; size = '';        forced = 'none' },
-      @{ id = 'H12'; w = 768;  h = 1000; touch = $false; scheme = 'dark';  lang = 'en'; size = '';        forced = 'none' }
+      @{ id = 'H12'; w = 768;  h = 1000; touch = $false; scheme = 'dark';  lang = 'en'; size = '';        forced = 'none' },
+      @{ id = 'H13'; w = 1280; h = 900;  touch = $false; scheme = 'light'; lang = 'ru'; size = '';        forced = 'active' }
     )
     foreach ($s in $scn) {
       $name = "hub-$($s.id)-$($s.w)-$(if($s.touch){'touch'}else{'pointer'})-$($s.scheme)-$($s.lang)-$(if($s.size){$s.size}else{'ordinary'})$(if($s.forced -eq 'active'){'-forced-colors'})"
@@ -337,9 +338,22 @@ try {
         Check 'full-width' $name ([bool]$okw) 'container is at least viewport minus 80'
         $capped = Ev "JSON.stringify([].filter.call(document.querySelectorAll('html,body,.container,.site-header,.hero,.section,.site-footer,.section-desc,.lead,.hero-id'),function(e){return ['none','100%'].indexOf(getComputedStyle(e).maxWidth)<0}).map(function(e){return e.tagName+'.'+e.className+'='+getComputedStyle(e).maxWidth}))" | ConvertFrom-Json
         Check 'no-max-width-on-wrappers' $name (@($capped).Count -eq 0) ("capped: " + (@($capped) -join '; '))
-        $edges = Ev "(()=>{const brand=document.querySelector('.site-header .brand');const text=document.createRange();text.selectNodeContents(brand.firstChild);return JSON.stringify({head:text.getBoundingClientRect().left,hero:document.querySelector('.hero-id').getBoundingClientRect().left,foot:document.querySelector('.footer-bottom').getBoundingClientRect().left})})()" | ConvertFrom-Json
+        $edges = Ev "(()=>{const h=document.querySelector('.site-header'),brand=h.querySelector('.brand');const text=document.createRange();text.selectNodeContents(brand.firstChild);const cs=getComputedStyle(h);return JSON.stringify({head:text.getBoundingClientRect().left,box:h.getBoundingClientRect().left,inner:parseFloat(cs.borderLeftWidth)+parseFloat(cs.paddingLeft),hero:document.querySelector('.hero-id').getBoundingClientRect().left,foot:document.querySelector('.footer-bottom').getBoundingClientRect().left})})()" | ConvertFrom-Json
         Check 'left-edge-aligned' $name ([math]::Abs($edges.hero - $edges.foot) -lt 1.5) "hero $($edges.hero) footer $($edges.foot)"
         Check 'header-brand-inset' $name ([math]::Abs($edges.head - $edges.hero) -lt 1.5) "brand text $($edges.head), hero $($edges.hero)"
+        # PAGE-STYLE 3.12: the text keeps the header's border and padding inside the box (3.6 put it on the border).
+        Check 'header-brand-inside-box' $name ([math]::Abs(($edges.head - $edges.box) - $edges.inner) -lt 1.5) "brand text $($edges.head), box $($edges.box), border+padding $($edges.inner)"
+      }
+      if ($s.forced -eq 'active') {
+        # PAGE-STYLE 3.12: under forced colours every glyph takes its control's system colour and the pressed language
+        # button keeps HighlightText, on the stored theme and again after a live theme switch (Chromium drops both otherwise).
+        $jsForced = "(()=>{const bad=[];document.querySelectorAll('.gi').forEach(g=>{if(!g.getBoundingClientRect().width)return;const c=g.closest('a,button')||g.parentElement;const gc=getComputedStyle(g).backgroundColor,tc=getComputedStyle(c).color;if(gc!==tc)bad.push(c.tagName+'.'+String(c.className).split(' ')[0]+' '+gc+' vs '+tc)});const p=document.createElement('span');p.style.color='HighlightText';document.body.appendChild(p);const ht=getComputedStyle(p).color;p.remove();const sg=document.querySelector('.seg button[aria-pressed=true]');return JSON.stringify({bad:bad,seg:getComputedStyle(sg).color===ht,segColor:getComputedStyle(sg).color,ht:ht})})()"
+        foreach ($phase in 'stored', 'after-theme-switch') {
+          if ($phase -eq 'after-theme-switch') { Click '#themeBtn'; Pause 200 }
+          $fc = (Ev $jsForced) | ConvertFrom-Json
+          Check "forced-glyph-system-colour-$phase" $name (@($fc.bad).Count -eq 0) ($(if (@($fc.bad).Count) { (@($fc.bad) | Select-Object -First 3) -join ' ; ' } else { 'every glyph equals its control colour' }))
+          Check "forced-pressed-highlight-$phase" $name ([bool]$fc.seg) "pressed language button $($fc.segColor), HighlightText $($fc.ht)"
+        }
       }
       if ($s.id -eq 'H3') {
         $ov = [double](Ev "document.documentElement.scrollWidth-(window.__W||innerWidth)")
@@ -495,8 +509,10 @@ try {
         Open-Page ($showUrl + '?' + $s.q) $s.w $s.h $s.touch ($(if ($s.q -match 'theme=light') { 'light' } else { 'dark' }))
         Test-Geometry $name | Out-Null
         if ($s.id -in 'S1', 'S7') {
-          $aligned = Ev "(()=>{const h=document.querySelector('.site-header'),b=h.querySelector('.brand'),r=document.createRange();r.selectNodeContents(b);const hr=h.getBoundingClientRect(),tr=r.getBoundingClientRect();return Math.abs(getComputedStyle(b).direction==='rtl'?hr.right-tr.right:tr.left-hr.left)<1.5})()"
-          Check 'showcase-brand-aligned' $name ([bool]$aligned) 'brand text meets the logical start edge of the header'
+          # PAGE-STYLE 3.12: the brand text stands inside the header by its border and padding at the logical start
+          # (3.6 had it on the border); the box reaches past the content edge by the same amount.
+          $aligned = Ev "(()=>{const h=document.querySelector('.site-header'),b=h.querySelector('.brand'),r=document.createRange();r.selectNodeContents(b);const hr=h.getBoundingClientRect(),tr=r.getBoundingClientRect(),cs=getComputedStyle(h),rtl=getComputedStyle(b).direction==='rtl';const inner=parseFloat(rtl?cs.borderRightWidth:cs.borderLeftWidth)+parseFloat(rtl?cs.paddingRight:cs.paddingLeft);return Math.abs((rtl?hr.right-tr.right:tr.left-hr.left)-inner)<1.5})()"
+          Check 'showcase-brand-aligned' $name ([bool]$aligned) 'brand text stands inside the header by its border and padding at the logical start'
         }
         if ($s.id -in 'S1', 'S2') { Test-Contrast $name $showTargets; Test-OptMarks $name }
         Capture $name
@@ -601,7 +617,7 @@ $report.Add('# UI check results')
 $report.Add('')
 $report.Add("- Run: $(Get-Date -Format 'yyyy-MM-dd HH:mm') on $([Environment]::OSVersion.VersionString), $ver (headless)")
 $report.Add("- Target: $Target; kit sha256 $((Get-FileHash (Join-Path $root 'kit/sza-kit.css')).Hash.ToLower())")
-$report.Add("- Contracts read at: BUTTONS 2.0, UI-SIZING 1.1, COLLAPSIBLE-GROUP 1.1, BOOLEAN-OPTION 2.0, ICON-RENDER 0.24, PAGE-STYLE 3.3, PAGE-CONTENT 1.5")
+$report.Add("- Contracts read at: BUTTONS 2.0, UI-SIZING 1.1, COLLAPSIBLE-GROUP 1.1, BOOLEAN-OPTION 2.0, ICON-RENDER 0.24, PAGE-STYLE 3.12, PAGE-CONTENT 1.5")
 $report.Add('- External requests (web fonts, AdSense loader) are blocked: captures use the system-font fallback.')
 $report.Add("- Result: $passed passed, $failed failed")
 $report.Add('')

@@ -93,9 +93,9 @@ in the catalog's `_meta/REGISTRY.md`; this repo edits only its own.
   directly: the variable is not exported into a tool shell and the path collapses to `/tools/check-compliance.ps1`.
 - **Measured tiers (2026-11-10):** `tools/fast-check.ps1`, 0.297 s, fast, timed direct PowerShell process
   including startup (exit 0); `tools/docs-check.ps1`, 0.541 s, fast on this corpus, timed the same way
-  (exit 0), and also required at publish. Reclassify a check if it grows beyond 5 seconds. The full
-  `tools/check.ps1`, `tools/ui-check.ps1` and `tools/promotion-checkpoint.ps1` have no recorded wall time
-  and are release tier until a publish measures them. UI evidence from 2026-11-10 records 140 passes but
-  no duration; no slow check was run to obtain a time.
+  (exit 0), and also required at publish. Reclassify a check if it grows beyond 5 seconds.
+  `tools/ui-check.ps1` measured 64.4 s and 66.3 s on 2026-11-17 (173 checks, exit 0, owner-named run of
+  `PLAN/S0004` W4): release tier. The full `tools/check.ps1` and `tools/promotion-checkpoint.ps1` have no
+  recorded wall time and are release tier until a publish measures them.
 - **Language:** one home, [AUTHOR.md](https://github.com/SerZhyAle/sza-unified-rules/blob/main/rules/AUTHOR.md)
   "Language" in the canon. Nothing about it is repo-specific here.

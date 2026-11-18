@@ -1,7 +1,7 @@
 # SITE-FAMILY-MAP
 
 - **Id:** `SITE-FAMILY-MAP`
-- **Version:** 1.11
+- **Version:** 1.17
 - **Home:** the shared contracts catalog, `product-web-pages/SITE-FAMILY-MAP.md` - see [CLAUDE.md](../../CLAUDE.md) for where the catalog is
 - **Role:** producer. This repo owns the map every other product's footer states.
 
@@ -11,7 +11,7 @@
   the contact line.
 - The primary contact is `sza@ukr.net` and GitHub `SerZhyAle`, on every surface this repo owns, the
   README included. LinkedIn and the phone `+356 9957 6364` are hub-only, the phone in a copy box.
-- A product card links the URL the map names. All eight product cards in `index.html` link the canonical
+- A product card links the URL the map names. All ten product cards in `index.html` link the canonical
   URLs in Section 2.
 - Tool labels: Fast Media Sorter & Organizer (Android, 1.3), STREAMS Player (Windows, 1.4), Fast Media Sorter & Sharing
   for Windows (1.9). The card title is the label verbatim; the Server edition is an install intent of that product, not
@@ -25,5 +25,7 @@
   mark named by its file (`EXCHANGE-MARK` rule 12). The hub renders no section 2a entry and links no shared page from a
   card or the footer (owner decision M1, `PLAN/S0002_exchange-server-mark.md`); a record is a catalog edit with no hub
   page edit after it, and a record is written only after every one of its routes answers 200.
+- (1.17) The three addresses of `media-exchange-server-page` are permanent from 2026-11-17, the repository and `docs/`
+  segments included; a repoint is a MAJOR (`PLAN/S0004_contract-sync-carry-over.md` X3).
 - (1.11) After the landing link a card may carry one link or copy box per distribution channel the product's own
   landing or README names and that answers (store listing, winget id, GitHub Releases, download page) - never a help index.

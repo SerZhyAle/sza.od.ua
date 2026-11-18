@@ -89,6 +89,22 @@
       ]
     },
     {
+      "id": "deviceinfo", "section": "main", "name": "DeviceInfo",
+      "url": "https://serzhyale.github.io/DeviceInfo_Android/",
+      "localeUrls": { "ru": "https://serzhyale.github.io/DeviceInfo_Android/ru/", "uk": "https://serzhyale.github.io/DeviceInfo_Android/uk/" },
+      "icon": "deviceinfo.png", "typeKey": "gh-card-9-type", "descKey": "gh-card-9-desc",
+      "os": "Android", "category": "UtilitiesApplication",
+      "channels": []
+    },
+    {
+      "id": "tourist", "section": "main", "name": "Tourist",
+      "url": "https://serzhyale.github.io/Tourist_Android/",
+      "localeUrls": { "ru": "https://serzhyale.github.io/Tourist_Android/ru/", "uk": "https://serzhyale.github.io/Tourist_Android/uk/" },
+      "icon": "tourist.png", "typeKey": "gh-card-10-type", "descKey": "gh-card-10-desc",
+      "os": "Android and Wear OS", "category": "TravelApplication",
+      "channels": []
+    },
+    {
       "id": "eltr", "section": "1c", "name": "ELTR / ЭЛЕМЕНТАРНАЯ торговля", "nameKey": "eltr-title",
       "url": "https://eltr.od.ua/",
       "icon": "eltr.webp", "iconAlt": "ELTR / Элементарная Торговля", "typeKey": "eltr-badge-1", "descKey": "eltr-desc",
