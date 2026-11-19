@@ -8,7 +8,12 @@
     "specArchiveDir": "PLAN/DONE"
   },
   "grammar": {
-    "specFilePattern": "^PLAN/(DONE/)?S\\d{4}_(?!spec_)"
+    "specFilePattern": "^PLAN/(DONE/)?(?:(?:HUBSIT-\\d{4}|SZAHUB-\\d{4})|S\\d{4})_(?!spec_)",
+    "ticketIdPattern": "^HUBSIT-\\d{4}$",
+    "legacyTicketIdPatterns": [
+      "^S\\d{4}$",
+      "^SZAHUB-\\d{4}$"
+    ]
   },
   "probes": {
     "enabled": false
